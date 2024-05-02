@@ -51,7 +51,7 @@ public class MapGenerator : MonoBehaviour
 
         for (int i = 0; i < songData.songPositionInBeats.Count; i++)
         {
-            if (Random.Range(0, 1) != 0 || i < 10) continue;
+            if (Random.Range(0, 11) == 0 || i < 1) continue;
             
             if (Random.Range(0, typeChangeProba) == 0) ChangeCircleType();
             
@@ -92,7 +92,7 @@ public class MapGenerator : MonoBehaviour
 
         while (currentSecond < songData.songAudio.length)
         {
-            if (currentBeat % 2 == 0)
+            if (currentBeat % 4 == 0)
             {
                 songData.songPositionInBeats.Add(currentBeat);
                 songData.songPositionInSeconds.Add(currentSecond);

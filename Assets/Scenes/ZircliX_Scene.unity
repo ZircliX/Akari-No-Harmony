@@ -934,6 +934,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dc2cde9b625e824e9a5f16f1095e270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawners:
+  - {fileID: 1500575040}
+  - {fileID: 1497459958}
+  - {fileID: 1950985687}
 --- !u!1 &1137372217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,7 +1414,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ed58907e2fdaf0a4da3cdccf195af19e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c4f6fb7f563ca8d47bc1199acd594f72, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1
@@ -1746,12 +1750,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 473fb4bc0a75f2149b66fd47bcbb397c, type: 2}
   - {fileID: 11400000, guid: f25a53a2f3713d744ab9f40c750fd897, type: 2}
   - {fileID: 11400000, guid: 49706d18301b3b3438c3cfb17856e518, type: 2}
-  audio: {fileID: 8300000, guid: ed58907e2fdaf0a4da3cdccf195af19e, type: 3}
+  audio: {fileID: 8300000, guid: c4f6fb7f563ca8d47bc1199acd594f72, type: 3}
   bpm: 130
   offset: 0.015
   songName: Bouncing World
   mapName: Zirclix_Test
-  typeChangeProba: 2
+  typeChangeProba: 5
 --- !u!1 &1950985686
 GameObject:
   m_ObjectHideFlags: 0

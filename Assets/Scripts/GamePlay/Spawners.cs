@@ -1,12 +1,14 @@
 using System.Collections.Generic;
+using Circles;
 using UnityEngine;
 
 public class Spawners : MonoBehaviour
 {
     private float currentBeatTime;
+
+    public Transform[] spawners;
     
     private List<Circle> circleList = new();
-    private List<GameObject> spawnedCircles = new();
 
     public static Spawners Instance;
 
@@ -32,23 +34,18 @@ public class Spawners : MonoBehaviour
         {
             float beatToSpawn = circle.timeToSpawn;
             
+            //Debug.Log(currentBeatTime + " | " + beatToSpawn);
+            
             if (!(currentBeatTime >= beatToSpawn)) continue;
             
             // Instantiate the circle and add it to the dictionary
             var spawnedCircle = Instantiate(circle.circleData.circlePrefab,
-                new Vector3(circle.columnIndex, 6f, 0f), Quaternion.identity);
-                
-            spawnedCircles.Add(spawnedCircle);
-        }
+                spawners[circle.columnIndex].position, Quaternion.identity);
 
-        for (int i = 0; i < spawnedCircles.Count; i++)
-        {
-            // Move the circle down over time using Lerp or other animation techniques
-            spawnedCircles[i].transform.position = Vector3.Lerp(
-                spawnedCircles[i].transform.position,
-                new Vector3(circleList[i].columnIndex, -3.5f, 0f),
-                Time.deltaTime * circleList[i].downSpeed
-            );
+            spawnedCircle.GetComponent<CircleManager>().circleData = circle;
+                
+            //Debug.Log(spawnedCircle);
+            circleList.Remove(circle);
         }
     }
 }

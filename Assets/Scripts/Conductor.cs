@@ -59,7 +59,7 @@ public class Conductor : MonoBehaviour
     {
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
-        Debug.Log(dspSongTime);
+        //Debug.Log(dspSongTime);
         
         // Start the music playback
         musicSource.Play();
