@@ -1,34 +1,45 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Conductor : MonoBehaviour
 {
     //Song beats per minute
     //This is determined by the song you're trying to sync up to
-        public float songBpm;
+        private float songBpm;
         
     //The time window acceptable to accept a touch on the beat
-        private const float 
+        public const float 
             perfectTiming = 0.08f, 
             goodTiming = 0.1f,
-            missTiming = 0.15f;
+            missTiming = 0.15f; 
 
     //The number of seconds for each song beat
-        public float secPerBeat;
+        private float secPerBeat;
 
     //Current song position, in seconds
-        public float songPosition;
+        private List<float> songPositionInSeconds;
+        private float currentSongPositionInSeconds;
 
     //Current song position, in beats
-        public float songPositionInBeats;
+    [HideInInspector]
+        public List<float> songPositionInBeats;
+    [HideInInspector]
+        public float currentSongPositionInBeats;
+
+        private float elapsedTime;
+    [HideInInspector]
+        public float lastUserInputTime;
+    [HideInInspector]
+        public float timingDifference;
 
     //How many seconds have passed since the song started
-        public float dspSongTime;
+        private float dspSongTime;
         
     //The offset to the first beat of the song in seconds
-        public float firstBeatOffset;
+        private float firstBeatOffset;
 
     //an AudioSource attached to this GameObject that will play the music.
-        public AudioSource musicSource;
+        private AudioSource musicSource;
         
     //Conductor instance
         public static Conductor instance;
@@ -39,54 +50,76 @@ public class Conductor : MonoBehaviour
         
         //Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();
+        
+        // Load the precomputed data
+        LoadPrecomputedData();
     }
     
     void Start()
     {
-        //Calculate the number of seconds in each beat
-        secPerBeat = 60f / songBpm;
-
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
-
-        //Start the music
+        Debug.Log(dspSongTime);
+        
+        // Start the music playback
         musicSource.Play();
     }
     
     void Update()
     {
-        //determine how many seconds since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+        // Update the elapsed time
+        elapsedTime += Time.deltaTime;
 
-        //determine how many beats since the song started
-        songPositionInBeats = songPosition / secPerBeat;
+        // Determine the current song position based on the precomputed data
+        int currentBeatIndex = GetCurrentBeatIndex();
+        
+        currentSongPositionInSeconds = songPositionInSeconds[currentBeatIndex];
+        currentSongPositionInBeats = songPositionInBeats[currentBeatIndex];
     }
     
-    public void OnBeatClick()
+    public float OnBeatClick()
     {
+        // Record the time of the user input
+        lastUserInputTime = elapsedTime;
+
         // Calculate the timing difference between the click and the actual beat
-        float timingDifference = Mathf.Abs(songPosition % secPerBeat - secPerBeat / 2);
+        timingDifference = Mathf.Abs(lastUserInputTime - currentSongPositionInSeconds);
+
+        return timingDifference;
+    }
     
-        // Check if the click was close enough to be considered successful
-        switch (timingDifference)
+    private int GetCurrentBeatIndex()
+    {
+        // Binary search to find the current beat index
+        int left = 0;
+        int right = songPositionInSeconds.Count - 1;
+
+        while (left <= right)
         {
-            case <= perfectTiming:
-                Debug.Log("PERFECT ! ");
-                // Handle Perfect beat click
-                
-                break;
-            
-            case <= goodTiming:
-                Debug.Log("GOOD ! ");
-                // Handle good beat click
-                
-                break;
-            
-            case > missTiming:
-                Debug.Log("MISS ! ");
-                // Handle missed beat click
-                
-                break;
+            int mid = left + (right - left) / 2;
+            if (songPositionInSeconds[mid] <= elapsedTime)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid - 1;
+            }
         }
+
+        return right;
+    }
+    
+    private void LoadPrecomputedData()
+    {
+        // Load the precomputed data from the file or serialized format
+        Map mapData = JsonSystem.LoadMapToJson("ZircliX_Test");
+
+        // Initialize the CONDUCTOR variables based on the loaded data
+        songBpm = mapData.songData.songBPM;
+        secPerBeat = 60f / songBpm;
+        firstBeatOffset = mapData.songData.songOffset;
+        songPositionInBeats = mapData.songData.songPositionInBeats;
+        songPositionInSeconds = mapData.songData.songPositionInSeconds;
     }
 }
