@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Circles;
 using UnityEngine;
 
 public class Conductor : MonoBehaviour
@@ -9,24 +10,19 @@ public class Conductor : MonoBehaviour
         
     //The time window acceptable to accept a touch on the beat
         public const float 
-            perfectTiming = 0.08f, 
-            goodTiming = 0.1f,
-            missTiming = 0.15f; 
+            perfectTiming = 0.1f, 
+            goodTiming = 0.25f,
+            missTiming = 0.5f; 
 
     //The number of seconds for each song beat
         private float secPerBeat;
 
     //Current song position, in seconds
-        private List<float> songPositionInSeconds;
-        private float currentSongPositionInSeconds;
+        public List<float> circlesPositionInSeconds;
+        public float currentCirclePositionInSeconds;
 
-    //Current song position, in beats
-    [HideInInspector]
-        public List<float> songPositionInBeats;
-    [HideInInspector]
-        public float currentSongPositionInBeats;
-
-        private float elapsedTime;
+        public float time;
+        public float elapsedTime { get; private set; }
     [HideInInspector]
         public float lastUserInputTime;
     [HideInInspector]
@@ -42,11 +38,11 @@ public class Conductor : MonoBehaviour
         private AudioSource musicSource;
         
     //Conductor instance
-        public static Conductor instance;
+        public static Conductor Instance;
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
         
         //Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();
@@ -59,7 +55,6 @@ public class Conductor : MonoBehaviour
     {
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
-        //Debug.Log(dspSongTime);
         
         // Start the music playback
         musicSource.Play();
@@ -68,46 +63,24 @@ public class Conductor : MonoBehaviour
     void Update()
     {
         // Update the elapsed time
-        elapsedTime += Time.deltaTime;
+        elapsedTime = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
 
-        // Determine the current song position based on the precomputed data
-        int currentBeatIndex = GetCurrentBeatIndex();
-        
-        currentSongPositionInSeconds = songPositionInSeconds[currentBeatIndex];
-        currentSongPositionInBeats = songPositionInBeats[currentBeatIndex];
+        time += Time.deltaTime;
     }
     
     public float OnBeatClick()
     {
         // Record the time of the user input
         lastUserInputTime = elapsedTime;
+        
+        // Determine the current circle position 
+        var currentCircle = Spawners.Instance.spawnedCircles.Peek();
+        currentCirclePositionInSeconds = currentCircle.timeToBeat;
 
         // Calculate the timing difference between the click and the actual beat
-        timingDifference = Mathf.Abs(lastUserInputTime - currentSongPositionInSeconds);
+        timingDifference = Mathf.Abs(lastUserInputTime - currentCirclePositionInSeconds);
 
         return timingDifference;
-    }
-    
-    private int GetCurrentBeatIndex()
-    {
-        // Binary search to find the current beat index
-        int left = 0;
-        int right = songPositionInSeconds.Count - 1;
-
-        while (left <= right)
-        {
-            int mid = left + (right - left) / 2;
-            if (songPositionInSeconds[mid] <= elapsedTime)
-            {
-                left = mid + 1;
-            }
-            else
-            {
-                right = mid - 1;
-            }
-        }
-
-        return right;
     }
     
     private void LoadPrecomputedData()
@@ -119,7 +92,6 @@ public class Conductor : MonoBehaviour
         songBpm = mapData.songData.songBPM;
         secPerBeat = 60f / songBpm;
         firstBeatOffset = mapData.songData.songOffset;
-        songPositionInBeats = mapData.songData.songPositionInBeats;
-        songPositionInSeconds = mapData.songData.songPositionInSeconds;
+        circlesPositionInSeconds = mapData.songData.songPositionInSeconds;
     }
 }

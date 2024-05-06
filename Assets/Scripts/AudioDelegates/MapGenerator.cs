@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using Circles;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class MapGenerator : MonoBehaviour
 {
     public bool create;
-    public CircleData[] circlesType;
+    public GameObject[] circlesType;
 
     [Header("Song Data")]
         public new AudioClip audio;
@@ -49,18 +48,17 @@ public class MapGenerator : MonoBehaviour
             songData = songData
         };
 
-        for (int i = 0; i < songData.songPositionInBeats.Count; i++)
+        for (int i = 0; i < songData.songPositionInSeconds.Count; i++)
         {
-            if (Random.Range(0, 11) == 0 || i < 1) continue;
-            
             if (Random.Range(0, typeChangeProba) == 0) ChangeCircleType();
             
             var newCircle = new Circle
             {
-                circleData = circlesType[currentTypeIndex],
+                circlePrefab = circlesType[currentTypeIndex],
                 id = i,
-                downSpeed = 2f,
-                timeToSpawn = songData.songPositionInSeconds[i],
+                downSpeed = 4.5f,
+                timeToSpawn = songData.songPositionInSeconds[i] - 2f,
+                timeToBeat = songData.songPositionInSeconds[i],
                 columnIndex = Random.Range(0, 3)
             };
             
@@ -92,9 +90,8 @@ public class MapGenerator : MonoBehaviour
 
         while (currentSecond < songData.songAudio.length)
         {
-            if (currentBeat % 4 == 0)
+            if (currentBeat % 2 == 0 && currentSecond >= 4)
             {
-                songData.songPositionInBeats.Add(currentBeat);
                 songData.songPositionInSeconds.Add(currentSecond);
             }
             
@@ -111,8 +108,7 @@ public class Song
     public int songBPM;
     public float songOffset;
     public string songName;
-
-    public List<float> songPositionInBeats = new();
+    
     public List<float> songPositionInSeconds = new();
 }
 
@@ -127,12 +123,13 @@ public class Map
 [System.Serializable]
 public class Circle
 {
-    public CircleData circleData;
+    public GameObject circlePrefab;
     
     public int id;
     public float downSpeed;
     
     public float timeToSpawn;
+    public float timeToBeat;
     
     [Range(0, 2)]
     public int columnIndex;

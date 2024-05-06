@@ -1,3 +1,4 @@
+using PlayerRelated;
 using UnityEngine;
 
 namespace Circles
@@ -9,7 +10,7 @@ namespace Circles
 
         void Update()
         {
-            if (transform.position.y >= -4.5f)
+            if (transform.position.y >= -6f)
             {
                 transform.Translate(Vector3.down * (Time.deltaTime * circleData.downSpeed));
             }
