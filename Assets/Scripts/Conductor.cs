@@ -1,26 +1,16 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Conductor : MonoBehaviour
 {
-    //Song beats per minute
-    //This is determined by the song you're trying to sync up to
-        private float songBpm;
-        
     //The time window acceptable to accept a touch on the beat
         public const float 
-            perfectTiming = 0.08f, 
-            goodTiming = 0.15f,
-            missTiming = 0.3f; 
-
-    //The number of seconds for each song beat
-        private float secPerBeat;
-
+            perfectTiming = 0.05f,
+            goodTiming = 0.1f,
+            missTiming = 0.2f;
+    
     //Current song position, in seconds
-        public List<float> circlesPositionInSeconds;
         public float currentCirclePositionInSeconds;
-
-        public float time;
+        
         public float elapsedTime { get; private set; }
     [HideInInspector]
         public float lastUserInputTime;
@@ -63,8 +53,6 @@ public class Conductor : MonoBehaviour
     {
         // Update the elapsed time
         elapsedTime = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
-
-        time += Time.deltaTime;
     }
     
     public float OnBeatClick()
@@ -87,12 +75,10 @@ public class Conductor : MonoBehaviour
     private void LoadPrecomputedData()
     {
         // Load the precomputed data from the file or serialized format
+        //var map = Resources.Load("ZircliX_Test");
         Map mapData = JsonSystem.LoadMapToJson("ZircliX_Test");
 
         // Initialize the CONDUCTOR variables based on the loaded data
-        songBpm = mapData.songData.songBPM;
-        secPerBeat = 60f / songBpm;
         firstBeatOffset = mapData.songData.songOffset;
-        circlesPositionInSeconds = mapData.songData.songPositionInSeconds;
     }
 }

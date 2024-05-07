@@ -72,7 +72,7 @@ namespace PlayerRelated
             bool rightColumn = currentCircle.circleData.columnIndex == clickIndex;
             if (!rightColumn)
             {
-                MissedClick();
+                WrongColumn();
                 return;
             }
 
@@ -104,7 +104,7 @@ namespace PlayerRelated
             currentCircle.isHit = true;
         }
 
-        private void MissedClick()
+        private void WrongColumn()
         {
             Debug.Log("Wrong Column !");
         }

@@ -90,7 +90,7 @@ public class MapGenerator : MonoBehaviour
 
         while (currentSecond < songData.songAudio.length)
         {
-            if (currentBeat % 4 == 0 && currentSecond >= 4)
+            if (currentBeat % 2 == 0 && currentSecond >= 4)
             {
                 songData.songPositionInSeconds.Add(currentSecond);
             }
