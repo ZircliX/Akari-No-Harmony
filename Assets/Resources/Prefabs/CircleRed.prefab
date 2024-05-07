@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.027406208, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,3 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b59365d0f4f0043a0cf84688a3d286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHit: 0
+  circleData:
+    circlePrefab: {fileID: 0}
+    id: 0
+    downSpeed: 0
+    timeToSpawn: 0
+    timeToBeat: 0
+    columnIndex: 0

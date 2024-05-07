@@ -55,7 +55,7 @@ public class MapGenerator : MonoBehaviour
             var newCircle = new Circle
             {
                 circlePrefab = circlesType[currentTypeIndex],
-                id = i,
+                id = currentTypeIndex,
                 downSpeed = 4.5f,
                 timeToSpawn = songData.songPositionInSeconds[i] - 2f,
                 timeToBeat = songData.songPositionInSeconds[i],
@@ -90,7 +90,7 @@ public class MapGenerator : MonoBehaviour
 
         while (currentSecond < songData.songAudio.length)
         {
-            if (currentBeat % 2 == 0 && currentSecond >= 4)
+            if (currentBeat % 4 == 0 && currentSecond >= 4)
             {
                 songData.songPositionInSeconds.Add(currentSecond);
             }

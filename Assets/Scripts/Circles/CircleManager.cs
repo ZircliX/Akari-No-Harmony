@@ -1,11 +1,10 @@
-using PlayerRelated;
 using UnityEngine;
 
 namespace Circles
 {
     public class CircleManager : MonoBehaviour
     {
-        public bool isHit = false;
+        public bool isHit;
         public Circle circleData;
 
         void Update()
@@ -14,9 +13,10 @@ namespace Circles
             {
                 transform.Translate(Vector3.down * (Time.deltaTime * circleData.downSpeed));
             }
-            else
+            if (isHit)
             {
                 Destroy(gameObject);
+                Spawners.Instance.RemoveCircle(this);
             }
         }
     }

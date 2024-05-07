@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Circles;
 using UnityEngine;
 
 public class Conductor : MonoBehaviour
@@ -10,9 +9,9 @@ public class Conductor : MonoBehaviour
         
     //The time window acceptable to accept a touch on the beat
         public const float 
-            perfectTiming = 0.1f, 
-            goodTiming = 0.25f,
-            missTiming = 0.5f; 
+            perfectTiming = 0.08f, 
+            goodTiming = 0.15f,
+            missTiming = 0.3f; 
 
     //The number of seconds for each song beat
         private float secPerBeat;
@@ -74,11 +73,13 @@ public class Conductor : MonoBehaviour
         lastUserInputTime = elapsedTime;
         
         // Determine the current circle position 
-        var currentCircle = Spawners.Instance.spawnedCircles.Peek();
-        currentCirclePositionInSeconds = currentCircle.timeToBeat;
+        var currentCircle = Spawners.Instance.spawnedCircles[0];
+        currentCirclePositionInSeconds = currentCircle.circleData.timeToBeat;
 
         // Calculate the timing difference between the click and the actual beat
-        timingDifference = Mathf.Abs(lastUserInputTime - currentCirclePositionInSeconds);
+        timingDifference = Mathf.Abs(currentCirclePositionInSeconds - lastUserInputTime);
+        
+        //Debug.Log(lastUserInputTime + " | " + currentCirclePositionInSeconds + " | " + timingDifference);
 
         return timingDifference;
     }

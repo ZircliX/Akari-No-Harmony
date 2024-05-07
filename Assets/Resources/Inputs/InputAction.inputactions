@@ -6,15 +6,6 @@
             "id": "6aba1e0a-c44d-47eb-8a45-d79b7a1cfbbb",
             "actions": [
                 {
-                    "name": "Click",
-                    "type": "Button",
-                    "id": "d825f30c-800e-4484-acb1-508ec2282c47",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Left",
                     "type": "Button",
                     "id": "26013232-5bd5-4526-8d32-7e1b1a1b0812",
@@ -54,39 +45,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "6e417844-7a07-4e54-becc-977a3b51b00e",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f9215276-d070-440e-9ec9-fbb9ff673660",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "facf76a1-3bc5-4c9e-9f79-b40afbba136d",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8ef2b0fb-0cf4-4694-99d7-8a1c08e4279f",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -122,6 +80,17 @@
                     "name": "",
                     "id": "af746ef0-6056-4dac-ae55-5ffec5c4ce5c",
                     "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Middle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e89cb2b5-0c71-404f-ab8c-baafd95c9dfd",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -9,7 +9,7 @@ public class Spawners : MonoBehaviour
     public Transform[] spawners;
     
     private List<Circle> circleList = new();
-    public Queue<Circle> spawnedCircles = new();
+    public List<CircleManager> spawnedCircles = new();
 
     public static Spawners Instance;
 
@@ -28,8 +28,13 @@ public class Spawners : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentBeatTime += Time.deltaTime;
-        
+        currentBeatTime = Conductor.Instance.elapsedTime;
+
+        SpawnCircles();
+    }
+
+    private void SpawnCircles()
+    {
         //Spawn circles
         foreach (var circle in circleList)
         {
@@ -41,15 +46,19 @@ public class Spawners : MonoBehaviour
                 var spawnedCircle = Instantiate(circle.circlePrefab,
                     spawners[circle.columnIndex].position, Quaternion.identity);
 
-                spawnedCircle.GetComponent<CircleManager>().circleData = circle;
+                var component = spawnedCircle.GetComponent<CircleManager>();
+                component.circleData = circle;
             
-                spawnedCircles.Enqueue(circle);
+                spawnedCircles.Add(component);
+
+                circle.timeToSpawn = float.MaxValue;
             }
         }
+    }
 
-        foreach (var circle in spawnedCircles)
-        {
-            circleList.Remove(circle);
-        }
+    public void RemoveCircle(CircleManager cm)
+    {
+        spawnedCircles.Remove(cm);
+        Destroy(cm.gameObject);
     }
 }

@@ -1,4 +1,3 @@
-using Circles;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +5,8 @@ namespace PlayerRelated
 {
     public class PlayerManager : MonoBehaviour
     {
+        #region Class Variables
+        
         private ClickIndex click;
         private enum ClickIndex
         {
@@ -29,6 +30,8 @@ namespace PlayerRelated
         {
             Instance = this;
         }
+        
+        #endregion
 
         public void ChangeBanner(InputAction.CallbackContext context)
         {
@@ -40,11 +43,8 @@ namespace PlayerRelated
             if ((int)color >= 3) color = 0;
             if ((int)color < 0) color = (ColorIndex)2;
         }
-        
-        public void OnClick(InputAction.CallbackContext context)
-        {
-            if (context.phase == InputActionPhase.Performed) OnBeatClick(10);
-        }
+
+        #region  HandleClick
 
         public void LeftClick(InputAction.CallbackContext context)
         {
@@ -58,14 +58,30 @@ namespace PlayerRelated
         {
             if (context.phase == InputActionPhase.Performed) OnBeatClick(2);
         }
+        
+        #endregion
 
         private void OnBeatClick(int clickIndex)
         {
             // Calculate the timing difference between the click and the actual beat
             float timingDifference = Conductor.Instance.OnBeatClick();
-            var currentCircle = Spawners.Instance.spawnedCircles.Peek();
+            var currentCircle = Spawners.Instance.spawnedCircles[0];
 
-            bool validInput = currentCircle.columnIndex != clickIndex;
+            Spawners.Instance.RemoveCircle(currentCircle);
+            
+            bool rightColumn = currentCircle.circleData.columnIndex == clickIndex;
+            if (!rightColumn)
+            {
+                MissedClick();
+                return;
+            }
+
+            bool rightColor = (int)color == currentCircle.circleData.id;
+            if (!rightColor)
+            {
+                WrongColor();
+                return;
+            }
 
             // Check if the click was close enough to be considered successful
             switch (timingDifference)
@@ -73,26 +89,29 @@ namespace PlayerRelated
                 // Handle Perfect beat click
                 case <= Conductor.perfectTiming:
                     Debug.Log("PERFECT ! ");
-                    Spawners.Instance.spawnedCircles.Dequeue();
                     break;
                 
                 // Handle good beat click
                 case <= Conductor.goodTiming:
                     Debug.Log("GOOD ! ");
-                    Spawners.Instance.spawnedCircles.Dequeue();
                     break;
                 
-                default:
-                {
-                    // Handle missed beat click
-                    if (timingDifference > Conductor.missTiming || !validInput)
-                    {
-                        Debug.Log("MISS ! ");
-                        Spawners.Instance.spawnedCircles.Dequeue();
-                    }
+                case <= Conductor.missTiming:
+                    Debug.Log("MISS ! ");
                     break;
-                }
             }
+
+            currentCircle.isHit = true;
+        }
+
+        private void MissedClick()
+        {
+            Debug.Log("Wrong Column !");
+        }
+
+        private void WrongColor()
+        {
+            Debug.Log("Wrong Color !");
         }
     }
 }
