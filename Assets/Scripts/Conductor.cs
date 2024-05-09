@@ -75,9 +75,8 @@ public class Conductor : MonoBehaviour
     private void LoadPrecomputedData()
     {
         // Load the precomputed data from the file or serialized format
-        var jsonTextFile = Resources.Load<TextAsset>("Text/jsonFile01");
-        //Then use JsonUtility.FromJson<T>() to deserialize jsonTextFile into an object
-        Map mapData = JsonSystem.LoadMapToJson("ZircliX_Test");
+        var jsonTextFile = Resources.Load<TextAsset>("MapData/Zirclix_Test");
+        Map mapData = JsonUtility.FromJson<Map>(jsonTextFile.text);
 
         // Initialize the CONDUCTOR variables based on the loaded data
         firstBeatOffset = mapData.songData.songOffset;

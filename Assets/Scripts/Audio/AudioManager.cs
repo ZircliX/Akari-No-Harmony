@@ -42,7 +42,6 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        PlayMusic("Theme");
     }
 
     private void PlayMusic(string name)
