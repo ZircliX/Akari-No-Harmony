@@ -1,3 +1,4 @@
+using Score;
 using UnityEngine;
 
 namespace Circles
@@ -15,6 +16,13 @@ namespace Circles
             }
             if (isHit)
             {
+                Destroy(gameObject);
+                Spawners.Instance.RemoveCircle(this);
+            }
+            if (transform.position.y <= -4.5f)
+            {
+                ScoreCombo.Instance.MissedHit();
+                
                 Destroy(gameObject);
                 Spawners.Instance.RemoveCircle(this);
             }
