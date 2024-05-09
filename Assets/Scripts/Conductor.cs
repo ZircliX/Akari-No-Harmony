@@ -29,7 +29,7 @@ public class Conductor : MonoBehaviour
     //Conductor instance
         public static Conductor Instance;
 
-    void Awake()
+        private void Awake()
     {
         Instance = this;
         
@@ -39,8 +39,8 @@ public class Conductor : MonoBehaviour
         // Load the precomputed data
         LoadPrecomputedData();
     }
-    
-    void Start()
+
+        private void Start()
     {
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
@@ -48,8 +48,8 @@ public class Conductor : MonoBehaviour
         // Start the music playback
         musicSource.Play();
     }
-    
-    void Update()
+
+        private void Update()
     {
         // Update the elapsed time
         elapsedTime = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
@@ -75,7 +75,8 @@ public class Conductor : MonoBehaviour
     private void LoadPrecomputedData()
     {
         // Load the precomputed data from the file or serialized format
-        //var map = Resources.Load("ZircliX_Test");
+        var jsonTextFile = Resources.Load<TextAsset>("Text/jsonFile01");
+        //Then use JsonUtility.FromJson<T>() to deserialize jsonTextFile into an object
         Map mapData = JsonSystem.LoadMapToJson("ZircliX_Test");
 
         // Initialize the CONDUCTOR variables based on the loaded data

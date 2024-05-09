@@ -174,13 +174,13 @@ namespace FMOD.Studio
     }
 
     // This is only need for loading memory and given our C# wrapper LOAD_MEMORY_POINT isn't feasible anyway
-    enum LOAD_MEMORY_MODE : int
+    internal enum LOAD_MEMORY_MODE : int
     {
         LOAD_MEMORY,
         LOAD_MEMORY_POINT,
     }
 
-    enum LOAD_MEMORY_ALIGNMENT : int
+    internal enum LOAD_MEMORY_ALIGNMENT : int
     {
         VALUE = 32
     }
@@ -227,7 +227,7 @@ namespace FMOD.Studio
     };
 
     [StructLayout(LayoutKind.Explicit)]
-    struct Union_IntBoolFloatString
+    internal struct Union_IntBoolFloatString
     {
         [FieldOffset(0)]
         public int intvalue;

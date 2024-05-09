@@ -1023,7 +1023,7 @@ fmod_editor.log";
 
         private class AudioSourceItem : TreeViewItem
         {
-            const string audioIcon = "AudioSource Icon";
+            private const string audioIcon = "AudioSource Icon";
             public AudioSourceItem(AudioSource source) : base(source.GetHashCode())
             {
                 displayName = (source.clip ? source.clip.name : "None");
@@ -1034,10 +1034,10 @@ fmod_editor.log";
         private class ParentItem : TreeViewItem
         {
             public GameObject gameObject;
-            const string goIcon = "GameObject Icon";
-            const string prefabIcon = "Prefab Icon";
-            const string prefabModelIcon = "PrefabModel Icon";
-            const string prefabVariantIcon = "PrefabVariant Icon";
+            private const string goIcon = "GameObject Icon";
+            private const string prefabIcon = "Prefab Icon";
+            private const string prefabModelIcon = "PrefabModel Icon";
+            private const string prefabVariantIcon = "PrefabVariant Icon";
 
             public ParentItem(GameObject go) : base(go.GetHashCode(), 0, go.name)
             {
@@ -1069,8 +1069,8 @@ fmod_editor.log";
         private class SceneItem : TreeViewItem
         {
             public Scene m_scene;
-            const string sceneIcon = "SceneAsset Icon";
-            const string folderIcon = "Folder Icon";
+            private const string sceneIcon = "SceneAsset Icon";
+            private const string folderIcon = "Folder Icon";
 
             public SceneItem(Scene scene) : base (scene.GetHashCode())
             {

@@ -8,7 +8,7 @@ namespace Circles
         public bool isHit;
         public Circle circleData;
 
-        void Update()
+        private void Update()
         {
             if (transform.position.y >= -6f)
             {

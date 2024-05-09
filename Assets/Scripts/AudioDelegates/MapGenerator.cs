@@ -48,7 +48,7 @@ public class MapGenerator : MonoBehaviour
             songData = songData
         };
 
-        for (int i = 0; i < songData.songPositionInSeconds.Count; i++)
+        foreach (var time in songData.songPositionInSeconds)
         {
             if (Random.Range(0, typeChangeProba) == 0) ChangeCircleType();
             
@@ -57,8 +57,8 @@ public class MapGenerator : MonoBehaviour
                 circlePrefab = circlesType[currentTypeIndex],
                 id = currentTypeIndex,
                 downSpeed = 4.5f,
-                timeToSpawn = songData.songPositionInSeconds[i] - 2f,
-                timeToBeat = songData.songPositionInSeconds[i],
+                timeToSpawn = time - 2f,
+                timeToBeat = time,
                 columnIndex = Random.Range(0, 3)
             };
             
@@ -86,7 +86,7 @@ public class MapGenerator : MonoBehaviour
     {
         float secPerBeat = 60f / songData.songBPM;
         float currentBeat = 0f;
-        float currentSecond = 0f;
+        float currentSecond = songData.songOffset;
 
         while (currentSecond < songData.songAudio.length)
         {

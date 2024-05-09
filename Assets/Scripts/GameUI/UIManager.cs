@@ -15,7 +15,7 @@ namespace GameUI
         public SpriteRenderer clickLine;
         public Color[] colors;
 
-        void Update()
+        private void Update()
         {
             colorText.text = PlayerManager.Instance.color.ToString();
 

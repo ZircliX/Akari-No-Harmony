@@ -117,13 +117,13 @@ namespace FMODUnity
             private const string BankPrefix = "bank:/";
             private const string ParameterPrefix = "parameter:/";
 
-            bool expandNextFolderSet = false;
-            string nextFramedItemPath;
+            private bool expandNextFolderSet = false;
+            private string nextFramedItemPath;
             private string[] searchStringSplit;
 
-            IList<int> noSearchExpandState;
+            private IList<int> noSearchExpandState;
 
-            float oldBaseIndent;
+            private float oldBaseIndent;
 
             public TreeView(State state) : base(state.baseState)
             {

@@ -9,8 +9,8 @@ namespace Score
         private int multi;
 
         public static ScoreCombo Instance;
-    
-        void Start()
+
+        private void Start()
         {
             Instance = this;
 
@@ -23,6 +23,7 @@ namespace Score
             combo += 1;
 
             multi = multi >= 8 ? 8 : combo / 10;
+            multi = Mathf.Clamp(multi, 1, 8);
 
             score += points * multi;
         }

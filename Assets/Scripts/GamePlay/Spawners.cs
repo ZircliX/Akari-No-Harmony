@@ -19,14 +19,14 @@ public class Spawners : MonoBehaviour
     }
     
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         var mapData = JsonSystem.LoadMapToJson("ZircliX_Test");
         circleList = mapData.circles;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         currentBeatTime = Conductor.Instance.elapsedTime;
 

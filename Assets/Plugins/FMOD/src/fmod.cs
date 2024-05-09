@@ -332,8 +332,8 @@ namespace FMOD
     [StructLayout(LayoutKind.Sequential)]
     public struct PLUGINLIST
     {
-        PLUGINTYPE type;
-        IntPtr description;
+        private PLUGINTYPE type;
+        private IntPtr description;
     }
 
     [Flags]
@@ -2064,7 +2064,7 @@ namespace FMOD
     /*
         'ChannelControl' API
     */
-    interface IChannelControl
+    internal interface IChannelControl
     {
         RESULT getSystemObject              (out System system);
 
@@ -3867,7 +3867,7 @@ namespace FMOD
     [StructLayout(LayoutKind.Sequential)]
     public struct StringWrapper
     {
-        IntPtr nativeUtf8Ptr;
+        private IntPtr nativeUtf8Ptr;
 
         public StringWrapper(IntPtr ptr)
         {
@@ -3924,15 +3924,15 @@ namespace FMOD
         }
     }
 
-    static class StringHelper
+    internal static class StringHelper
     {
         public class ThreadSafeEncoding : IDisposable
         {
-            UTF8Encoding encoding = new UTF8Encoding();
-            byte[] encodedBuffer = new byte[128];
-            char[] decodedBuffer = new char[128];
-            bool inUse;
-            GCHandle gcHandle;
+            private UTF8Encoding encoding = new UTF8Encoding();
+            private byte[] encodedBuffer = new byte[128];
+            private char[] decodedBuffer = new char[128];
+            private bool inUse;
+            private GCHandle gcHandle;
 
             public bool InUse()    { return inUse; }
             public void SetInUse() { inUse = true; }
@@ -4035,7 +4035,7 @@ namespace FMOD
             }
         }
 
-        static List<ThreadSafeEncoding> encoders = new List<ThreadSafeEncoding>(1);
+        private static List<ThreadSafeEncoding> encoders = new List<ThreadSafeEncoding>(1);
 
         public static ThreadSafeEncoding GetFreeHelper()
         {
