@@ -90,17 +90,20 @@ namespace PlayerRelated
                 // Handle Perfect beat click
                 case <= Conductor.perfectTiming:
                     Debug.Log("PERFECT ! ");
+                    ScoreCombo.Instance.health += 10;
                     ScoreCombo.Instance.AddScore(300);
                     break;
                 
                 // Handle good beat click
                 case <= Conductor.goodTiming:
                     Debug.Log("GOOD ! ");
+                    ScoreCombo.Instance.health += 5;
                     ScoreCombo.Instance.AddScore(100);
                     break;
                 
                 case <= Conductor.missTiming:
                     Debug.Log("MISS ! ");
+                    ScoreCombo.Instance.health -= 10;
                     ScoreCombo.Instance.AddScore(0);
                     break;
             }
@@ -111,12 +114,14 @@ namespace PlayerRelated
         private void WrongColumn()
         {
             Debug.Log("Wrong Column !");
+            ScoreCombo.Instance.health -= 10;
             ScoreCombo.Instance.AddScore(0);
         }
 
         private void WrongColor()
         {
             Debug.Log("Wrong Color !");
+            ScoreCombo.Instance.health -= 10;
             ScoreCombo.Instance.AddScore(0);
         }
     }

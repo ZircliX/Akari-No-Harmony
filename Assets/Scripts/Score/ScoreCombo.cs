@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Score
@@ -8,6 +9,8 @@ namespace Score
         public int combo;
         private int multi;
 
+        public float health;
+
         public static ScoreCombo Instance;
 
         private void Start()
@@ -16,11 +19,19 @@ namespace Score
 
             combo = 0;
             score = 0;
+            health = 100;
+
+        }
+
+        private void Update()
+        {
+            health -= 0.01f * Time.deltaTime;
+            health = Mathf.Clamp(health, 0, 100);
         }
 
         public void AddScore(int points)
         {
-            if (combo == 0)
+            if (points == 0)
             {
                 combo = 0;
             }

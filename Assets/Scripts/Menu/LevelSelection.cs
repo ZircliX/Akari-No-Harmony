@@ -51,12 +51,4 @@ public class LevelSelection : MonoBehaviour
         MenuManager.Instance.SwitchState(0);
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    
-    public void ResetLevelAt(InputAction.CallbackContext context)
-    {
-        if (context.phase != InputActionPhase.Performed) return;
-
-        PlayerPrefs.SetInt("levelAt", 1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
 }
