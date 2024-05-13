@@ -101,7 +101,7 @@ namespace PlayerRelated
                 
                 case <= Conductor.missTiming:
                     Debug.Log("MISS ! ");
-                    ScoreCombo.Instance.MissedHit();
+                    ScoreCombo.Instance.AddScore(0);
                     break;
             }
 
@@ -111,13 +111,13 @@ namespace PlayerRelated
         private void WrongColumn()
         {
             Debug.Log("Wrong Column !");
-            ScoreCombo.Instance.MissedHit();
+            ScoreCombo.Instance.AddScore(0);
         }
 
         private void WrongColor()
         {
             Debug.Log("Wrong Color !");
-            ScoreCombo.Instance.MissedHit();
+            ScoreCombo.Instance.AddScore(0);
         }
     }
 }

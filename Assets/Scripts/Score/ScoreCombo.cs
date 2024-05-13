@@ -20,17 +20,17 @@ namespace Score
 
         public void AddScore(int points)
         {
+            if (combo == 0)
+            {
+                combo = 0;
+            }
+            
             combo += 1;
 
             multi = multi >= 8 ? 8 : combo / 10;
             multi = Mathf.Clamp(multi, 1, 8);
 
             score += points * multi;
-        }
-
-        public void MissedHit()
-        {
-            combo = 0;
         }
     }
 }
