@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelSelection : MonoBehaviour
-{/*
-    public ButtonManager[] lvlButtons;
+{
+    public Button[] lvlButtons;
     
     void Start()
     {
@@ -17,6 +17,7 @@ public class LevelSelection : MonoBehaviour
             if (i >= levelAt) continue;
             
             //Switch from locked to enabled
+            /*
             lvlButtons[i].Interactable(true);
             lvlButtons[i].enableIcon = false;
             lvlButtons[i].enableText = true;
@@ -27,6 +28,7 @@ public class LevelSelection : MonoBehaviour
         
             lvlButtons[i].SetText((i + 1).ToString());
             lvlButtons[i].UpdateUI();
+            */
         }
     }
 
@@ -56,5 +58,5 @@ public class LevelSelection : MonoBehaviour
 
         PlayerPrefs.SetInt("levelAt", 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }*/
+    }
 }
