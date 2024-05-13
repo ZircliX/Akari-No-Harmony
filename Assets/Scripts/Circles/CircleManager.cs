@@ -21,8 +21,7 @@ namespace Circles
             }
             if (transform.position.y <= -4.5f)
             {
-                ScoreCombo.Instance.AddScore(0);
-                ScoreCombo.Instance.health -= 0.1f;
+                ScoreCombo.Instance.MissedHit();
                 
                 Destroy(gameObject);
                 Spawners.Instance.RemoveCircle(this);

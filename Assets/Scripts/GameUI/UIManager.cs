@@ -2,7 +2,6 @@ using PlayerRelated;
 using Score;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 namespace GameUI
 {
@@ -10,12 +9,10 @@ namespace GameUI
     {
         public TextMeshProUGUI scoreText;
         public TextMeshProUGUI comboText;
-
-        public Image healthBar;
         
         public TextMeshProUGUI colorText;
 
-        public Image clickLine;
+        public SpriteRenderer clickLine;
         public Color[] colors;
 
         private void Update()
@@ -26,8 +23,6 @@ namespace GameUI
 
             scoreText.text = ScoreCombo.Instance.score.ToString();
             comboText.text = ScoreCombo.Instance.combo + "x";
-
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, ScoreCombo.Instance.health, 2f);
         }
     }
 }
