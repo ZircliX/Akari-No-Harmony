@@ -10,16 +10,14 @@ namespace Circles
 
         private void Update()
         {
-            if (transform.position.y >= -6f)
-            {
-                transform.Translate(Vector3.down * (Time.deltaTime * circleData.downSpeed));
-            }
+            transform.Translate(Vector3.down * (Time.deltaTime * circleData.downSpeed));
+            
             if (isHit)
             {
                 Destroy(gameObject);
                 Spawners.Instance.RemoveCircle(this);
             }
-            if (transform.position.y <= -4.5f)
+            if (transform.position.y <= -3f)
             {
                 ScoreCombo.Instance.AddScore(0);
                 

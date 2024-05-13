@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public class Conductor : MonoBehaviour
@@ -29,7 +30,7 @@ public class Conductor : MonoBehaviour
     //Conductor instance
         public static Conductor Instance;
 
-        private void Awake()
+    private void Awake()
     {
         Instance = this;
         
@@ -40,7 +41,7 @@ public class Conductor : MonoBehaviour
         LoadPrecomputedData();
     }
 
-        private void Start()
+    private void Start()
     {
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
@@ -49,7 +50,7 @@ public class Conductor : MonoBehaviour
         musicSource.Play();
     }
 
-        private void Update()
+    private void Update()
     {
         // Update the elapsed time
         elapsedTime = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
@@ -75,8 +76,9 @@ public class Conductor : MonoBehaviour
     private void LoadPrecomputedData()
     {
         // Load the precomputed data from the file or serialized format
-        var jsonTextFile = Resources.Load<TextAsset>("MapData/Zirclix_Test");
-        Map mapData = JsonUtility.FromJson<Map>(jsonTextFile.text);
+        string filePath = Path.Combine(Application.streamingAssetsPath, "MapData/Zirclix_Test.json");
+        string jsonData = File.ReadAllText(filePath);
+        Map mapData = JsonUtility.FromJson<Map>(jsonData);
 
         // Initialize the CONDUCTOR variables based on the loaded data
         firstBeatOffset = mapData.songData.songOffset;
