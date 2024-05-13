@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Score
@@ -8,6 +9,9 @@ namespace Score
         public int combo;
         private int multi;
 
+        public float health;
+        public float accuracy;
+
         public static ScoreCombo Instance;
 
         private void Start()
@@ -16,21 +20,32 @@ namespace Score
 
             combo = 0;
             score = 0;
+            health = 1;
+            accuracy = 100f;
+        }
+
+        private void Update()
+        {
+            health -= 0.03f * Time.deltaTime;
+            health = Mathf.Clamp(health, 0, 1);
+
+            accuracy = Mathf.Clamp(accuracy, 0, 100);
         }
 
         public void AddScore(int points)
         {
+            if (points == 0)
+            {
+                combo = 0;
+                return;
+            }
+            
             combo += 1;
 
             multi = multi >= 8 ? 8 : combo / 10;
             multi = Mathf.Clamp(multi, 1, 8);
 
             score += points * multi;
-        }
-
-        public void MissedHit()
-        {
-            combo = 0;
         }
     }
 }
