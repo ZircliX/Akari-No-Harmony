@@ -8,7 +8,7 @@ public class MapGenerator : MonoBehaviour
     public GameObject[] circlesType;
 
     [Header("Song Data")]
-        public AudioClip audio;
+        public new AudioClip audio;
         public int bpm;
         public float offset;
         public string songName;
