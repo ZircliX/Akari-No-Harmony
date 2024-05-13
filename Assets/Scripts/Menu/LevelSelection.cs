@@ -1,12 +1,11 @@
 using Menu;
-using Michsky.MUIP;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelSelection : MonoBehaviour
-{
+{/*
     public ButtonManager[] lvlButtons;
     
     void Start()
@@ -57,5 +56,5 @@ public class LevelSelection : MonoBehaviour
 
         PlayerPrefs.SetInt("levelAt", 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    }*/
 }
