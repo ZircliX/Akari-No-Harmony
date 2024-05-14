@@ -410,8 +410,8 @@ MonoBehaviour:
   clickLine: {fileID: 1417387647}
   colors:
   - {r: 0, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
 --- !u!1 &475091916
 GameObject:
   m_ObjectHideFlags: 0

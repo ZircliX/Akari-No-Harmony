@@ -22,8 +22,8 @@ namespace PlayerRelated
         public enum ColorIndex
         {
             blue = 0,
-            yellow = 2,
-            red = 1
+            yellow = 1,
+            red = 2
         }
 
         public static PlayerManager Instance;
@@ -74,14 +74,14 @@ namespace PlayerRelated
             bool rightColumn = currentCircle.circleData.columnIndex == clickIndex;
             if (!rightColumn)
             {
-                WrongColumn();
+                MissHit();
                 return;
             }
 
             bool rightColor = (int)color == currentCircle.circleData.typeIndex;
             if (!rightColor)
             {
-                WrongColor();
+                MissHit();
                 return;
             }
 
@@ -103,25 +103,16 @@ namespace PlayerRelated
                     break;
                 
                 case <= Conductor.missTiming:
-                    Debug.Log("MISS ! ");
-                    ScoreCombo.Instance.health -= 10;
-                    ScoreCombo.Instance.AddScore(0);
+                    MissHit();
                     break;
             }
 
             currentCircle.isHit = true;
         }
 
-        private void WrongColumn()
+        public void MissHit()
         {
-            Debug.Log("Wrong Column !");
-            ScoreCombo.Instance.health -= 10;
-            ScoreCombo.Instance.AddScore(0);
-        }
-
-        private void WrongColor()
-        {
-            Debug.Log("Wrong Color !");
+            Debug.Log("MISS ! ");
             ScoreCombo.Instance.health -= 10;
             ScoreCombo.Instance.AddScore(0);
         }
