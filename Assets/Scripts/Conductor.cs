@@ -78,7 +78,7 @@ public class Conductor : MonoBehaviour
     private void LoadPrecomputedData()
     {
         // Load the precomputed data from the file or serialized format
-        var mapData = JsonSystem.LoadMapToJson("ZiTest");
+        var mapData = JsonSystem.LoadMapToJson("ZircliX_Test");
 
         // Initialize the CONDUCTOR variables based on the loaded data
         firstBeatOffset = mapData.songData.songOffset;

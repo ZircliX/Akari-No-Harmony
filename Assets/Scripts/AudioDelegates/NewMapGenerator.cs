@@ -24,7 +24,7 @@ namespace AudioDelegates
         private int currentTypeIndex;
         private Map mapData;
         
-        public List<float[]> spectra; // Your list of spectrum data
+        private List<float[]> spectra; // Your list of spectrum data
         
         // Start is called before the first frame update
         void Update()
@@ -56,7 +56,6 @@ namespace AudioDelegates
                 var newCircle = new Circle
                 {
                     typeIndex = currentTypeIndex,
-                    id = currentTypeIndex,
                     downSpeed = 4f,
                     timeToSpawn = time - 2f,
                     timeToBeat = time,

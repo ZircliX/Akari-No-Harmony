@@ -22,8 +22,8 @@ namespace PlayerRelated
         public enum ColorIndex
         {
             blue = 0,
-            yellow = 1,
-            red = 2
+            yellow = 2,
+            red = 1
         }
 
         public static PlayerManager Instance;
@@ -78,7 +78,7 @@ namespace PlayerRelated
                 return;
             }
 
-            bool rightColor = (int)color == currentCircle.circleData.id;
+            bool rightColor = (int)color == currentCircle.circleData.typeIndex;
             if (!rightColor)
             {
                 WrongColor();

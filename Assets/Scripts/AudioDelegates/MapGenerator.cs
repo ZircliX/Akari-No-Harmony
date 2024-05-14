@@ -57,7 +57,6 @@ namespace AudioDelegates
                 var newCircle = new Circle
                 {
                     typeIndex = currentTypeIndex,
-                    id = currentTypeIndex,
                     downSpeed = 4f,
                     timeToSpawn = time - 2f,
                     timeToBeat = time,
@@ -126,8 +125,7 @@ namespace AudioDelegates
     public class Circle
     {
         public int typeIndex;
-    
-        public int id;
+        
         public float downSpeed;
     
         public float timeToSpawn;
