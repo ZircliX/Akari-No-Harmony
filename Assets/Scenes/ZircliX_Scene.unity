@@ -2047,6 +2047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1783471219}
   - component: {fileID: 1783471220}
+  - component: {fileID: 1783471221}
   m_Layer: 0
   m_Name: MapCreator
   m_TagString: Untagged
@@ -2088,9 +2089,32 @@ MonoBehaviour:
   - {fileID: 7444164605342579970, guid: c0cd8036f461a1f4880f3a099c799abf, type: 3}
   audio: {fileID: 8300000, guid: c4f6fb7f563ca8d47bc1199acd594f72, type: 3}
   bpm: 130
-  offset: 0.0133
+  offset: 0.012
   songName: Bouncing World
   mapName: Zirclix_Test
+  typeChangeProba: 4
+--- !u!114 &1783471221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783471218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10dbf91f015b544418c6b5119583b252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  create: 0
+  circlesType:
+  - {fileID: 7444164605342579970, guid: 9b2fef278b99cc545b610f422ecc8f58, type: 3}
+  - {fileID: 7444164605342579970, guid: 461aadaefa627b243bb3b924a6a4252a, type: 3}
+  - {fileID: 7444164605342579970, guid: c0cd8036f461a1f4880f3a099c799abf, type: 3}
+  audio: {fileID: 8300000, guid: c4f6fb7f563ca8d47bc1199acd594f72, type: 3}
+  bpm: 130
+  offset: 0.012
+  songName: Bouncing
+  mapName: ZiTest
   typeChangeProba: 4
 --- !u!1 &1809316885
 GameObject:

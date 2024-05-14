@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Score
@@ -25,7 +24,7 @@ namespace Score
 
         private void Update()
         {
-            health -= 0.01f * Time.deltaTime;
+            health -= 5f * Time.deltaTime;
             health = Mathf.Clamp(health, 0, 100);
         }
 
@@ -34,6 +33,7 @@ namespace Score
             if (points == 0)
             {
                 combo = 0;
+                return;
             }
             
             combo += 1;

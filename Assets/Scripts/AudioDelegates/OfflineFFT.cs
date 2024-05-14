@@ -16,6 +16,7 @@ namespace AudioDelegates
         private readonly AudioClip audioClip;
         private readonly int batchSize;
         private readonly FftSharp.Window window = new FftSharp.Windows.Hanning();
+        
         public OfflineFFT(AudioClip audioClip, int batchSize)
         {
             this.audioClip = audioClip;

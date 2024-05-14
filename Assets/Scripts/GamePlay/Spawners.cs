@@ -1,64 +1,72 @@
 using System.Collections.Generic;
+using AudioDelegates;
 using Circles;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Spawners : MonoBehaviour
+namespace GamePlay
 {
-    private float currentBeatTime;
+    public class Spawners : MonoBehaviour
+    {
+        private float currentBeatTime;
 
-    public Transform[] spawners;
+        public Transform[] spawners;
     
-    private List<Circle> circleList = new();
-    public List<CircleManager> spawnedCircles = new();
+        private List<Circle> circleList = new();
+        public List<CircleManager> spawnedCircles = new();
 
-    public static Spawners Instance;
+        public static Spawners Instance;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-    
-    // Start is called before the first frame update
-    private void Start()
-    {
-        var mapData = JsonSystem.LoadMapToJson("ZircliX_Test");
-        circleList = mapData.circles;
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        currentBeatTime = Conductor.Instance.elapsedTime;
-
-        SpawnCircles();
-    }
-
-    private void SpawnCircles()
-    {
-        //Spawn circles
-        foreach (var circle in circleList)
+        private void Awake()
         {
-            float timeToSpawn = circle.timeToSpawn;
+            Instance = this;
+        }
+    
+        // Start is called before the first frame update
+        private void Start()
+        {
+            var mapData = JsonSystem.LoadMapToJson("ZiTest");
+            circleList = mapData.circles;
+        }
 
-            if (currentBeatTime >= timeToSpawn)
+        // Update is called once per frame
+        private void Update()
+        {
+            currentBeatTime = Conductor.Instance.elapsedTime;
+
+            SpawnCircles();
+        }
+
+        private void SpawnCircles()
+        {
+            //Spawn circles
+            foreach (var circle in circleList)
             {
-                // Instantiate the circle and add it to the dictionary
-                var spawnedCircle = Instantiate(circle.circlePrefab,
-                    spawners[circle.columnIndex].position, Quaternion.identity);
+                float timeToSpawn = circle.timeToSpawn;
 
-                var component = spawnedCircle.GetComponent<CircleManager>();
-                component.circleData = circle;
+                if (currentBeatTime >= timeToSpawn)
+                {
+                    var circlesTypes = Resources.LoadAll<GameObject>("Prefabs/Circles");
+                    
+                    // Instantiate the circle and add it to the dictionary
+                    var spawnedCircle = Instantiate(circlesTypes[circle.typeIndex],
+                        spawners[circle.columnIndex].position, Quaternion.identity);
+
+                    var component = spawnedCircle.GetComponent<CircleManager>();
+                    component.circleData = circle;
             
-                spawnedCircles.Add(component);
+                    spawnedCircles.Add(component);
 
-                circle.timeToSpawn = float.MaxValue;
+                    circle.timeToSpawn = float.MaxValue;
+                }
             }
         }
-    }
 
-    public void RemoveCircle(CircleManager cm)
-    {
-        spawnedCircles.Remove(cm);
-        Destroy(cm.gameObject);
+        public void RemoveCircle(CircleManager cm)
+        {
+            spawnedCircles.Remove(cm);
+            Destroy(cm.gameObject);
+        }
     }
 }

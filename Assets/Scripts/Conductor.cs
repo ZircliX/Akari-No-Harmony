@@ -1,4 +1,6 @@
 using System.IO;
+using AudioDelegates;
+using GamePlay;
 using UnityEngine;
 
 public class Conductor : MonoBehaviour
@@ -76,9 +78,7 @@ public class Conductor : MonoBehaviour
     private void LoadPrecomputedData()
     {
         // Load the precomputed data from the file or serialized format
-        string filePath = Path.Combine(Application.streamingAssetsPath, "MapData/Zirclix_Test.json");
-        string jsonData = File.ReadAllText(filePath);
-        Map mapData = JsonUtility.FromJson<Map>(jsonData);
+        var mapData = JsonSystem.LoadMapToJson("ZiTest");
 
         // Initialize the CONDUCTOR variables based on the loaded data
         firstBeatOffset = mapData.songData.songOffset;

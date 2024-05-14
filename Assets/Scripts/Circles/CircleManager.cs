@@ -1,3 +1,5 @@
+using AudioDelegates;
+using GamePlay;
 using Score;
 using UnityEngine;
 
@@ -20,6 +22,7 @@ namespace Circles
             if (transform.position.y <= -3f)
             {
                 ScoreCombo.Instance.AddScore(0);
+                ScoreCombo.Instance.health -= 10f;
                 
                 Destroy(gameObject);
                 Spawners.Instance.RemoveCircle(this);

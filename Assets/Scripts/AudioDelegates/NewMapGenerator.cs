@@ -4,7 +4,7 @@ using UnityEngine;
 namespace AudioDelegates
 {
     [ExecuteInEditMode]
-    public class MapGenerator : MonoBehaviour
+    public class NewMapGenerator : MonoBehaviour
     {
         public bool create;
         public GameObject[] circlesType;
@@ -15,6 +15,7 @@ namespace AudioDelegates
         public float offset;
         public string songName;
         private Song songData;
+        private OfflineFFT fft;
     
         [Space]
         [Header("Map Data")]
@@ -22,24 +23,22 @@ namespace AudioDelegates
         public int typeChangeProba;
         private int currentTypeIndex;
         private Map mapData;
-    
-        private void Update()
+        
+        public List<float[]> spectra; // Your list of spectrum data
+        
+        // Start is called before the first frame update
+        void Update()
         {
             if (create)
             {
                 create = false;
 
                 CreateSongData();
-                AnalyseSong();
+                AnalyzeSpectra();
             
                 CreateMap();
                 SaveMap();
             }
-        }
-
-        private void SaveMap()
-        {
-            JsonSystem.SaveMapToJson(mapData.mapName, mapData);
         }
 
         private void CreateMap()
@@ -82,58 +81,48 @@ namespace AudioDelegates
                 songOffset = offset,
                 songName = songName
             };
+
+            spectra = new OfflineFFT(songData.songAudio, 1024).SpectrumBuffers;
         }
 
-        private void AnalyseSong()
+        private void AnalyzeSpectra()
         {
-            float secPerBeat = 60f / songData.songBPM;
-            float currentBeat = 0f;
-            float currentSecond = songData.songOffset;
-
-            while (currentSecond < songData.songAudio.length)
+            foreach (float[] spectrum in spectra)
             {
-                if (currentBeat % 2 == 0 && currentSecond >= 4)
+                List<(int peakIndex, float peakTime)> peaksWithTime = FindPeaksWithTime(spectrum, 0.1f);
+
+                foreach (var peakInfo in peaksWithTime)
                 {
-                    songData.songPositionInSeconds.Add(currentSecond);
+                    int peakIndex = peakInfo.peakIndex;
+                    float peakTime = peakInfo.peakTime;
+
+                    Debug.Log($"Peak found at index {peakIndex} and time {peakTime:F3} seconds");
+                    songData.songPositionInSeconds.Add(peakTime);
                 }
-            
-                currentBeat += 1f;
-                currentSecond += secPerBeat;
             }
         }
-    }
 
-    [System.Serializable]
-    public class Song
-    {
-        public AudioClip songAudio;
-        public int songBPM;
-        public float songOffset;
-        public string songName;
-    
-        public List<float> songPositionInSeconds = new();
-    }
+        private List<(int peakIndex, float peakTime)> FindPeaksWithTime(float[] spectrum, float threshold)
+        {
+            List<(int peakIndex, float peakTime)> peaksWithTime = new List<(int peakIndex, float peakTime)>();
+            float samplingRate = AudioSettings.outputSampleRate;
+            int fftSize = spectrum.Length;
+            float frequencyResolution = samplingRate / fftSize;
 
-    [System.Serializable]
-    public class Map
-    {
-        public string mapName;
-        public Song songData;
-        public List<Circle> circles = new();
-    }
-
-    [System.Serializable]
-    public class Circle
-    {
-        public int typeIndex;
-    
-        public int id;
-        public float downSpeed;
-    
-        public float timeToSpawn;
-        public float timeToBeat;
-    
-        [Range(0, 2)]
-        public int columnIndex;
+            for (int i = 1; i < spectrum.Length - 1; i++)
+            {
+                if (spectrum[i] > spectrum[i - 1] && spectrum[i] > spectrum[i + 1] && spectrum[i] > threshold)
+                {
+                    float peakTime = (i * frequencyResolution) / samplingRate;
+                    peaksWithTime.Add((i, peakTime));
+                }
+            }
+            return peaksWithTime;
+        }
+        
+        private void SaveMap()
+        {
+            JsonSystem.SaveMapToJson(mapData.mapName, mapData);
+        }
     }
 }
