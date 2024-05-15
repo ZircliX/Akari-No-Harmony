@@ -800,6 +800,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3611739754575980164, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611739754575980164, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 66439922cfd7c2d428471bd23f3287f2, type: 2}
     - target: {fileID: 4770269427816185946, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
       propertyPath: sfxSounds.Array.size
       value: 1
@@ -816,6 +824,14 @@ PrefabInstance:
       propertyPath: sfxSounds.Array.data[0].name
       value: Click
       objectReference: {fileID: 0}
+    - target: {fileID: 6271834289695154854, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271834289695154854, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 66439922cfd7c2d428471bd23f3287f2, type: 2}
     - target: {fileID: 6765729843223951709, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -2115,7 +2131,7 @@ MonoBehaviour:
   offset: 0.012
   songName: Bouncing
   mapName: ZiTest
-  typeChangeProba: 4
+  typeChangeProba: 10
 --- !u!1 &1809316885
 GameObject:
   m_ObjectHideFlags: 0

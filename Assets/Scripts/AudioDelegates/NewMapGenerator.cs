@@ -34,7 +34,7 @@ namespace AudioDelegates
                 create = false;
 
                 CreateSongData();
-                AnalyzeSpectra();
+                TrackPeaks();
             
                 CreateMap();
                 SaveMap();
@@ -81,42 +81,45 @@ namespace AudioDelegates
                 songName = songName
             };
 
-            spectra = new OfflineFFT(songData.songAudio, 1024).SpectrumBuffers;
+            spectra = new OfflineFFT(songData.songAudio, bufferSize).SpectrumBuffers;
         }
 
-        private void AnalyzeSpectra()
+        // Variable to keep track of the current frame index
+        private int currentFrameIndex = 0;
+        
+        // Sample rate of the audio data
+        private int sampleRate = 44100; // Assuming a sample rate of 44.1 kHz
+
+        // Buffer size (number of samples per frame)
+        private int bufferSize = 1024;
+        
+        // Threshold for peak detection (adjust this value to control the number of peaks)
+        private float peakThreshold = 0.05f;
+
+        // Method to find and store the peak values with their frame indices and time
+        private void TrackPeaks()
         {
-            foreach (float[] spectrum in spectra)
+            // Clear the existing peak values, frame indices, and time
+            songData.songPositionInSeconds.Clear();
+
+            // Iterate through each spectrum buffer
+            foreach (var spectrumBuffer in spectra)
             {
-                List<(int peakIndex, float peakTime)> peaksWithTime = FindPeaksWithTime(spectrum, 0.1f);
+                // Find the maximum value (peak) in the current buffer
+                float peak = Mathf.Max(spectrumBuffer);
 
-                foreach (var peakInfo in peaksWithTime)
+                // Calculate the time in seconds for the current frame
+                float timeInSeconds = (float)currentFrameIndex * bufferSize / sampleRate;
+                
+                if (timeInSeconds >= 3 && peak >= peakThreshold)
                 {
-                    int peakIndex = peakInfo.peakIndex;
-                    float peakTime = peakInfo.peakTime;
-
-                    Debug.Log($"Peak found at index {peakIndex} and time {peakTime:F3} seconds");
-                    songData.songPositionInSeconds.Add(peakTime);
+                    // Add the peak value, frame index, and time to the list
+                    songData.songPositionInSeconds.Add(timeInSeconds);
                 }
-            }
-        }
 
-        private List<(int peakIndex, float peakTime)> FindPeaksWithTime(float[] spectrum, float threshold)
-        {
-            List<(int peakIndex, float peakTime)> peaksWithTime = new List<(int peakIndex, float peakTime)>();
-            float samplingRate = AudioSettings.outputSampleRate;
-            int fftSize = spectrum.Length;
-            float frequencyResolution = samplingRate / fftSize;
-
-            for (int i = 1; i < spectrum.Length - 1; i++)
-            {
-                if (spectrum[i] > spectrum[i - 1] && spectrum[i] > spectrum[i + 1] && spectrum[i] > threshold)
-                {
-                    float peakTime = (i * frequencyResolution) / samplingRate;
-                    peaksWithTime.Add((i, peakTime));
-                }
+                // Increment the frame index
+                currentFrameIndex++;
             }
-            return peaksWithTime;
         }
         
         private void SaveMap()
