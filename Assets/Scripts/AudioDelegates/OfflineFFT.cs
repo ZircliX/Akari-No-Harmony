@@ -24,7 +24,7 @@ namespace AudioDelegates
             GenerateSpectrumBuffers();
         }
 
-        public List<float[]> SpectrumBuffers;
+        public List<System.Numerics.Complex[]> SpectrumBuffers;
 
         private float[] GetAudioData(AudioClip audioClip)
         {
@@ -35,7 +35,7 @@ namespace AudioDelegates
 
         private void GenerateSpectrumBuffers()
         {
-            SpectrumBuffers = new List<float[]>();
+            SpectrumBuffers = new List<System.Numerics.Complex[]>();
             float[] audioData = GetAudioData(audioClip);
 
             for (int i = 0; i < audioData.Length / batchSize; i++)
@@ -46,16 +46,20 @@ namespace AudioDelegates
             }
         }
 
-        private float[] GetSpectrum(double[] audioBuffer, FftSharp.Window window)
+        private System.Numerics.Complex[] GetSpectrum(double[] audioBuffer, FftSharp.Window window)
         {
             double[] windowed = window.Apply(audioBuffer, true);
             System.Numerics.Complex[] spectrum = FftSharp.FFT.ForwardReal(windowed);
 
+            return spectrum;
+
+            /*
             float[] magnitude = new float[spectrum.Length];
             for (int j = 0; j < magnitude.Length; j++)
                 magnitude[j] = (float)spectrum[j].Magnitude;
 
             return magnitude;
+            */
         }
     }
 }

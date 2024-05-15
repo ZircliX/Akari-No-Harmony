@@ -24,7 +24,7 @@ namespace AudioDelegates
         private int currentTypeIndex;
         private Map mapData;
         
-        private List<float[]> spectra; // Your list of spectrum data
+        private List<System.Numerics.Complex[]> spectrum; // Your list of spectrum data
         
         // Start is called before the first frame update
         void Update()
@@ -34,7 +34,8 @@ namespace AudioDelegates
                 create = false;
 
                 CreateSongData();
-                TrackPeaks();
+                AnalyseSound();
+                ProcessPeaks();
             
                 CreateMap();
                 SaveMap();
@@ -80,48 +81,64 @@ namespace AudioDelegates
                 songOffset = offset,
                 songName = songName
             };
-
-            spectra = new OfflineFFT(songData.songAudio, bufferSize).SpectrumBuffers;
+            
+            spectrum = new OfflineFFT(songData.songAudio, 1024).SpectrumBuffers;
         }
-
-        // Variable to keep track of the current frame index
-        private int currentFrameIndex = 0;
         
         // Sample rate of the audio data
-        private int sampleRate = 44100; // Assuming a sample rate of 44.1 kHz
+        int sampleRate = 44100; // Assuming a sample rate of 44.1 kHz
 
         // Buffer size (number of samples per frame)
-        private int bufferSize = 1024;
-        
+        int bufferSize = 1024;
+
         // Threshold for peak detection (adjust this value to control the number of peaks)
-        private float peakThreshold = 0.05f;
+        double magnitudeThreshold = 0.001; // Adjust this value based on your requirements
 
-        // Method to find and store the peak values with their frame indices and time
-        private void TrackPeaks()
+        // Lists to store the peak values, frequencies, and times
+        List<double> peakMagnitudes = new List<double>();
+        List<double> peakFrequencies = new List<double>();
+        List<float> peakTimes = new List<float>();
+
+        private void AnalyseSound()
         {
-            // Clear the existing peak values, frame indices, and time
-            songData.songPositionInSeconds.Clear();
-
             // Iterate through each spectrum buffer
-            foreach (var spectrumBuffer in spectra)
+            for (int i = 0; i < spectrum.Count; i++)
             {
-                // Find the maximum value (peak) in the current buffer
-                float peak = Mathf.Max(spectrumBuffer);
+                System.Numerics.Complex[] spectrumBuffer = spectrum[i];
 
-                // Calculate the time in seconds for the current frame
-                float timeInSeconds = (float)currentFrameIndex * bufferSize / sampleRate;
-                
-                if (timeInSeconds >= 3 && peak >= peakThreshold)
+                // Compute the magnitude spectrum
+                double[] magnitude = FftSharp.FFT.Magnitude(spectrumBuffer);
+
+                // Compute the frequency scale
+                double[] frequencies = FftSharp.FFT.FrequencyScale(magnitude.Length, sampleRate);
+
+                // Iterate through the magnitude spectrum
+                for (int j = 0; j < magnitude.Length; j++)
                 {
-                    // Add the peak value, frame index, and time to the list
-                    songData.songPositionInSeconds.Add(timeInSeconds);
-                }
+                    // Check if the magnitude is above the threshold
+                    if (magnitude[j] >= magnitudeThreshold)
+                    {
+                        // Calculate the time for the current bin
+                        float time = (i * bufferSize + j) / (float)sampleRate;
 
-                // Increment the frame index
-                currentFrameIndex++;
+                        // Add the peak magnitude, frequency, and time to the respective lists
+                        peakMagnitudes.Add(magnitude[j]);
+                        peakFrequencies.Add(frequencies[j]);
+                        peakTimes.Add(time);
+                    }
+                }
             }
         }
-        
+
+        private void ProcessPeaks()
+        {
+            foreach (var time in peakTimes)
+            {
+                songData.songPositionInSeconds.Add(time);
+                Debug.Log(time);
+            }
+        }
+
         private void SaveMap()
         {
             JsonSystem.SaveMapToJson(mapData.mapName, mapData);

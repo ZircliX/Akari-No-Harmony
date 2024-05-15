@@ -41,10 +41,9 @@ AudioSource:
   m_GameObject: {fileID: 3653827185086742159}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 66439922cfd7c2d428471bd23f3287f2, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -175,20 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5f3829d9c8a0a418d3b101c7e38e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSounds:
-  - name: Theme
-    clip: {fileID: 8300000, guid: 57cafeb4898e1b348b65ee6fcd1d8fbe, type: 3}
+  musicSounds: []
   sfxSounds:
-  - name: Win
-    clip: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
-  - name: Loose
-    clip: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
-  - name: Destroy
-    clip: {fileID: 8300000, guid: fae5b87063626fe4f99cb19c2a437889, type: 3}
-  - name: Go
-    clip: {fileID: 8300000, guid: 9c8405095dd288d499687b6cef26f4e2, type: 3}
-  - name: Shoot
-    clip: {fileID: 8300000, guid: fb5c285c2df3e3c499d85185274beae0, type: 3}
+  - name: Click
+    clip: {fileID: 8300000, guid: b7d03a18e7e4af04cbec793ffdb0d5dd, type: 3}
   musicSource: {fileID: 6271834289695154854}
   sfxSource: {fileID: 3611739754575980164}
 --- !u!1 &7853174845773505463
@@ -232,10 +221,9 @@ AudioSource:
   m_GameObject: {fileID: 7853174845773505463}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 66439922cfd7c2d428471bd23f3287f2, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
