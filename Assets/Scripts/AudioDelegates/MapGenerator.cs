@@ -110,7 +110,7 @@ namespace AudioDelegates
         public float songOffset;
         public string songName;
     
-        public List<float> songPositionInSeconds = new();
+        public List<double> songPositionInSeconds = new();
     }
 
     [System.Serializable]
@@ -128,8 +128,8 @@ namespace AudioDelegates
         
         public float downSpeed;
     
-        public float timeToSpawn;
-        public float timeToBeat;
+        public double timeToSpawn;
+        public double timeToBeat;
     
         [Range(0, 2)]
         public int columnIndex;

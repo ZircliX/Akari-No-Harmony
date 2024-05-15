@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using AudioDelegates;
 using Circles;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GamePlay
 {
     public class Spawners : MonoBehaviour
     {
-        private float currentBeatTime;
+        private double currentBeatTime;
 
         public Transform[] spawners;
     
@@ -43,7 +41,7 @@ namespace GamePlay
             //Spawn circles
             foreach (var circle in circleList)
             {
-                float timeToSpawn = circle.timeToSpawn;
+                double timeToSpawn = circle.timeToSpawn;
 
                 if (currentBeatTime >= timeToSpawn)
                 {

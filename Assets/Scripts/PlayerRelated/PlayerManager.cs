@@ -66,20 +66,14 @@ namespace PlayerRelated
         private void OnBeatClick(int clickIndex)
         {
             // Calculate the timing difference between the click and the actual beat
-            float timingDifference = Conductor.Instance.OnBeatClick();
+            double timingDifference = Conductor.Instance.OnBeatClick();
             var currentCircle = Spawners.Instance.spawnedCircles[0];
 
             Spawners.Instance.RemoveCircle(currentCircle);
             
-            bool rightColumn = currentCircle.circleData.columnIndex == clickIndex;
-            if (!rightColumn)
-            {
-                MissHit();
-                return;
-            }
-
-            bool rightColor = (int)color == currentCircle.circleData.typeIndex;
-            if (!rightColor)
+            bool correctHit = currentCircle.circleData.columnIndex == clickIndex
+                                && (int)color == currentCircle.circleData.typeIndex;
+            if (!correctHit)
             {
                 MissHit();
                 return;

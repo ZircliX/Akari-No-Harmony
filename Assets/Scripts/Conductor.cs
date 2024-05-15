@@ -12,16 +12,16 @@ public class Conductor : MonoBehaviour
             missTiming = 0.2f;
     
     //Current song position, in seconds
-        public float currentCirclePositionInSeconds;
+        public double currentCirclePositionInSeconds;
         
-        public float elapsedTime { get; private set; }
+        public double elapsedTime { get; private set; }
     [HideInInspector]
-        public float lastUserInputTime;
+        public double lastUserInputTime;
     [HideInInspector]
-        public float timingDifference;
+        public double timingDifference;
 
     //How many seconds have passed since the song started
-        private float dspSongTime;
+        private double dspSongTime;
         
     //The offset to the first beat of the song in seconds
         private float firstBeatOffset;
@@ -46,7 +46,7 @@ public class Conductor : MonoBehaviour
     private void Start()
     {
         //Record the time when the music starts
-        dspSongTime = (float)AudioSettings.dspTime;
+        dspSongTime = AudioSettings.dspTime;
         
         // Start the music playback
         musicSource.Play();
@@ -55,10 +55,10 @@ public class Conductor : MonoBehaviour
     private void Update()
     {
         // Update the elapsed time
-        elapsedTime = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+        elapsedTime = AudioSettings.dspTime - dspSongTime - firstBeatOffset;
     }
     
-    public float OnBeatClick()
+    public double OnBeatClick()
     {
         // Record the time of the user input
         lastUserInputTime = elapsedTime;
@@ -68,7 +68,7 @@ public class Conductor : MonoBehaviour
         currentCirclePositionInSeconds = currentCircle.circleData.timeToBeat;
 
         // Calculate the timing difference between the click and the actual beat
-        timingDifference = Mathf.Abs(currentCirclePositionInSeconds - lastUserInputTime);
+        timingDifference = Mathf.Abs((float)(currentCirclePositionInSeconds - lastUserInputTime));
         
         //Debug.Log(lastUserInputTime + " | " + currentCirclePositionInSeconds + " | " + timingDifference);
 
@@ -82,5 +82,6 @@ public class Conductor : MonoBehaviour
 
         // Initialize the CONDUCTOR variables based on the loaded data
         firstBeatOffset = mapData.songData.songOffset;
+        musicSource.clip = mapData.songData.songAudio;
     }
 }
