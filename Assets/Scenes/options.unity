@@ -710,12 +710,20 @@ PrefabInstance:
       value: Sound off
       objectReference: {fileID: 0}
     - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -739,7 +747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetVolume
+      value: VolumeState
       objectReference: {fileID: 0}
     - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -754,8 +762,12 @@ PrefabInstance:
       value: MenuScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 100
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -764,6 +776,10 @@ PrefabInstance:
     - target: {fileID: 114991546523654008, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 222243021080190102, guid: 71766f1bef30953409612c3803df740a, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224806151493049248, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: m_Pivot.x
@@ -1296,7 +1312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114481518211063104, guid: 8cf74ef4b41c8274e9ea7b32b5f45d11, type: 3}
       propertyPath: m_MinValue
-      value: -80
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 114481518211063104, guid: 8cf74ef4b41c8274e9ea7b32b5f45d11, type: 3}
       propertyPath: m_Direction
