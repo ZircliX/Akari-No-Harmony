@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using FftSharp;
 using UnityEngine;
 
 namespace AudioDelegates
 {
     /// <summary>
-    /// Class <c>AudioToSpectrumBuffer</c> pre-generates a buffer of spectrum
+    /// Class <c>OfflineFFT</c> pre-generates a buffer of spectrum
     /// in the manner of AudioSource.GetSpectrum() but without the need of
     /// playing the AudioClip.
     /// 
@@ -15,7 +16,7 @@ namespace AudioDelegates
     {
         private readonly AudioClip audioClip;
         private readonly int batchSize;
-        private readonly FftSharp.Window window = new FftSharp.Windows.Hanning();
+        private readonly Window window = new FftSharp.Windows.Hanning();
         
         public OfflineFFT(AudioClip audioClip, int batchSize)
         {
@@ -24,9 +25,9 @@ namespace AudioDelegates
             GenerateSpectrumBuffers();
         }
 
-        public List<System.Numerics.Complex[]> SpectrumBuffers;
+        public List<float[]> SpectrumBuffers;
 
-        private float[] GetAudioData(AudioClip audioClip)
+        private static float[] GetAudioData(AudioClip audioClip)
         {
             float[] data = new float[audioClip.samples];
             audioClip.GetData(data, 0);
@@ -35,7 +36,7 @@ namespace AudioDelegates
 
         private void GenerateSpectrumBuffers()
         {
-            SpectrumBuffers = new List<System.Numerics.Complex[]>();
+            SpectrumBuffers = new List<float[]>();
             float[] audioData = GetAudioData(audioClip);
 
             for (int i = 0; i < audioData.Length / batchSize; i++)
@@ -46,20 +47,16 @@ namespace AudioDelegates
             }
         }
 
-        private System.Numerics.Complex[] GetSpectrum(double[] audioBuffer, FftSharp.Window window)
+        private static float[] GetSpectrum(double[] audioBuffer, IWindow window)
         {
             double[] windowed = window.Apply(audioBuffer, true);
-            System.Numerics.Complex[] spectrum = FftSharp.FFT.ForwardReal(windowed);
+            var spectrum = FFT.ForwardReal(windowed);
 
-            return spectrum;
-
-            /*
             float[] magnitude = new float[spectrum.Length];
             for (int j = 0; j < magnitude.Length; j++)
                 magnitude[j] = (float)spectrum[j].Magnitude;
 
             return magnitude;
-            */
         }
     }
 }

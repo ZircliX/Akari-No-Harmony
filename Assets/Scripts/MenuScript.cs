@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+    private float lastVolume;
+    private bool isActive = true;
+    
     public void LoadScene(int index)
     {   
         SceneManager.LoadScene(index);
@@ -16,7 +16,16 @@ public class MenuScript : MonoBehaviour
     
     public void SetVolume(float volume)
     {
+        if (!isActive) return;
+        
         audioMixer.SetFloat("volume", volume);
+        lastVolume = volume;
+    }
+
+    public void VolumeState()
+    {
+        isActive = !isActive;
+        audioMixer.SetFloat("volume", isActive ? lastVolume : -80);
     }
 
     public void SetFullscreen(bool isFullscreen)

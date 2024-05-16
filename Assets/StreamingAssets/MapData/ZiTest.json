@@ -2,10 +2,10 @@
     "mapName": "ZiTest",
     "songData": {
         "songAudio": {
-            "instanceID": 31432
+            "instanceID": 35194
         },
         "songBPM": 130,
-        "songOffset": 0.012000000104308129,
+        "songOffset": 0.0,
         "songName": "Bouncing",
         "songPositionInSeconds": []
     },

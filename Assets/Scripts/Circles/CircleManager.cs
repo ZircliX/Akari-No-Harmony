@@ -22,7 +22,7 @@ namespace Circles
             }
             if (transform.position.y <= -3f)
             {
-                PlayerManager.Instance.MissHit();
+                PlayerManager.Instance.Hit(-10, -10);
                 
                 Destroy(gameObject);
                 Spawners.Instance.RemoveCircle(this);
