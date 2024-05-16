@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace AudioDelegates
@@ -8,7 +7,6 @@ namespace AudioDelegates
     public class MapGenerator : MonoBehaviour
     {
         public bool create;
-        public GameObject[] circlesType;
 
         [Header("Song Data")]
         public new AudioClip audio;
@@ -66,7 +64,7 @@ namespace AudioDelegates
                 if (ShouldChangeCircleType())
                 {
                     numOfSame = 0;
-                    currentTypeIndex = Random.Range(0, circlesType.Length);
+                    currentTypeIndex = Random.Range(0, 3);
                 }
 
                 duplicateNum = GetDuplicateNum();

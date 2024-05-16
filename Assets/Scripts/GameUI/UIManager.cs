@@ -18,7 +18,7 @@ namespace GameUI
 
         private void Update()
         {
-            clickLine.color = colors[(int)PlayerManager.Instance.color];
+            clickLine.color = colors[PlayerManager.Instance.colorIndex];
 
             healthBar.fillAmount = ScoreCombo.Instance.health / 100;
 

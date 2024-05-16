@@ -18,22 +18,7 @@ namespace PlayerRelated
             goodTiming = 0.1f,
             missTiming = 0.5f;
         
-        private ClickIndex click;
-        private enum ClickIndex
-        {
-            left = 0,
-            middle = 1,
-            right = 2
-        }
-
-        private int colorSwitch;
-        public ColorIndex color;
-        public enum ColorIndex
-        {
-            blue = 0,
-            yellow = 1,
-            red = 2
-        }
+        public int colorIndex;
 
         public static PlayerManager Instance;
 
@@ -44,33 +29,34 @@ namespace PlayerRelated
         
         #endregion
 
-        public void ChangeBanner(InputAction.CallbackContext context)
+        public void ColorChangeLeft(InputAction.CallbackContext context)
         {
-            if (context.phase != InputActionPhase.Performed) return;
-            
-            colorSwitch = (int)context.ReadValue<float>();
-            color = (ColorIndex) (int)color + colorSwitch;
-
-            if ((int)color >= 3) color = 0;
-            if ((int)color < 0) color = (ColorIndex)2;
+            if (!context.performed) return;
+            colorIndex--;
+            if (colorIndex < 0) colorIndex = 2;
+        }
+        public void ColorChangeRight(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+            colorIndex++;
+            if (colorIndex > 2) colorIndex = 0;
         }
 
-        #region  HandleClick
-
-        public void LeftClick(InputAction.CallbackContext context)
+        public void ClickNoteLeft(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed) OnBeatClick(0);
+            if (!context.performed) return;
+            OnBeatClick(0);
         }
-        public void MiddleClick(InputAction.CallbackContext context)
+        public void ClickNoteMiddle(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed) OnBeatClick(1);
+            if (!context.performed) return;
+            OnBeatClick(1);
         }
-        public void RightClick(InputAction.CallbackContext context)
+        public void ClickNoteRight(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed) OnBeatClick(2);
+            if (!context.performed) return;
+            OnBeatClick(2);
         }
-        
-        #endregion
 
         private void OnBeatClick(int clickIndex)
         {
@@ -79,7 +65,7 @@ namespace PlayerRelated
             timingDifference = Conductor.Instance.OnBeatClick(currentCircle);
             
             bool correctHit = currentCircle.circleData.columnIndex == clickIndex &&
-                              (int)color == currentCircle.circleData.typeIndex;
+                              colorIndex == currentCircle.circleData.typeIndex;
 
             if (timingDifference > missTiming) return;
             

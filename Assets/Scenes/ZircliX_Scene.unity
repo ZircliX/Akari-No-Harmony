@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: a42daffd59fc342499fa6a4f7b514e8d, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: f17d844f8183fe04187954491d4a4cc1, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -410,8 +410,8 @@ MonoBehaviour:
   clickLine: {fileID: 1417387647}
   colors:
   - {r: 0, g: 1, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &475091916
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,7 +972,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 787350351}
         m_TargetAssemblyTypeName: PlayerRelated.PlayerManager, Assembly-CSharp
-        m_MethodName: LeftClick
+        m_MethodName: ClickNoteLeft
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -988,7 +988,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 787350351}
         m_TargetAssemblyTypeName: PlayerRelated.PlayerManager, Assembly-CSharp
-        m_MethodName: MiddleClick
+        m_MethodName: ClickNoteMiddle
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -998,13 +998,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: f3c1fc79-b2e8-426b-b2b5-e10bf7a64c43
-    m_ActionName: GamePlay/Middle[/Keyboard/z,/DualShock4GamepadHID/buttonNorth]
+    m_ActionId: eb592b2b-0464-40c9-88a3-1874b4e7a884
+    m_ActionName: GamePlay/ClickMiddle[/Keyboard/o]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 787350351}
         m_TargetAssemblyTypeName: PlayerRelated.PlayerManager, Assembly-CSharp
-        m_MethodName: RightClick
+        m_MethodName: ClickNoteRight
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1014,13 +1014,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: e8dfa9f7-964d-4bb9-8ed8-1647e97b4b0b
-    m_ActionName: GamePlay/Right[/Keyboard/e,/DualShock4GamepadHID/buttonEast]
+    m_ActionId: d64cf0a2-aba6-4984-9a72-81b5b3575a6c
+    m_ActionName: GamePlay/ClickRight[/Keyboard/p]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 787350351}
         m_TargetAssemblyTypeName: PlayerRelated.PlayerManager, Assembly-CSharp
-        m_MethodName: ChangeBanner
+        m_MethodName: ColorChangeLeft
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1030,8 +1030,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 2fe2f9e4-c620-453f-82ba-215ee3fbc42a
-    m_ActionName: GamePlay/SwitchBanner[/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID/rightTrigger]
+    m_ActionId: 52068368-f88a-46fa-9a71-2b6c11debf87
+    m_ActionName: GamePlay/ColorLeft[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 787350351}
+        m_TargetAssemblyTypeName: PlayerRelated.PlayerManager, Assembly-CSharp
+        m_MethodName: ColorChangeRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3254d878-1488-423f-af65-0773ed509baf
+    m_ActionName: GamePlay/ColorRight[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: GamePlay
@@ -1049,7 +1065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11e46fdc674f504eb89ab7574607dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 0
+  colorIndex: 0
 --- !u!1 &814355030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2009,10 +2025,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   create: 0
-  circlesType:
-  - {fileID: 7444164605342579970, guid: 9b2fef278b99cc545b610f422ecc8f58, type: 3}
-  - {fileID: 7444164605342579970, guid: 461aadaefa627b243bb3b924a6a4252a, type: 3}
-  - {fileID: 7444164605342579970, guid: c0cd8036f461a1f4880f3a099c799abf, type: 3}
   audio: {fileID: 8300000, guid: c4f6fb7f563ca8d47bc1199acd594f72, type: 3}
   bpm: 130
   offset: 0.012
