@@ -7,11 +7,6 @@ public class MenuScript : MonoBehaviour
     private float lastVolume;
     private bool isActive = true;
     
-    public void LoadScene(int index)
-    {   
-        SceneManager.LoadScene(index);
-    }
-    
     public AudioMixer audioMixer;
     
     public void SetVolume(float volume)
@@ -31,10 +26,5 @@ public class MenuScript : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
-    }
-    
-    public void Quit()
-    {
-        Application.Quit();
     }
 }

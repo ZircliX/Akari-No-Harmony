@@ -21,9 +21,10 @@ namespace Menu
             None = -1,
             Menu = 0,
             Options = 1,
-            Pause = 2,
-            Won = 3,
-            Lost = 4,
+            Credit = 2,
+            Pause = 3,
+            Won = 5,
+            Lost = 6,
             LevelSelection = 10
         }
     
@@ -64,11 +65,13 @@ namespace Menu
         {
             CheckStateChange();
 
+            /*
             for (int i = 0; i < 2; i++)
             {
                 audioSources[i].volume = PlayerPrefs.GetFloat("Volume" + i, 0.5f);
                 audioSliders[i].value = PlayerPrefs.GetFloat("Volume" + i, 0.5f);
             }
+            */
         }
 
         public void Play()
@@ -172,6 +175,13 @@ namespace Menu
             SwitchState(-1);
             GameManager.Instance.SwitchState(5);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        public Animator anim;
+
+        public void Animate()
+        {
+            anim.SetBool("isHover", true);
         }
     }
 }
