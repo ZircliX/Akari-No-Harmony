@@ -1338,7 +1338,6 @@ MonoBehaviour:
   - {fileID: 1500575040}
   - {fileID: 1497459958}
   - {fileID: 1950985687}
-  spawnedCircles: []
 --- !u!1 &1194095609
 GameObject:
   m_ObjectHideFlags: 0

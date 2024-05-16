@@ -1,3 +1,4 @@
+using Circles;
 using GamePlay;
 using Score;
 using UnityEngine;
@@ -8,6 +9,14 @@ namespace PlayerRelated
     public class PlayerManager : MonoBehaviour
     {
         #region Class Variables
+
+        private CircleManager currentCircle;
+        private double timingDifference;
+
+        private const float
+            perfectTiming = 0.05f,
+            goodTiming = 0.1f,
+            missTiming = 0.5f;
         
         private ClickIndex click;
         private enum ClickIndex
@@ -65,50 +74,36 @@ namespace PlayerRelated
 
         private void OnBeatClick(int clickIndex)
         {
-            // Calculate the timing difference between the click and the actual beat
-            double timingDifference = Conductor.Instance.OnBeatClick();
-            var currentCircle = Spawners.Instance.spawnedCircles[0];
-
-            Spawners.Instance.RemoveCircle(currentCircle);
+            currentCircle = Spawners.Instance.spawnedCircles[clickIndex][0];
             
-            bool correctHit = currentCircle.circleData.columnIndex == clickIndex
-                                && (int)color == currentCircle.circleData.typeIndex;
-            if (!correctHit)
-            {
-                MissHit();
-                return;
-            }
+            timingDifference = Conductor.Instance.OnBeatClick(currentCircle);
+            
+            bool correctHit = currentCircle.circleData.columnIndex == clickIndex &&
+                              (int)color == currentCircle.circleData.typeIndex;
 
-            // Check if the click was close enough to be considered successful
-            switch (timingDifference)
-            {
-                // Handle Perfect beat click
-                case <= Conductor.perfectTiming:
-                    Debug.Log("PERFECT ! ");
-                    ScoreCombo.Instance.health += 10;
-                    ScoreCombo.Instance.AddScore(300);
-                    break;
-                
-                // Handle good beat click
-                case <= Conductor.goodTiming:
-                    Debug.Log("GOOD ! ");
-                    ScoreCombo.Instance.health += 5;
-                    ScoreCombo.Instance.AddScore(100);
-                    break;
-                
-                case <= Conductor.missTiming:
-                    MissHit();
-                    break;
-            }
-
+            if (timingDifference > missTiming) return;
+            
+            (int score, int health) = CalculateScoreAndHealth(timingDifference, correctHit);
+            Hit(health, score);
             currentCircle.isHit = true;
         }
 
-        public void MissHit()
+        private (int score, int health) CalculateScoreAndHealth(double timeDifference, bool correctHit)
         {
-            Debug.Log("MISS ! ");
-            ScoreCombo.Instance.health -= 10;
-            ScoreCombo.Instance.AddScore(0);
+            return correctHit switch
+            {
+                true when timeDifference <= perfectTiming => (300, 10),
+                true when timeDifference <= goodTiming => (100, 5),
+                true when timeDifference <= missTiming => (-10, -10),
+                false => (-10, -10),
+                _ => (0, 0)
+            };
+        }
+
+        public void Hit(int health, int points)
+        {
+            ScoreCombo.Instance.health += health;
+            ScoreCombo.Instance.AddScore(points);
         }
     }
 }

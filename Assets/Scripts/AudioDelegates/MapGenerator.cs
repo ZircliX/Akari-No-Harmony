@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace AudioDelegates
@@ -19,9 +20,16 @@ namespace AudioDelegates
         [Space]
         [Header("Map Data")]
         public string mapName;
-        public int typeChangeProba;
         private int currentTypeIndex;
         private Map mapData;
+
+        [Header("Create Duplicates")]
+        private int duplicateNum = 1;
+        private List<int> usedValues = new();
+        
+        [Header("Random Color")]
+        public int typeChangeProba;
+        private int numOfSame;
     
         private void Update()
         {
@@ -52,24 +60,58 @@ namespace AudioDelegates
 
             foreach (var time in songData.songPositionInSeconds)
             {
-                if (Random.Range(0, typeChangeProba) == 0) ChangeCircleType();
-            
-                var newCircle = new Circle
+                usedValues.Clear();
+                numOfSame++;
+                
+                if (ShouldChangeCircleType())
                 {
-                    typeIndex = currentTypeIndex,
-                    downSpeed = 4f,
-                    timeToSpawn = time - 2f,
-                    timeToBeat = time,
-                    columnIndex = Random.Range(0, 3)
-                };
-            
-                mapData.circles.Add(newCircle);
+                    numOfSame = 0;
+                    currentTypeIndex = Random.Range(0, circlesType.Length);
+                }
+
+                duplicateNum = GetDuplicateNum();
+
+                for (int i = 0; i < duplicateNum; i++)
+                {
+                    int columnIndex = GetUniqueRandomValue(0, 3);
+                    var newCircle = CreateCircle(time, currentTypeIndex, columnIndex);
+                    mapData.circles.Add(newCircle);
+                }
             }
         }
 
-        private void ChangeCircleType()
+        private bool ShouldChangeCircleType()
         {
-            currentTypeIndex = Random.Range(0, circlesType.Length);
+            return Random.Range(0, typeChangeProba) == 0 && numOfSame >= 5;
+        }
+
+        private int GetDuplicateNum()
+        {
+            return Random.Range(0, 3) == 0 ? Random.Range(2, 4) : 1;
+        }
+
+        private int GetUniqueRandomValue(int min, int max)
+        {
+            int randomValue;
+            do {
+                randomValue = Random.Range(min, max);
+            } 
+            while (usedValues.Contains(randomValue));
+
+            usedValues.Add(randomValue);
+            return randomValue;
+        }
+
+        private Circle CreateCircle(double time, int typeIndex, int columnIndex)
+        {
+            return new Circle
+            {
+                typeIndex = typeIndex,
+                downSpeed = 4f,
+                timeToSpawn = time - 2f,
+                timeToBeat = time,
+                columnIndex = columnIndex
+            };
         }
 
         private void CreateSongData()
@@ -91,7 +133,7 @@ namespace AudioDelegates
 
             while (currentSecond < songData.songAudio.length)
             {
-                if (currentBeat % 2 == 0 && currentSecond >= 3)
+                if (currentBeat % 2f == 0 && currentSecond >= 3)
                 {
                     songData.songPositionInSeconds.Add(currentSecond);
                 }
