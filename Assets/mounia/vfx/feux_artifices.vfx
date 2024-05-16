@@ -166,7 +166,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 10
+      m_SerializableObject: 1
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -602,7 +602,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Vector, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"vector":{"x":-0.33532923460006716,"y":15.104920387268067,"z":-0.33532923460006716}}'
+      m_SerializableObject: '{"vector":{"x":1.2665987014770509e-7,"y":15.140572547912598,"z":-0.3361206650733948}}'
     m_Space: 0
   m_Property:
     name: A
@@ -1758,7 +1758,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Line, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"start":{"x":0.0,"y":0.0,"z":0.0},"end":{"x":7.0,"y":0.0,"z":0.0}}'
+      m_SerializableObject: '{"start":{"x":-3.91155481338501e-8,"y":2.8405338525772097e-7,"z":0.05617821589112282},"end":{"x":3.0,"y":0.0,"z":0.0}}'
     m_Space: 0
   m_Property:
     name: line
@@ -2124,7 +2124,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.05
+      m_SerializableObject: 0.5
     m_Space: 2147483647
   m_Property:
     name: Size
