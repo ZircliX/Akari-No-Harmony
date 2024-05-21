@@ -43,7 +43,7 @@ public class AudioManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        PlayMusic("Theme");
+        //PlayMusic("Theme");
     }
 
     private void PlayMusic(string name)
