@@ -28,7 +28,7 @@ namespace Michsky.MUIP
         [HideInInspector] public TextMeshProUGUI normalText;
         [HideInInspector] public TextMeshProUGUI highlightedText;
 
-        void Awake()
+        private void Awake()
         {
             if (UIManagerAsset == null) { UIManagerAsset = Resources.Load<UIManager>("MUIP Manager"); }
             if (buttonManager == null) { buttonManager = GetComponent<ButtonManager>(); }
@@ -42,13 +42,13 @@ namespace Michsky.MUIP
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (UIManagerAsset == null || buttonManager == null) { return; }
             if (UIManagerAsset.enableDynamicUpdate == true) { UpdateButton(); }
         }
 
-        void UpdateButton()
+        private void UpdateButton()
         {
             if (overrideColors == false)
             {

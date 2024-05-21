@@ -39,7 +39,7 @@ namespace Michsky.MUIP
         public enum StartBehaviour { None, Disable }
         public enum CloseBehaviour { None, Disable, Destroy }
 
-        void Awake()
+        private void Awake()
         {
             isOn = false;
 
@@ -109,7 +109,7 @@ namespace Michsky.MUIP
             Close();
         }
 
-        IEnumerator StartTimer()
+        private IEnumerator StartTimer()
         {
             yield return new WaitForSecondsRealtime(timer);
 
@@ -117,7 +117,7 @@ namespace Michsky.MUIP
             StartCoroutine("DisableNotification");
         }
 
-        IEnumerator DisableNotification()
+        private IEnumerator DisableNotification()
         {
             yield return new WaitForSecondsRealtime(1f);
 

@@ -14,7 +14,7 @@ namespace Michsky.MUIP
         [SerializeField] private Image background;
         [SerializeField] private TextMeshProUGUI text;
 
-        void Awake()
+        private void Awake()
         {
             if (UIManagerAsset == null) { UIManagerAsset = Resources.Load<UIManager>("MUIP Manager"); }
 
@@ -27,13 +27,13 @@ namespace Michsky.MUIP
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (UIManagerAsset == null) { return; }
             if (UIManagerAsset.enableDynamicUpdate == true) { UpdateTooltip(); }
         }
 
-        void UpdateTooltip()
+        private void UpdateTooltip()
         {
             background.color = UIManagerAsset.tooltipBackgroundColor;
             text.color = UIManagerAsset.tooltipTextColor;

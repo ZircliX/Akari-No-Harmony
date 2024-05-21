@@ -54,7 +54,7 @@ namespace Michsky.MUIP
             public UnityEvent onItemSelect = new UnityEvent();
         }
 
-        void Awake()
+        private void Awake()
         {
             if (selectorAnimator == null) { selectorAnimator = gameObject.GetComponent<Animator>(); }
             if (label == null || labelHelper == null)
@@ -73,7 +73,7 @@ namespace Michsky.MUIP
             }
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (gameObject.activeInHierarchy) { StartCoroutine("DisableAnimator"); }
         }
@@ -330,7 +330,7 @@ namespace Michsky.MUIP
             LayoutRebuilder.ForceRebuildLayoutImmediate(label.transform.parent.GetComponent<RectTransform>());
         }
 
-        IEnumerator DisableAnimator()
+        private IEnumerator DisableAnimator()
         {
             yield return new WaitForSecondsRealtime(0.5f);
             selectorAnimator.enabled = false;

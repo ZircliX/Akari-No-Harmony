@@ -10,7 +10,7 @@ namespace Michsky.MUIP
         public PlayType playType;
         public Animator iconAnimator;
 
-        bool isClicked;
+        private bool isClicked;
 
         public enum PlayType
         {
@@ -19,7 +19,7 @@ namespace Michsky.MUIP
             None
         }
 
-        void Start()
+        private void Start()
         {
             if (iconAnimator == null)
                 iconAnimator = gameObject.GetComponent<Animator>();

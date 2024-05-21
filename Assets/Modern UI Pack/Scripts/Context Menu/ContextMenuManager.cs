@@ -31,13 +31,13 @@ namespace Michsky.MUIP
         [Range(-50, 50)] public int hBorderLeft = 15;
         [Range(-50, 50)] public int hBorderRight = -15;
 
-        Vector2 uiPos;
-        Vector3 cursorPos;
-        Vector3 contentPos = new Vector3(0, 0, 0);
-        Vector3 contextVelocity = Vector3.zero;
+        private Vector2 uiPos;
+        private Vector3 cursorPos;
+        private Vector3 contentPos = new Vector3(0, 0, 0);
+        private Vector3 contextVelocity = Vector3.zero;
 
-        RectTransform contextRect;
-        RectTransform contentRect;
+        private RectTransform contextRect;
+        private RectTransform contentRect;
 
         [HideInInspector] public bool isOn;
 
@@ -46,7 +46,7 @@ namespace Michsky.MUIP
         public enum CursorBoundHorizontal { Left, Right }
         public enum CursorBoundVertical { Bottom, Top }
 
-        void Awake()
+        private void Awake()
         {
             if (mainCanvas == null) { mainCanvas = gameObject.GetComponentInParent<Canvas>(); }
             if (contextAnimator == null) { contextAnimator = gameObject.GetComponent<Animator>(); }
@@ -149,7 +149,7 @@ namespace Michsky.MUIP
             }
         }
 
-        void ProcessContextRect()
+        private void ProcessContextRect()
         {
             if (mainCanvas.renderMode == RenderMode.ScreenSpaceCamera || mainCanvas.renderMode == RenderMode.WorldSpace)
             {
@@ -165,7 +165,7 @@ namespace Michsky.MUIP
             }
         }
 
-        void PrintDebug()
+        private void PrintDebug()
         {
             Debug.Log("<b>[Context Menu]</b> UI Pos: " + uiPos + ", H: " + horizontalBound + ", V: " + verticalBound, this);
         }

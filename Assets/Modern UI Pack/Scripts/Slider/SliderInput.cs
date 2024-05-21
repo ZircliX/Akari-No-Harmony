@@ -15,7 +15,7 @@ namespace Michsky.MUIP
         [Range(1, 10)] public int maxChar = 5;
         [Range(0, 4)] public int decimals = 1;
 
-        void Awake()
+        private void Awake()
         {
             muipField = GetComponent<CustomInputField>();
             inputField = muipField.inputText;
@@ -40,7 +40,7 @@ namespace Michsky.MUIP
             sliderManager.mainSlider.onValueChanged.Invoke(sliderManager.mainSlider.value);
         }
 
-        void SetText(float value)
+        private void SetText(float value)
         {
             if (decimals == 0) { inputField.text = value.ToString("F0"); }
             else if (decimals == 1) { inputField.text = value.ToString("F1"); }
@@ -49,7 +49,7 @@ namespace Michsky.MUIP
             else if(decimals == 4) { inputField.text = value.ToString("F4"); }
         }
 
-        void SetValue()
+        private void SetValue()
         {
             if (sliderManager.mainSlider.wholeNumbers == true) { sliderManager.mainSlider.value = int.Parse(inputField.text); }
             else { sliderManager.mainSlider.value = float.Parse(inputField.text); }

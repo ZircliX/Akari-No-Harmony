@@ -18,7 +18,7 @@ namespace Michsky.MUIP
         [SerializeField] private TextMeshProUGUI mainText;
         [SerializeField] private Image expandIcon;
 
-        void Awake()
+        private void Awake()
         {
             if (UIManagerAsset == null) { UIManagerAsset = Resources.Load<UIManager>("MUIP Manager"); }
 
@@ -31,13 +31,13 @@ namespace Michsky.MUIP
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (UIManagerAsset == null) { return; }
             if (UIManagerAsset.enableDynamicUpdate == true) { UpdateDropdown(); }
         }
 
-        void UpdateDropdown()
+        private void UpdateDropdown()
         {
             if (overrideFonts == false && mainText != null) { mainText.font = UIManagerAsset.dropdownFont; }
             if (overrideColors == false)

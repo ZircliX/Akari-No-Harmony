@@ -26,13 +26,13 @@ namespace Michsky.MUIP
         [Header("Events")]
         [SerializeField] private UnityEvent onClick;
 
-        bool allowSway;
+        private bool allowSway;
         [HideInInspector] public bool wmSelected;
 
-        Vector3 cursorPos;
-        Vector2 defaultPos;
+        private Vector3 cursorPos;
+        private Vector2 defaultPos;
 
-        void Awake()
+        private void Awake()
         {
             if (swayParent == null)
             {
@@ -46,7 +46,7 @@ namespace Michsky.MUIP
             highlightedCG.alpha = 0;
         }
 
-        void Update()
+        private void Update()
         {
 #if ENABLE_LEGACY_INPUT_MANAGER
             if (allowSway == true) { cursorPos = Input.mousePosition; }
@@ -59,19 +59,19 @@ namespace Michsky.MUIP
             else if (mainCanvas.renderMode == RenderMode.WorldSpace) { ProcessWorldSpace(); }
         }
 
-        void ProcessOverlay()
+        private void ProcessOverlay()
         {
             if (allowSway == true) { swayObject.position = Vector2.Lerp(swayObject.position, cursorPos, Time.deltaTime * smoothness); }
             else { swayObject.localPosition = Vector2.Lerp(swayObject.localPosition, defaultPos, Time.deltaTime * smoothness); }
         }
 
-        void ProcessSSC()
+        private void ProcessSSC()
         {
             if (allowSway == true) { swayObject.position = Vector2.Lerp(swayObject.position, Camera.main.ScreenToWorldPoint(cursorPos), Time.deltaTime * smoothness); }
             else { swayObject.localPosition = Vector2.Lerp(swayObject.localPosition, defaultPos, Time.deltaTime * smoothness); }
         }
 
-        void ProcessWorldSpace()
+        private void ProcessWorldSpace()
         {
             if (allowSway == true) 
             {
@@ -151,7 +151,7 @@ namespace Michsky.MUIP
             onClick.Invoke();
         }
 
-        IEnumerator DissolveHelper()
+        private IEnumerator DissolveHelper()
         {
             while (normalCG.alpha > dissolveAlpha)
             {
@@ -165,7 +165,7 @@ namespace Michsky.MUIP
             highlightedCG.gameObject.SetActive(false);
         }
 
-        IEnumerator HighlightHelper()
+        private IEnumerator HighlightHelper()
         {
             while (normalCG.alpha < 1)
             {
@@ -179,7 +179,7 @@ namespace Michsky.MUIP
             highlightedCG.gameObject.SetActive(false);
         }
 
-        IEnumerator ActiveHelper()
+        private IEnumerator ActiveHelper()
         {
             highlightedCG.gameObject.SetActive(true);
 
@@ -194,7 +194,7 @@ namespace Michsky.MUIP
             normalCG.alpha = 0;
         }
 
-        IEnumerator WMSelectHelper()
+        private IEnumerator WMSelectHelper()
         {
             selectedCG.gameObject.SetActive(true);
 
@@ -211,7 +211,7 @@ namespace Michsky.MUIP
             selectedCG.alpha = 1;
         }
 
-        IEnumerator WMDeselectHelper()
+        private IEnumerator WMDeselectHelper()
         {
             while (selectedCG.alpha > 0)
             {

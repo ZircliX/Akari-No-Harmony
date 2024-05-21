@@ -17,14 +17,14 @@ namespace Michsky.MUIP
         public int selectedIconIndex;
         [Range(0, 3)] public int spriteSize;
 
-        Image imageObject;
+        private Image imageObject;
         [HideInInspector] public string currentSize;
         [HideInInspector] public bool size32;
         [HideInInspector] public bool size64;
         [HideInInspector] public bool size128;
         [HideInInspector] public bool size256;
 
-        void Awake()
+        private void Awake()
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Michsky.MUIP
             catch { Debug.LogWarning("<b>Icon Library</b> is missing, but it should be assigned.", this); }
         }
 
-        void Update()
+        private void Update()
         {
             if (iconLibrary.alwaysUpdate == true) { UpdateElement(); }
             if (Application.isPlaying == true && iconLibrary.optimizeUpdates == true) { this.enabled = false; }

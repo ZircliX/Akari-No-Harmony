@@ -8,7 +8,7 @@ namespace OccaSoftware.Fireworks.Runtime
 {
     [RequireComponent(typeof(VisualEffect))]
     [RequireComponent(typeof(AudioSource))]
-    class PlayVFXAudioEvent : VFXOutputEventAbstractHandler
+    internal class PlayVFXAudioEvent : VFXOutputEventAbstractHandler
     {
         [Tooltip("Sets whether the firework sound effect will play when in edit mode.")]
         public override bool canExecuteInEditor => true;

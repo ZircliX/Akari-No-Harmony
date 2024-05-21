@@ -21,14 +21,14 @@ namespace Michsky.MUIP
         [Header("Items")]
         public List<ContextItem> contexItems = new List<ContextItem>();
 
-        Animator contextAnimator;
-        GameObject selectedItem;
-        Image setItemImage;
-        TextMeshProUGUI setItemText;
-        Sprite imageHelper;
-        string textHelper;
-        float timer;
-        bool timerEnabled;
+        private Animator contextAnimator;
+        private GameObject selectedItem;
+        private Image setItemImage;
+        private TextMeshProUGUI setItemText;
+        private Sprite imageHelper;
+        private string textHelper;
+        private float timer;
+        private bool timerEnabled;
 
         [System.Serializable]
         public class ContextItem
@@ -45,7 +45,7 @@ namespace Michsky.MUIP
             // SUB_MENU
         }
 
-        void Start()
+        private void Start()
         {
             if (contextManager == null)
             {
@@ -64,7 +64,7 @@ namespace Michsky.MUIP
                 Destroy(child.gameObject);
         }
 
-        void Update()
+        private void Update()
         {
             if (timerEnabled == true)
             {
@@ -141,7 +141,7 @@ namespace Michsky.MUIP
             }
         }
 
-        IEnumerator ExecuteAfterTime(float time)
+        private IEnumerator ExecuteAfterTime(float time)
         {
             yield return new WaitForSeconds(time);
             itemParent.gameObject.SetActive(false);

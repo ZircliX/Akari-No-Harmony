@@ -21,7 +21,7 @@ namespace Michsky.MUIP
         [HideInInspector] public TextMeshProUGUI label;
         [HideInInspector] public TextMeshProUGUI popupLabel;
 
-        void Awake()
+        private void Awake()
         {
             if (UIManagerAsset == null) { UIManagerAsset = Resources.Load<UIManager>("MUIP Manager"); }
 
@@ -34,13 +34,13 @@ namespace Michsky.MUIP
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (UIManagerAsset == null) { return; }
             if (UIManagerAsset.enableDynamicUpdate == true) { UpdateSlider(); }
         }
 
-        void UpdateSlider()
+        private void UpdateSlider()
         {
             if (UIManagerAsset.sliderThemeType == UIManager.SliderThemeType.Basic)
             {

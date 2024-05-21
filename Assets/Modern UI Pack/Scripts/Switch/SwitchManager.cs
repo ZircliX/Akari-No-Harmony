@@ -38,9 +38,9 @@ namespace Michsky.MUIP
         [System.Serializable]
         public class SwitchEvent : UnityEvent<bool> { }
 
-        bool isInitialized = false;
+        private bool isInitialized = false;
 
-        void Awake()
+        private void Awake()
         {
             if (switchAnimator == null) { switchAnimator = gameObject.GetComponent<Animator>(); }
             if (switchButton == null)
@@ -75,7 +75,7 @@ namespace Michsky.MUIP
             isInitialized = true;
         }
 
-        void OnEnable() 
+        private void OnEnable() 
         {
             if (isInitialized) 
             {
@@ -83,7 +83,7 @@ namespace Michsky.MUIP
             } 
         }
 
-        void GetSavedData()
+        private void GetSavedData()
         {
             if (gameObject.activeInHierarchy) 
             {
@@ -191,7 +191,7 @@ namespace Michsky.MUIP
             }
         }
 
-        IEnumerator DisableAnimator()
+        private IEnumerator DisableAnimator()
         {
             yield return new WaitForSecondsRealtime(0.5f);
             switchAnimator.enabled = false;

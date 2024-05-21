@@ -18,7 +18,7 @@ namespace Michsky.MUIP
         [SerializeField] private TextMeshProUGUI title;
         [SerializeField] private TextMeshProUGUI description;
 
-        void Awake()
+        private void Awake()
         {
             if (UIManagerAsset == null) { UIManagerAsset = Resources.Load<UIManager>("MUIP Manager"); }
 
@@ -31,13 +31,13 @@ namespace Michsky.MUIP
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (UIManagerAsset == null) { return; }
             if (UIManagerAsset.enableDynamicUpdate == true) { UpdateNotification(); }
         }
 
-        void UpdateNotification()
+        private void UpdateNotification()
         {
             if (overrideColors == false)
             {

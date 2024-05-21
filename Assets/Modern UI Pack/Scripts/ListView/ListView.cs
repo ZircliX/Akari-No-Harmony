@@ -46,7 +46,7 @@ namespace Michsky.MUIP
         public enum RowType { Icon, Text }
         public enum RowCount { One, Two, Three }
 
-        void Awake()
+        private void Awake()
         {
             if (itemParent == null) { Debug.LogError("<b>[List View]</b> 'Item Parent' is missing."); return; }
             if (initializeOnAwake == true) { InitializeItems(); }

@@ -12,9 +12,10 @@ namespace Michsky.MUIP
 
         [Header("Settings")]
         public float delay = 1;
-        int currentNotification = 0;
 
-        void Update()
+        private int currentNotification = 0;
+
+        private void Update()
         {
             if (enableUpdating == true)
             {
@@ -45,7 +46,7 @@ namespace Michsky.MUIP
             }
         }
 
-        IEnumerator StartNotification()
+        private IEnumerator StartNotification()
         {
             yield return new WaitForSeconds(notifications[currentNotification].timer + delay);
             Destroy(notifications[currentNotification].gameObject);

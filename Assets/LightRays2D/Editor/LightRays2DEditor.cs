@@ -9,11 +9,10 @@ using System;
 
 [CustomEditor(typeof(LightRays2D))]
 public class LightRays2DEditor:Editor{
-
-	LightRays2D script;
+	private LightRays2D script;
 
 	[MenuItem("GameObject/Effects/LightRays2D")]
-	static void Create(){
+	private static void Create(){
 		GameObject go=new GameObject();
 		go.AddComponent<LightRays2D>();
 		go.name="LightRays2D";
@@ -39,7 +38,7 @@ public class LightRays2DEditor:Editor{
 	}
 
 	[MenuItem("GameObject/UI/LightRays2DCanvas")]
-	static void CreateCanvas(){
+	private static void CreateCanvas(){
 		GameObject go=new GameObject();
 		go.AddComponent<LightRays2DCanvas>();
 		go.name="LightRays2DCanvas";
@@ -55,7 +54,7 @@ public class LightRays2DEditor:Editor{
 		Selection.activeGameObject=go;
 	}
 
-	void Awake(){
+	private void Awake(){
 		script=(LightRays2D)target;
 	}
 

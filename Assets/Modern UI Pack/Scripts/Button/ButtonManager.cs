@@ -86,10 +86,10 @@ namespace Michsky.MUIP
         [SerializeField] private bool centered = false;
 
         // Helpers
-        bool isInitialized = false;
-        Button targetButton;
-        bool isPointerOn;
-        bool waitingForDoubleClickInput;
+        private bool isInitialized = false;
+        private Button targetButton;
+        private bool isPointerOn;
+        private bool waitingForDoubleClickInput;
 
 #if UNITY_EDITOR
         public bool isPreset;
@@ -107,13 +107,13 @@ namespace Michsky.MUIP
             public int bottom = 5;
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (isInitialized == false) { Initialize(); }
             UpdateUI();
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             if (isInteractable == false)
                 return;
@@ -123,7 +123,7 @@ namespace Michsky.MUIP
             if (highlightCG != null) { highlightCG.alpha = 0; }
         }
 
-        void Initialize()
+        private void Initialize()
         {
 #if UNITY_EDITOR
             if (!Application.isPlaying) { return; }
@@ -389,7 +389,7 @@ namespace Michsky.MUIP
             onClick.Invoke();
         }
 
-        IEnumerator LayoutFix()
+        private IEnumerator LayoutFix()
         {
             yield return new WaitForSecondsRealtime(0.025f);
 
@@ -399,7 +399,7 @@ namespace Michsky.MUIP
             if (highlightCG != null) { LayoutRebuilder.ForceRebuildLayoutImmediate(highlightCG.GetComponent<RectTransform>()); }
         }
 
-        IEnumerator SetNormal()
+        private IEnumerator SetNormal()
         {
             StopCoroutine("SetHighlight");
             StopCoroutine("SetDisabled");
@@ -417,7 +417,7 @@ namespace Michsky.MUIP
             disabledCG.alpha = 0;
         }
 
-        IEnumerator SetHighlight()
+        private IEnumerator SetHighlight()
         {
             StopCoroutine("SetNormal");
             StopCoroutine("SetDisabled");
@@ -435,7 +435,7 @@ namespace Michsky.MUIP
             disabledCG.alpha = 0;
         }
 
-        IEnumerator SetDisabled()
+        private IEnumerator SetDisabled()
         {
             StopCoroutine("SetNormal");
             StopCoroutine("SetHighlight");
@@ -453,13 +453,13 @@ namespace Michsky.MUIP
             disabledCG.alpha = 1;
         }
 
-        IEnumerator CheckForDoubleClick()
+        private IEnumerator CheckForDoubleClick()
         {
             yield return new WaitForSecondsRealtime(doubleClickPeriod);
             waitingForDoubleClickInput = false;
         }
 
-        IEnumerator InitUINavigation(Navigation nav)
+        private IEnumerator InitUINavigation(Navigation nav)
         {
             yield return new WaitForSecondsRealtime(1);
             if (selectOnUp != null) { nav.selectOnUp = selectOnUp.GetComponent<Selectable>(); }

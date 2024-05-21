@@ -9,7 +9,7 @@ namespace Michsky.MUIP
     {
         private GUISkin customSkin;
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (EditorGUIUtility.isProSkin == true) { customSkin = MUIPEditorHandler.GetDarkEditor(customSkin); }
             else { customSkin = MUIPEditorHandler.GetLightEditor(customSkin); }

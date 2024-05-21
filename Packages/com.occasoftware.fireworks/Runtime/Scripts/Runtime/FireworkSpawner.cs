@@ -11,16 +11,16 @@ namespace OccaSoftware.Fireworks.Runtime
         public float spawnRadius = 20f;
         public float spawnRate = 2f;
 
-        float randomizedRate;
-        float timeTracker;
+        private float randomizedRate;
+        private float timeTracker;
 
-        void Start()
+        private void Start()
         {
             timeTracker = Time.time;
             randomizedRate = spawnRate * Random.Range(1f, 2f);
         }
 
-        void Update()
+        private void Update()
         {
             if (Time.time - timeTracker > randomizedRate)
             {
@@ -30,7 +30,7 @@ namespace OccaSoftware.Fireworks.Runtime
             }
         }
 
-        void Spawn()
+        private void Spawn()
         {
             GameObject go = visualEffects[Random.Range(0, visualEffects.Count)];
             Vector3 sphere = Random.insideUnitSphere * spawnRadius;

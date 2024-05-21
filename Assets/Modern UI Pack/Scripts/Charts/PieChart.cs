@@ -39,7 +39,7 @@ namespace Michsky.MUIP
 			UpdateIndicators();
 		}
 
-		void Update()
+		private void Update()
 		{
 			this.borderThickness = (float)Mathf.Clamp(this.borderThickness, -75, rectTransform.rect.width / 3.333f);
 		}
@@ -186,7 +186,7 @@ namespace Michsky.MUIP
 			chartData.Add(item);
 		}
 
-		IEnumerator UpdateIndicatorLayout()
+		private IEnumerator UpdateIndicatorLayout()
 		{
 			yield return new WaitForSeconds(0.1f);
 			LayoutRebuilder.ForceRebuildLayoutImmediate(indicatorParent.GetComponentInParent<RectTransform>());

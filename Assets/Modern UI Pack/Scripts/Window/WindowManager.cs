@@ -18,7 +18,7 @@ namespace Michsky.MUIP
         private int newWindowIndex;
         public bool cullWindows = true;
         public bool initializeButtons = true;
-        bool isInitialized = false;
+        private bool isInitialized = false;
 
         // Events
         [System.Serializable] public class WindowChangeEvent : UnityEvent<int> { }
@@ -35,11 +35,11 @@ namespace Michsky.MUIP
         private Animator nextButtonAnimator;
 
         // Helpers
-        string windowFadeIn = "In";
-        string windowFadeOut = "Out";
-        string buttonFadeIn = "Hover to Pressed";
-        string buttonFadeOut = "Pressed to Normal";
-        float cachedStateLength;
+        private string windowFadeIn = "In";
+        private string windowFadeOut = "Out";
+        private string buttonFadeIn = "Hover to Pressed";
+        private string buttonFadeOut = "Pressed to Normal";
+        private float cachedStateLength;
         public bool altMode;
 
         [System.Serializable]
@@ -51,7 +51,7 @@ namespace Michsky.MUIP
             public GameObject firstSelected;
         }
 
-        void Awake()
+        private void Awake()
         {
             if (windows.Count == 0)
                 return;
@@ -59,7 +59,7 @@ namespace Michsky.MUIP
             InitializeWindows();
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (isInitialized == true && nextWindowAnimator == null)
             {
@@ -372,7 +372,7 @@ namespace Michsky.MUIP
             windows.Add(window);
         }
 
-        IEnumerator DisablePreviousWindow()
+        private IEnumerator DisablePreviousWindow()
         {
             yield return new WaitForSecondsRealtime(cachedStateLength);
 

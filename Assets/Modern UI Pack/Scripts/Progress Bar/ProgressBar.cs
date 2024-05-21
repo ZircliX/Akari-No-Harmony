@@ -35,13 +35,13 @@ namespace Michsky.MUIP
         public ProgressBarEvent onValueChanged;
         [HideInInspector] public Slider eventSource;
 
-        void Start()
+        private void Start()
         {
             UpdateUI();
             InitializeEvents();
         }
 
-        void Update()
+        private void Update()
         {
             if (isOn == false)
                 return;

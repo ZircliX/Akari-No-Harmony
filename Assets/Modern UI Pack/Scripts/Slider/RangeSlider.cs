@@ -23,7 +23,7 @@ namespace Michsky.MUIP
         public float CurrentLowerValue { get { return minSlider.value; } }
         public float CurrentUpperValue { get { return maxSlider.realValue; } }
 
-        void Awake()
+        private void Awake()
         {
             if (minSlider == null || maxSlider == null)
                 return;

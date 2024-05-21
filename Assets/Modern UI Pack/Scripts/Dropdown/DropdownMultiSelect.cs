@@ -44,21 +44,21 @@ namespace Michsky.MUIP
         public float panelSize = 200;
         public RectTransform listRect;
         public CanvasGroup listCG;
-        bool isInTransition = false;
-        float closeOn;
+        private bool isInTransition = false;
+        private float closeOn;
 
         // Items
         [SerializeField]
         public List<Item> items = new List<Item>();
 
         // Other variables
-        bool isInitialized = false;
-        int currentIndex;
-        Toggle currentToggle;
-        string textHelper;
-        bool isOn;
+        private bool isInitialized = false;
+        private int currentIndex;
+        private Toggle currentToggle;
+        private string textHelper;
+        private bool isOn;
         public int siblingIndex = 0;
-        EventTrigger triggerEvent;
+        private EventTrigger triggerEvent;
 
         [System.Serializable]
         public class ToggleEvent : UnityEvent<bool> { }
@@ -74,7 +74,7 @@ namespace Michsky.MUIP
             [SerializeField] public ToggleEvent onValueChanged = new ToggleEvent();
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (isInitialized == false) { Initialize(); }
             if (animationType == AnimationType.Modular)
@@ -86,7 +86,7 @@ namespace Michsky.MUIP
             }
         }
 
-        void Initialize()
+        private void Initialize()
         {
             if (listCG == null) { listCG = gameObject.GetComponentInChildren<CanvasGroup>(); }
             if (listRect == null) { listRect = listCG.GetComponent<RectTransform>(); }
@@ -119,7 +119,7 @@ namespace Michsky.MUIP
             isInitialized = true;
         }
 
-        void Update()
+        private void Update()
         {
             if (isInTransition == false)
                 return;
@@ -127,7 +127,7 @@ namespace Michsky.MUIP
             ProcessModularAnimation();
         }
 
-        void ProcessModularAnimation()
+        private void ProcessModularAnimation()
         {
             if (isOn == true)
             {
@@ -185,13 +185,13 @@ namespace Michsky.MUIP
             currentListParent = transform.parent;
         }
 
-        void UpdateToggle(bool value)
+        private void UpdateToggle(bool value)
         {
             if (value == true) { currentToggle.isOn = true; items[currentIndex].isOn = true; }
             else { currentToggle.isOn = false; items[currentIndex].isOn = false; }
         }
 
-        void UpdateToggleData(int itemIndex)
+        private void UpdateToggleData(int itemIndex)
         {
             currentIndex = itemIndex;
             currentToggle = itemParent.GetChild(currentIndex).GetComponent<Toggle>();

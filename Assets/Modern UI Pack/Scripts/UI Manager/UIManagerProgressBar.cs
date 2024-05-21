@@ -17,9 +17,9 @@ namespace Michsky.MUIP
         [SerializeField] private Image background;
         [SerializeField] private TextMeshProUGUI label;
 
-        bool dynamicUpdateEnabled;
+        private bool dynamicUpdateEnabled;
 
-        void Awake()
+        private void Awake()
         {
             if (UIManagerAsset == null) { UIManagerAsset = Resources.Load<UIManager>("MUIP Manager"); }
 
@@ -32,13 +32,13 @@ namespace Michsky.MUIP
             }
         }
 
-        void Update()
+        private void Update()
         {
             if (UIManagerAsset == null) { return; }
             if (UIManagerAsset.enableDynamicUpdate == true) { UpdateProgressBar(); }
         }
 
-        void UpdateProgressBar()
+        private void UpdateProgressBar()
         {
             if (overrideColors == false)
             {

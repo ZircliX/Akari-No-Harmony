@@ -70,15 +70,15 @@ namespace Michsky.MUIP
         public AudioClip clickSound;
 
         // Helpers
-        bool isInitialized = false;
+        private bool isInitialized = false;
         [HideInInspector] public bool isOn;
         [HideInInspector] public int index = 0;
         [HideInInspector] public int siblingIndex = 0;
         [HideInInspector] public TextMeshProUGUI setItemText;
         [HideInInspector] public Image setItemImage;
-        EventTrigger triggerEvent;
-        Sprite imageHelper;
-        string textHelper;
+        private EventTrigger triggerEvent;
+        private Sprite imageHelper;
+        private string textHelper;
 
 #if UNITY_EDITOR
         public bool extendEvents = false;
@@ -96,7 +96,7 @@ namespace Michsky.MUIP
             public UnityEvent OnItemSelection = new UnityEvent();
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (isInitialized == false) { Initialize(); }
             if (updateOnEnable == true && index < items.Count) { SetDropdownIndex(selectedItemIndex); }
@@ -107,7 +107,7 @@ namespace Michsky.MUIP
             listRect.sizeDelta = new Vector2(listRect.sizeDelta.x, 0);
         }
 
-        void Initialize()
+        private void Initialize()
         {
             if (enableTrigger == true && triggerObject != null)
             {
@@ -326,7 +326,7 @@ namespace Michsky.MUIP
             Animate();
         }
 
-        IEnumerator StartExpand()
+        private IEnumerator StartExpand()
         {
             float elapsedTime = 0;
             Vector2 startPos = listRect.sizeDelta;
@@ -345,7 +345,7 @@ namespace Michsky.MUIP
             listRect.sizeDelta = endPos;
         }
 
-        IEnumerator StartMinimize()
+        private IEnumerator StartMinimize()
         {
             float elapsedTime = 0;
             Vector2 startPos = listRect.sizeDelta;

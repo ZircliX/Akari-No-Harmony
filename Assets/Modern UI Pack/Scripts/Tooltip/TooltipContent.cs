@@ -21,10 +21,10 @@ namespace Michsky.MUIP
         public bool forceToUpdate = false;
         public bool useIn3D = false;
 
-        TooltipManager tpManager;
+        private TooltipManager tpManager;
         [HideInInspector] public Animator tooltipAnimator;
 
-        void Start()
+        private void Start()
         {
             if (tooltipRect == null || descriptionText == null)
             {
@@ -107,7 +107,7 @@ namespace Michsky.MUIP
             tpManager.contentLE.enabled = false;
         }
 
-        IEnumerator CalculateContentWidth()
+        private IEnumerator CalculateContentWidth()
         {
             yield return new WaitForSecondsRealtime(0.05f);
             float tempWidth = descriptionText.GetComponent<RectTransform>().sizeDelta.x;
@@ -119,14 +119,14 @@ namespace Michsky.MUIP
             tpManager.contentLE.preferredWidth = tpManager.preferredWidth;
         }
 
-        IEnumerator ShowTooltip()
+        private IEnumerator ShowTooltip()
         {
             yield return new WaitForSecondsRealtime(delay);
             tooltipAnimator.Play("In");
             StopCoroutine("ShowTooltip");
         }
 
-        IEnumerator UpdateLayoutPosition()
+        private IEnumerator UpdateLayoutPosition()
         {
             yield return new WaitForSecondsRealtime(0.05f);
             LayoutRebuilder.ForceRebuildLayoutImmediate(tooltipAnimator.gameObject.GetComponent<RectTransform>());

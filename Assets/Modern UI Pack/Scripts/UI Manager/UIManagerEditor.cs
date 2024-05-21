@@ -9,7 +9,7 @@ namespace Michsky.MUIP
     [System.Serializable]
     public class UIManagerEditor : Editor
     {
-        GUISkin customSkin;
+        private GUISkin customSkin;
         protected static string buildID = "B16-20231120";
         protected static float foldoutItemSpace = 2;
         protected static float foldoutTopSpace = 5;
@@ -564,11 +564,11 @@ namespace Michsky.MUIP
             #endregion
         }
 
-        void Discord() { Application.OpenURL("https://discord.gg/VXpHyUt"); }
-        void Email() { Application.OpenURL("https://www.michsky.com/contact/"); }
-        void Twitter() { Application.OpenURL("https://www.twitter.com/michskyHQ"); }
+        private void Discord() { Application.OpenURL("https://discord.gg/VXpHyUt"); }
+        private void Email() { Application.OpenURL("https://www.michsky.com/contact/"); }
+        private void Twitter() { Application.OpenURL("https://www.twitter.com/michskyHQ"); }
 
-        void ResetToDefaults()
+        private void ResetToDefaults()
         {
             if (EditorUtility.DisplayDialog("Reset to defaults", "Are you sure you want to reset UI Manager values to default?", "Yes", "Cancel"))
             {

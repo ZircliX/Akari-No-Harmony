@@ -9,7 +9,7 @@ namespace Michsky.MUIP
         public bool enableMobileMode = false;
         [HideInInspector] public Animator buttonAnimator;
 
-        void Awake()
+        private void Awake()
         {
             if (buttonAnimator == null) { buttonAnimator = gameObject.GetComponent<Animator>(); }
             if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) { enableMobileMode = true; }

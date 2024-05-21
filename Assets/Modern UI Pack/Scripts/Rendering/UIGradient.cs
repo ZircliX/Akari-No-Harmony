@@ -9,25 +9,21 @@ namespace Michsky.MUIP
     [AddComponentMenu("Modern UI Pack/Effects/UI Gradient")]
     public class UIGradient : BaseMeshEffect
     {
-        [SerializeField]
-        Type _gradientType;
+        [SerializeField] private Type _gradientType;
 
-        [SerializeField]
-        Blend _blendMode = Blend.Multiply;
+        [SerializeField] private Blend _blendMode = Blend.Multiply;
 
-        [SerializeField]
-        bool _modifyVertices = true;
+        [SerializeField] private bool _modifyVertices = true;
 
         [SerializeField]
         [Range(-1, 1)]
-        float _offset = 0f;
+        private float _offset = 0f;
 
         [SerializeField]
         [Range(0.1f, 10)]
-        float _zoom = 1f;
+        private float _zoom = 1f;
 
-        [SerializeField]
-        UnityEngine.Gradient _effectGradient = new UnityEngine.Gradient() { colorKeys = new GradientColorKey[] { new GradientColorKey(Color.black, 0), new GradientColorKey(Color.white, 1) } };
+        [SerializeField] private UnityEngine.Gradient _effectGradient = new UnityEngine.Gradient() { colorKeys = new GradientColorKey[] { new GradientColorKey(Color.black, 0), new GradientColorKey(Color.white, 1) } };
 
         public Blend BlendMode
         {
@@ -183,7 +179,7 @@ namespace Michsky.MUIP
             }
         }
 
-        Rect GetBounds(List<UIVertex> vertices)
+        private Rect GetBounds(List<UIVertex> vertices)
         {
             float left = vertices[0].position.x;
             float right = left;
@@ -209,7 +205,7 @@ namespace Michsky.MUIP
             return new Rect(left, bottom, right - left, top - bottom);
         }
 
-        void SplitTrianglesAtGradientStops(List<UIVertex> _vertexList, Rect bounds, float zoomOffset, VertexHelper helper)
+        private void SplitTrianglesAtGradientStops(List<UIVertex> _vertexList, Rect bounds, float zoomOffset, VertexHelper helper)
         {
             List<float> stops = FindStops(zoomOffset, bounds);
             if (stops.Count > 0)
@@ -351,7 +347,7 @@ namespace Michsky.MUIP
             }
         }
 
-        float[] GetPositions(List<UIVertex> _vertexList, int index)
+        private float[] GetPositions(List<UIVertex> _vertexList, int index)
         {
             float[] positions = new float[3];
 
@@ -372,7 +368,7 @@ namespace Michsky.MUIP
             return positions;
         }
 
-        List<float> FindStops(float zoomOffset, Rect bounds)
+        private List<float> FindStops(float zoomOffset, Rect bounds)
         {
             List<float> stops = new List<float>();
             var offset = Offset * (1 - zoomOffset);
@@ -422,7 +418,7 @@ namespace Michsky.MUIP
             return stops;
         }
 
-        UIVertex CreateSplitVertex(UIVertex vertex1, UIVertex vertex2, float stop)
+        private UIVertex CreateSplitVertex(UIVertex vertex1, UIVertex vertex2, float stop)
         {
             if (GradientType == Type.Horizontal)
             {
@@ -461,7 +457,7 @@ namespace Michsky.MUIP
             }
         }
 
-        Color BlendColor(Color colorA, Color colorB)
+        private Color BlendColor(Color colorA, Color colorB)
         {
             switch (BlendMode)
             {

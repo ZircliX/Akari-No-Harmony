@@ -10,9 +10,9 @@ namespace Michsky.MUIP
         public float maxSize;
         public Color startColor;
         public Color transitionColor;
-        Image colorImg;
+        private Image colorImg;
 
-        void Start()
+        private void Start()
         {
             transform.localScale = new Vector3(0f, 0f, 0f);
             colorImg = GetComponent<Image>();
@@ -20,7 +20,7 @@ namespace Michsky.MUIP
             colorImg.color = new Color(startColor.r, startColor.g, startColor.b, startColor.a);
         }
 
-        void Update()
+        private void Update()
         {
             if (unscaledTime == false)
             {

@@ -15,16 +15,16 @@ namespace Michsky.MUIP
         public GameObject trigger;
         [HideInInspector] public int subMenuIndex;
 
-        GameObject selectedItem;
-        Image setItemImage;
-        TextMeshProUGUI setItemText;
-        Sprite imageHelper;
-        string textHelper;
-        RectTransform listParent;
+        private GameObject selectedItem;
+        private Image setItemImage;
+        private TextMeshProUGUI setItemText;
+        private Sprite imageHelper;
+        private string textHelper;
+        private RectTransform listParent;
 
        [HideInInspector] public bool enableFadeOut = true;
 
-        void OnEnable()
+       private void OnEnable()
         {
             if (itemParent == null) { Debug.Log("<b>[Context Menu]</b> Item Parent is missing.", this); return; }
 
@@ -118,7 +118,7 @@ namespace Michsky.MUIP
 #endif
         }
 
-        IEnumerator ExecuteAfterTime(float time)
+        private IEnumerator ExecuteAfterTime(float time)
         {
             yield return new WaitForSecondsRealtime(time);
             itemParent.gameObject.SetActive(false);

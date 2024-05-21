@@ -32,7 +32,7 @@ namespace Michsky.MUIP
         private string instaOutAnim = "Instant Out";
         private bool isActive = false;
 
-        void Awake()
+        private void Awake()
         {
             Initialize();
 
@@ -43,14 +43,14 @@ namespace Michsky.MUIP
             UpdateStateInstant();
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (inputText == null || inputFieldAnimator == null) { Initialize(); }
             inputText.ForceLabelUpdate();
             UpdateStateInstant();
         }
 
-        void Update()
+        private void Update()
         {
             if (!processSubmit ||string.IsNullOrEmpty(inputText.text) ||  EventSystem.current.currentSelectedGameObject != inputText.gameObject)
                 return;
@@ -80,7 +80,7 @@ namespace Michsky.MUIP
 #endif
         }
 
-        void Initialize()
+        private void Initialize()
         {
             if (inputText == null) { inputText = gameObject.GetComponent<TMP_InputField>(); }
             if (inputFieldAnimator == null) { inputFieldAnimator = gameObject.GetComponent<Animator>(); }
@@ -129,7 +129,7 @@ namespace Michsky.MUIP
             else { isActive = true; inputFieldAnimator.Play(instaInAnim); }
         }
 
-        void HandleEndEdit()
+        private void HandleEndEdit()
         {
             if (string.IsNullOrEmpty(inputText.text) && !EventSystem.current.alreadySelecting && EventSystem.current.currentSelectedGameObject == inputText.gameObject)
             {
@@ -139,7 +139,7 @@ namespace Michsky.MUIP
             AnimateOut();
         }
 
-        IEnumerator DisableAnimator()
+        private IEnumerator DisableAnimator()
         {
             yield return new WaitForSecondsRealtime(cachedDuration);
             inputFieldAnimator.enabled = false;

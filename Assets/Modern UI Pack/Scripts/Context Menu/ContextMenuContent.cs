@@ -24,11 +24,11 @@ namespace Michsky.MUIP
         // Items
         public List<ContextItem> contexItems = new List<ContextItem>();
 
-        GameObject selectedItem;
-        Image setItemImage;
-        TextMeshProUGUI setItemText;
-        Sprite imageHelper;
-        string textHelper;
+        private GameObject selectedItem;
+        private Image setItemImage;
+        private TextMeshProUGUI setItemText;
+        private Sprite imageHelper;
+        private string textHelper;
 
         [System.Serializable]
         public class ContextItem
@@ -57,7 +57,7 @@ namespace Michsky.MUIP
 
         public enum ContextItemType { Button, Separator }
 
-        void Awake()
+        private void Awake()
         {
             if (contextManager == null)
             {
@@ -160,7 +160,7 @@ namespace Michsky.MUIP
             else if (eventData.button == PointerEventData.InputButton.Right && contextManager.isOn == false) { ProcessContent(); }
         }
 
-        IEnumerator ExecuteAfterTime(float time)
+        private IEnumerator ExecuteAfterTime(float time)
         {
             yield return new WaitForSecondsRealtime(time);
             itemParent.gameObject.SetActive(false);

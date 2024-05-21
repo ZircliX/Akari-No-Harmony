@@ -38,7 +38,7 @@ namespace Michsky.MUIP
         [HideInInspector] public Animator sliderAnimator;
         [HideInInspector] public float saveValue;
 
-        void Awake()
+        private void Awake()
         {
             if (enableSaving == true)
             {

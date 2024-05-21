@@ -11,9 +11,9 @@ namespace Michsky.MUIP
     {
         [SerializeField] private bool fixOnEnable = true;
         [SerializeField] private bool fixWithDelay = true;
-        float fixDelay = 0.025f;
+        private float fixDelay = 0.025f;
 
-        void OnEnable()
+        private void OnEnable()
         {
 #if UNITY_EDITOR
             LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
@@ -29,7 +29,7 @@ namespace Michsky.MUIP
             else { StartCoroutine(FixDelay()); }
         }
 
-        IEnumerator FixDelay()
+        private IEnumerator FixDelay()
         {
             yield return new WaitForSecondsRealtime(fixDelay);
             LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());

@@ -77,7 +77,7 @@ public abstract class LightRays2DAbstract:MonoBehaviour{
 	
 	protected abstract void ApplyMaterial(Material material);
 
-	bool AnythingChanged(){
+	private bool AnythingChanged(){
 		bool changed=false;
 		if(_color1!=color1){
 			_color1=color1;

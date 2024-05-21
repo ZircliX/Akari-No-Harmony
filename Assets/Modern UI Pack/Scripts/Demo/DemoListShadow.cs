@@ -16,7 +16,7 @@ namespace Michsky.MUIP
         [SerializeField] private float scrollTime = 5;
         [SerializeField] private float transitionSpeed = 4;
 
-        void Awake()
+        private void Awake()
         {
             CheckForValue(0);
         }
@@ -52,7 +52,7 @@ namespace Michsky.MUIP
         public void ScrollDown() { StopCoroutine("ScrollUpHelper"); StartCoroutine("ScrollDownHelper"); }
         public void OnBeginDrag(PointerEventData data) { StopCoroutine("ScrollUpHelper"); StopCoroutine("ScrollDownHelper"); }
 
-        IEnumerator ScrollUpHelper()
+        private IEnumerator ScrollUpHelper()
         {
             float elapsedTime = 0;
 
@@ -64,7 +64,7 @@ namespace Michsky.MUIP
             }
         }
 
-        IEnumerator ScrollDownHelper()
+        private IEnumerator ScrollDownHelper()
         {
             float elapsedTime = 0;
 
@@ -76,7 +76,7 @@ namespace Michsky.MUIP
             }
         }
 
-        IEnumerator LeftCGFadeIn()
+        private IEnumerator LeftCGFadeIn()
         {
             leftCG.interactable = true;
             leftCG.blocksRaycasts = true;
@@ -90,7 +90,7 @@ namespace Michsky.MUIP
             leftCG.alpha = 1;
         }
 
-        IEnumerator LeftCGFadeOut()
+        private IEnumerator LeftCGFadeOut()
         {
             leftCG.interactable = false;
             leftCG.blocksRaycasts = false;
@@ -104,7 +104,7 @@ namespace Michsky.MUIP
             leftCG.alpha = 0;
         }
 
-        IEnumerator RightCGFadeIn()
+        private IEnumerator RightCGFadeIn()
         {
             rightCG.interactable = true;
             rightCG.blocksRaycasts = true;
@@ -118,7 +118,7 @@ namespace Michsky.MUIP
             rightCG.alpha = 1;
         }
 
-        IEnumerator RightCGFadeOut()
+        private IEnumerator RightCGFadeOut()
         {
             rightCG.interactable = false;
             rightCG.blocksRaycasts = false;

@@ -24,8 +24,8 @@ namespace Michsky.MUIP
         public FontType fontType = FontType.Primary;
         public bool useCustomFont = false;
 
-        Image imageObject;
-        TextMeshProUGUI textObject;
+        private Image imageObject;
+        private TextMeshProUGUI textObject;
 
         public enum ObjectType
         {
@@ -45,7 +45,7 @@ namespace Michsky.MUIP
             Secondary
         }
 
-        void Awake()
+        private void Awake()
         {
             this.enabled = true;
 
@@ -53,7 +53,7 @@ namespace Michsky.MUIP
             if (!UIManagerAsset.enableDynamicUpdate) { UpdateElement(); this.enabled = false; }
         }
 
-        void Update()
+        private void Update()
         {
             if (UIManagerAsset == null) { return; }
             if (UIManagerAsset.enableDynamicUpdate) { UpdateElement(); }

@@ -13,9 +13,10 @@ namespace Michsky.MUIP
 
         [Header("Settings")]
         public bool invokeOnAwake;
-        bool isInitialized = false;
 
-        void Awake()
+        private bool isInitialized = false;
+
+        private void Awake()
         {
             if (toggleObject == null) { toggleObject = gameObject.GetComponent<Toggle>(); }
             if (toggleAnimator == null) { toggleAnimator = toggleObject.GetComponent<Animator>(); }
@@ -26,7 +27,7 @@ namespace Michsky.MUIP
             isInitialized = true;
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (isInitialized == false)
                 return;
@@ -66,7 +67,7 @@ namespace Michsky.MUIP
             else { toggleAnimator.Play("Toggle Off"); }
         }
 
-        IEnumerator DisableAnimator()
+        private IEnumerator DisableAnimator()
         {
             yield return new WaitForSecondsRealtime(0.6f);
             toggleAnimator.enabled = false;

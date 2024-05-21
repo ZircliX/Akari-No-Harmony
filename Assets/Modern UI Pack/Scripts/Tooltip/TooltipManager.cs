@@ -38,18 +38,18 @@ namespace Michsky.MUIP
         [HideInInspector] public LayoutElement contentLE;
         [HideInInspector] public TooltipContent currentTooltip;
 
-        Vector2 uiPos;
-        Vector3 cursorPos;
-        Vector3 contentPos = new Vector3(0, 0, 0);
-        Vector3 tooltipVelocity = Vector3.zero;
+        private Vector2 uiPos;
+        private Vector3 cursorPos;
+        private Vector3 contentPos = new Vector3(0, 0, 0);
+        private Vector3 tooltipVelocity = Vector3.zero;
 
-        RectTransform contentRect;
-        RectTransform tooltipRect;  
+        private RectTransform contentRect;
+        private RectTransform tooltipRect;  
 
         public enum CameraSource { Main, Custom }
         public enum TransitionMode { Damp, Snap }
 
-        void Awake()
+        private void Awake()
         {
             RectTransform sourceRect = gameObject.GetComponent<RectTransform>();
 
@@ -77,7 +77,7 @@ namespace Michsky.MUIP
             gameObject.transform.SetAsLastSibling();
         }
 
-        void Update()
+        private void Update()
         {
             if (allowUpdate == false) { return; }
             if (checkDispose == true && currentTooltip != null && !currentTooltip.gameObject.activeInHierarchy) { currentTooltip.ProcessExit(); }
@@ -85,7 +85,7 @@ namespace Michsky.MUIP
             CheckForPosition();
         }
 
-        void CheckForPosition()
+        private void CheckForPosition()
         {
 #if ENABLE_LEGACY_INPUT_MANAGER
             cursorPos = Input.mousePosition;
@@ -114,7 +114,7 @@ namespace Michsky.MUIP
             }
         }
 
-        void CheckForBounds()
+        private void CheckForBounds()
         {
             if (uiPos.x <= xLeft)
             {

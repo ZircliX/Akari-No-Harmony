@@ -19,7 +19,7 @@ namespace Michsky.MUIP
         private SerializedProperty angleRange;
         private SerializedProperty childRotate;
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (this.target == null)
                 return;
