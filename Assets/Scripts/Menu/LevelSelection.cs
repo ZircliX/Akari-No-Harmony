@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class LevelSelection : MonoBehaviour
 {
     public Button[] lvlButtons;
-    
-    void Start()
+
+    private void Start()
     {
         int levelAt = PlayerPrefs.GetInt("levelAt", 1);
 

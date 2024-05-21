@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class Conductor : MonoBehaviour
 {
-    public double currentCirclePositionInSeconds;
+    private double currentCirclePositionInSeconds;
         
     public double elapsedTime { get; private set; }
     
-    [HideInInspector]
-    public double lastUserInputTime;
-    [HideInInspector]
-    public double timingDifference;
+    private double lastUserInputTime;
+
+    private double timingDifference;
     
     private double dspSongTime;
 

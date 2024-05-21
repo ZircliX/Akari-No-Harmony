@@ -27,14 +27,14 @@ namespace AudioDelegates
         private Map mapData;
         
         private List<float[]> spectrumBuffers;
-        const int sampleRate = 44100; // Assuming a sample rate of 44.1 kHz
-        const int bufferSize = 1024; // Assuming a buffer size of 1024 samples
+        private const int sampleRate = 44100; // Assuming a sample rate of 44.1 kHz
+        private const int bufferSize = 1024; // Assuming a buffer size of 1024 samples
 
         public int windowSize;
         public float localDeviationMultiplier;
         
         // Start is called before the first frame update
-        void Update()
+        private void Update()
         {
             if (create)
             {
