@@ -3,7 +3,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Animations;
 
 namespace Menu
 {
@@ -178,22 +177,5 @@ namespace Menu
             GameManager.Instance.SwitchState(5);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-
-        public Animator anim;
-
-       /* public void Animate()
-        {
-            this.GetComponent<Animator>().SetTrigger("isHover");
-        }*/
-       
-       Vector3 originalPos;
-
-      
-
-
-       public void ResetAfter()
-       {
-           gameObject.transform.position = originalPos;
-       }
     }
 }
