@@ -2,7 +2,11 @@
     "m_SGVersion": 3,
     "m_Type": "UnityEditor.ShaderGraph.GraphData",
     "m_ObjectId": "4d2d42e7250e49dbaa653c2f6fdb70d4",
-    "m_Properties": [],
+    "m_Properties": [
+        {
+            "m_Id": "dd942086db674bf59c50c42e3169f9dc"
+        }
+    ],
     "m_Keywords": [],
     "m_Dropdowns": [],
     "m_CategoryData": [
@@ -182,7 +186,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"f940f0cd92bb610409ac25c07d25f119\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"0755a77d5bd80d94eaba57a2d5d0f55e\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0
@@ -193,7 +197,11 @@
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "169f8e273a1a41de8a8a4d01e4ee99e1",
     "m_Name": "",
-    "m_ChildObjectList": []
+    "m_ChildObjectList": [
+        {
+            "m_Id": "dd942086db674bf59c50c42e3169f9dc"
+        }
+    ]
 }
 
 {
@@ -558,6 +566,36 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "dd942086db674bf59c50c42e3169f9dc",
+    "m_Guid": {
+        "m_GuidSerialized": "db357b7d-685d-4ede-8b79-7e9750b16363"
+    },
+    "m_Name": "check",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "check",
+    "m_DefaultReferenceName": "_check",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SampleTexture2DNode",
     "m_ObjectId": "ef547dc315b34e7e98fa56ba4f325d3a",
     "m_Group": {
@@ -568,10 +606,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -473.5999755859375,
-            "y": 210.39999389648438,
-            "width": 208.00003051757813,
-            "height": 432.0000915527344
+            "x": -468.79998779296877,
+            "y": 200.0,
+            "width": 208.0,
+            "height": 432.0
         }
     },
     "m_Slots": [
