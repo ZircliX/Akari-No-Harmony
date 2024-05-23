@@ -1,4 +1,6 @@
+using GamePlay;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -8,24 +10,27 @@ namespace Menu
 {
     public class MenuManager : MonoBehaviour
     {
+        private bool isActive = true;
+        
         [SerializeField] private GameObject[] panelList;
-        [SerializeField] private GameObject[] defaultSelected;
+        [SerializeField] public GameObject[] defaultSelected;
 
-        [SerializeField] private AudioSource[] audioSources;
+        [SerializeField] private AudioMixerGroup[] audioSources;
         [SerializeField] private Slider[] audioSliders;
     
-        private MenuState state = MenuState.Menu;
         private int lastStateIndex;
-        private enum MenuState
+        public MenuState state = MenuState.Main;
+        public enum MenuState
         {
             None = -1,
-            Menu = 0,
+            Main = 0,
             Options = 1,
-            Credit = 2,
-            Pause = 3,
-            Won = 5,
-            Lost = 6,
-            LevelSelection = 10
+            Credits = 2,
+            Editor = 5,
+            Pause = 10,
+            Completed = 11,
+            Died = 12,
+            LevelSelection = 20
         }
     
         private static MenuManager _instance;
@@ -64,28 +69,27 @@ namespace Menu
         private void Start()
         {
             CheckStateChange();
-            
 
-            /*
             for (int i = 0; i < 2; i++)
             {
-                audioSources[i].volume = PlayerPrefs.GetFloat("Volume" + i, 0.5f);
-                audioSliders[i].value = PlayerPrefs.GetFloat("Volume" + i, 0.5f);
+                audioSources[i].audioMixer.SetFloat("volume", PlayerPrefs.GetFloat("Volume" + i, 0f));
+                audioSliders[i].value = PlayerPrefs.GetFloat("Volume" + i, 0f);
             }
-            */
         }
 
         public void Play()
         {
             SceneManager.LoadScene(1);
-            SwitchState(10);
+            ChangeState((int)MenuState.LevelSelection);
         }
 
+        /*
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             SwitchState(0);
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
+        */
 
         public void Quit()
         {
@@ -95,10 +99,10 @@ namespace Menu
         public void GoToMenu()
         {
             SceneManager.LoadScene(0);
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            //SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        public void SwitchState(int newState)
+        public void ChangeState(int newState)
         {
             lastStateIndex = (int)state;
             state = (MenuState)newState;
@@ -107,29 +111,18 @@ namespace Menu
 
         private void CheckStateChange()
         {
-            foreach (GameObject panel in panelList)
+            foreach (var panel in panelList)
             {
                 panel.SetActive(false);
             }
 
             switch (state)
             {
-                case MenuState.Menu:
-                    GameManager.Instance.SwitchState(0);
-                    break;
-                case MenuState.Options:
-                    break;
-                case MenuState.Pause:
-                    break;
-                case MenuState.Lost:
-                    break;
-                case MenuState.Won:
+                case MenuState.Main:
+                    GameManager.Instance.SwitchState(-1);
                     break;
                 case MenuState.None:
-                    GameManager.Instance.SwitchState(5);
-                    return;
-                case MenuState.LevelSelection:
-                    GameManager.Instance.SwitchState(0);
+                    GameManager.Instance.SwitchState(1);
                     return;
             }
         
@@ -142,7 +135,7 @@ namespace Menu
         {
             if (!context.performed || GameManager.Instance.state != GameManager.GameState.LevelInProgress) return;
         
-            SwitchState(2);
+            ChangeState((int)MenuState.Pause);
             GameManager.Instance.SwitchState(1);
         }
 
@@ -150,32 +143,36 @@ namespace Menu
         {
             if (!context.performed) return;
 
-            if (state == MenuState.Options)
+            if (state is MenuState.Options or MenuState.Credits)
             {
-                SwitchState(lastStateIndex);
+                ChangeState(lastStateIndex);
             }
         }
 
         public void UpdateSound(int index)
         {
-            audioSources[index].volume = audioSliders[index].value;
+            if (!isActive) return;
+            
+            audioSources[index].audioMixer.SetFloat("volume", audioSliders[index].value);
             PlayerPrefs.SetFloat("Volume" + index, audioSliders[index].value);
+        }
+        
+        public void VolumeState(int index)
+        {
+            isActive = !isActive;
+            audioSources[index].audioMixer.SetFloat("volume", isActive ? PlayerPrefs.GetFloat("Volume" + index, audioSliders[index].value) : -80);
+        }
+        
+        public void SetFullscreen()
+        {
+            Screen.fullScreen = !Screen.fullScreen;
         }
     
         public void Retry()
         {
-            SwitchState(-1);
-            GameManager.Instance.SwitchState(5);
+            //SwitchState(MenuState.None);
+            //GameManager.Instance.SwitchState(5);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    
-        public void Lobby()
-        {
-            if (SceneManager.GetActiveScene().buildIndex == 4) return;
-        
-            SwitchState(-1);
-            GameManager.Instance.SwitchState(5);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

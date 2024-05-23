@@ -2,6 +2,8 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Michsky.MUIP;
+using UnityEngine.EventSystems;
 
 namespace Menu
 {
@@ -17,6 +19,7 @@ namespace Menu
 
         private int currentIndex;
         private int index;
+        private int buttonSelected;
 
         private Sequence animationSequence;
         private const float animationSpeed = 0.25f;
@@ -34,6 +37,7 @@ namespace Menu
             for (int i = 0; i < buttons.Length; i++)
             {
                 index = (currentIndex + i + 10) % 10;
+                if (index == 4) buttonSelected = i;
 
                 buttons[i].SetActive(index is < 8 and > 1);
                 lanterns[i].SetActive(index is < 8 and > 1);
@@ -56,15 +60,19 @@ namespace Menu
                 animationSequence.Join(scaleTween);
             }
             
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(buttons[buttonSelected]);
+            MenuManager.Instance.defaultSelected[0] = buttons[buttonSelected];
+            
             animationSequence.Play();
         }
 
         public void MenuInput(InputAction.CallbackContext ctx)
         {
-            if (!ctx.performed) return;
+            if (!ctx.performed || MenuManager.Instance.state != MenuManager.MenuState.Main) return;
             
-            animationSequence.Kill();
             OnMenuTurn((int)ctx.ReadValue<float>());
+            AudioManager.Instance.PlaySFX("menuSwitch");
         }
     }
 }

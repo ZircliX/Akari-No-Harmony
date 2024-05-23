@@ -1,3 +1,4 @@
+using GamePlay;
 using Menu;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -48,7 +49,7 @@ public class LevelSelection : MonoBehaviour
     
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        MenuManager.Instance.SwitchState(0);
+        MenuManager.Instance.ChangeState(0);
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

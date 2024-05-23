@@ -86,10 +86,10 @@ namespace Michsky.MUIP
         [SerializeField] private bool centered = false;
 
         // Helpers
-        private bool isInitialized = false;
-        private Button targetButton;
-        private bool isPointerOn;
-        private bool waitingForDoubleClickInput;
+        bool isInitialized = false;
+        Button targetButton;
+        bool isPointerOn;
+        bool waitingForDoubleClickInput;
 
 #if UNITY_EDITOR
         public bool isPreset;
@@ -107,13 +107,13 @@ namespace Michsky.MUIP
             public int bottom = 5;
         }
 
-        private void OnEnable()
+        void OnEnable()
         {
             if (isInitialized == false) { Initialize(); }
             UpdateUI();
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             if (isInteractable == false)
                 return;
@@ -123,7 +123,7 @@ namespace Michsky.MUIP
             if (highlightCG != null) { highlightCG.alpha = 0; }
         }
 
-        private void Initialize()
+        void Initialize()
         {
 #if UNITY_EDITOR
             if (!Application.isPlaying) { return; }
@@ -314,7 +314,7 @@ namespace Michsky.MUIP
         public void OnPointerClick(PointerEventData eventData)
         {
             if (isInteractable == false || eventData.button != PointerEventData.InputButton.Left) { return; }
-            if (enableButtonSounds == true && useClickSound == true && soundSource != null) { soundSource.PlayOneShot(clickSound); }
+            if (enableButtonSounds == true && useClickSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(clickSound); }
 
             // Invoke click actions
             onClick.Invoke();
@@ -351,7 +351,7 @@ namespace Michsky.MUIP
             if (isInteractable == false)
                 return;
 
-            if (enableButtonSounds == true && useHoverSound == true && soundSource != null) { soundSource.PlayOneShot(hoverSound); }
+            if (enableButtonSounds == true && useHoverSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(hoverSound); }
             if (animationSolution == AnimationSolution.ScriptBased) { StartCoroutine("SetHighlight"); }
 
             isPointerOn = true;
@@ -372,6 +372,7 @@ namespace Michsky.MUIP
             if (isInteractable == false) { return; }
             if (animationSolution == AnimationSolution.ScriptBased) { StartCoroutine("SetHighlight"); }
             if (useUINavigation == true) { onHover.Invoke(); }
+            if (enableButtonSounds == true && useHoverSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(hoverSound); }
         }
 
         public void OnDeselect(BaseEventData eventData)
@@ -385,11 +386,12 @@ namespace Michsky.MUIP
         {
             if (isInteractable == false) { return; }
             if (animationSolution == AnimationSolution.ScriptBased) { StartCoroutine("SetNormal"); }
+            if (enableButtonSounds == true && useClickSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(clickSound); }
 
             onClick.Invoke();
         }
 
-        private IEnumerator LayoutFix()
+        IEnumerator LayoutFix()
         {
             yield return new WaitForSecondsRealtime(0.025f);
 
@@ -399,7 +401,7 @@ namespace Michsky.MUIP
             if (highlightCG != null) { LayoutRebuilder.ForceRebuildLayoutImmediate(highlightCG.GetComponent<RectTransform>()); }
         }
 
-        private IEnumerator SetNormal()
+        IEnumerator SetNormal()
         {
             StopCoroutine("SetHighlight");
             StopCoroutine("SetDisabled");
@@ -417,7 +419,7 @@ namespace Michsky.MUIP
             disabledCG.alpha = 0;
         }
 
-        private IEnumerator SetHighlight()
+        IEnumerator SetHighlight()
         {
             StopCoroutine("SetNormal");
             StopCoroutine("SetDisabled");
@@ -435,7 +437,7 @@ namespace Michsky.MUIP
             disabledCG.alpha = 0;
         }
 
-        private IEnumerator SetDisabled()
+        IEnumerator SetDisabled()
         {
             StopCoroutine("SetNormal");
             StopCoroutine("SetHighlight");
@@ -453,13 +455,13 @@ namespace Michsky.MUIP
             disabledCG.alpha = 1;
         }
 
-        private IEnumerator CheckForDoubleClick()
+        IEnumerator CheckForDoubleClick()
         {
             yield return new WaitForSecondsRealtime(doubleClickPeriod);
             waitingForDoubleClickInput = false;
         }
 
-        private IEnumerator InitUINavigation(Navigation nav)
+        IEnumerator InitUINavigation(Navigation nav)
         {
             yield return new WaitForSecondsRealtime(1);
             if (selectOnUp != null) { nav.selectOnUp = selectOnUp.GetComponent<Selectable>(); }

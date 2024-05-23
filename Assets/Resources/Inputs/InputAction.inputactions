@@ -169,7 +169,7 @@
             "id": "325b95ec-43f3-4853-8e39-092c3a61ea5a",
             "actions": [
                 {
-                    "name": "MenuTurnPositive",
+                    "name": "MenuTurn",
                     "type": "Value",
                     "id": "a7a8e1d1-7d11-42ac-9e65-7bc5f76899dd",
                     "expectedControlType": "Button",
@@ -217,7 +217,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MenuTurnPositive",
+                    "action": "MenuTurn",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -228,7 +228,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MenuTurnPositive",
+                    "action": "MenuTurn",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -239,18 +239,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MenuTurnPositive",
+                    "action": "MenuTurn",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Arrows",
+                    "name": "ArrowsHorizontal",
                     "id": "edd1dc7b-3c75-4ba5-a459-1014c78ea0c3",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MenuTurnPositive",
+                    "action": "MenuTurn",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -261,7 +261,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MenuTurnPositive",
+                    "action": "MenuTurn",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -272,40 +272,73 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MenuTurnPositive",
+                    "action": "MenuTurn",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Arrows",
-                    "id": "921fd40a-18a5-4552-96e9-85773181b76b",
+                    "name": "JoystickHorizontal",
+                    "id": "d7557739-990b-494d-9f74-6f0729778ae2",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MenuTurnPositive",
+                    "action": "MenuTurn",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "negative",
-                    "id": "3fb3917c-6f79-449e-a4cf-4f019e09e627",
-                    "path": "<Keyboard>/rightArrow",
+                    "id": "e12ad73b-7ac0-44e8-902b-03d0772526b4",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MenuTurnPositive",
+                    "action": "MenuTurn",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
-                    "id": "d495d3fc-7487-4c2d-b79e-62dffacbc1df",
-                    "path": "<Keyboard>/leftArrow",
+                    "id": "09b5b0d1-2fb0-4de0-9143-341be2bde67b",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MenuTurnPositive",
+                    "action": "MenuTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "PadHorizontal",
+                    "id": "d709f3c5-397c-43fd-b7f6-310e16573adc",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuTurn",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "aedf6b0c-e3b7-47f1-9900-7389b7ee86c8",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "82745459-ad07-4959-b2cd-838d0abab78a",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuTurn",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
