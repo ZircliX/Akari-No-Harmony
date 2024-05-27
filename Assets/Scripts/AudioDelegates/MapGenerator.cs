@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace AudioDelegates
 {
@@ -14,10 +17,13 @@ namespace AudioDelegates
         public float offset;
         public string songName;
         private Song songData;
+        private SongAudio so;
     
         [Space]
         [Header("Map Data")]
         public string mapName;
+        public int mapDiff;
+        public int mapSpeed;
         private int currentTypeIndex;
         private Map mapData;
 
@@ -53,6 +59,7 @@ namespace AudioDelegates
             mapData = new Map
             {
                 mapName = mapName,
+                mapDiff = mapDiff,
                 songData = songData
             };
 
@@ -114,9 +121,25 @@ namespace AudioDelegates
 
         private void CreateSongData()
         {
+            float[] samples = new float[audio.samples +1];
+            audio.GetData(samples, 0);
+
+            byte[] bytes = new byte[samples.Length * sizeof(float)];
+            Buffer.BlockCopy(samples.ToArray(), 0, bytes, 0, bytes.Length);
+            
+            string base64AudioData = Convert.ToBase64String(bytes);
+            
+            so = new SongAudio
+            {
+                base64AudioData = base64AudioData,
+                sampleRate = audio.frequency,
+                channels = audio.channels,
+                length = audio.length
+            };
+            
             songData = new Song
             {
-                songAudio = audio,
+                songAudio = so,
                 songBPM = bpm,
                 songOffset = offset,
                 songName = songName
@@ -131,7 +154,7 @@ namespace AudioDelegates
 
             while (currentSecond < songData.songAudio.length)
             {
-                if (currentBeat % 2f == 0 && currentSecond >= 3)
+                if (currentBeat % mapSpeed == 0 && currentSecond >= 3)
                 {
                     songData.songPositionInSeconds.Add(currentSecond);
                 }
@@ -145,7 +168,7 @@ namespace AudioDelegates
     [System.Serializable]
     public class Song
     {
-        public AudioClip songAudio;
+        public SongAudio songAudio;
         public int songBPM;
         public float songOffset;
         public string songName;
@@ -157,6 +180,7 @@ namespace AudioDelegates
     public class Map
     {
         public string mapName;
+        public int mapDiff;
         public Song songData;
         public List<Circle> circles = new();
     }
@@ -173,5 +197,14 @@ namespace AudioDelegates
     
         [Range(0, 2)]
         public int columnIndex;
+    }
+    
+    [System.Serializable]
+    public class SongAudio
+    {
+        public string base64AudioData;
+        public int sampleRate;
+        public int channels;
+        public float length;
     }
 }

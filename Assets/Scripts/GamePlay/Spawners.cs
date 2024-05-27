@@ -29,7 +29,7 @@ namespace GamePlay
         // Start is called before the first frame update
         private void Start()
         {
-            var mapData = JsonSystem.LoadMapToJson("ZircliX_Test");
+            var mapData = JsonSystem.LoadMapToJson(Application.dataPath + "/StreamingAssets/MapData/" + "ZircliX_Test.json");
             circleList = mapData.circles;
         }
 

@@ -84,13 +84,13 @@ namespace AudioDelegates
         {
             songData = new Song
             {
-                songAudio = audio,
+                //songAudio = audio,
                 songBPM = bpm,
                 songOffset = offset,
                 songName = songName
             };
             
-            spectrumBuffers = new OfflineFFT(songData.songAudio, 1024).SpectrumBuffers;
+            //spectrumBuffers = new OfflineFFT(songData.songAudio, 1024).SpectrumBuffers;
         }
         
         private void AnalyzePeakTiming()

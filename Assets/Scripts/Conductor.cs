@@ -49,16 +49,14 @@ public class Conductor : MonoBehaviour
         
         timingDifference = Mathf.Abs((float)(currentCirclePositionInSeconds - lastUserInputTime));
         
-        //Debug.Log(lastUserInputTime + " | " + currentCirclePositionInSeconds + " | " + timingDifference);
-
         return timingDifference;
     }
     
     private void LoadPrecomputedData()
     {
-        var mapData = JsonSystem.LoadMapToJson("ZircliX_Test");
+        var mapData = JsonSystem.LoadMapToJson(Application.dataPath + "/StreamingAssets/MapData/" + "ZircliX_Test.json");
         
         firstBeatOffset = mapData.songData.songOffset;
-        musicSource.clip = mapData.songData.songAudio;
+        musicSource.clip = JsonSystem.ConvertToAudioClip(mapData.songData.songAudio);
     }
 }

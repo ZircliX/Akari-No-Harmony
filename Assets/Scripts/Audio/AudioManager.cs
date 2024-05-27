@@ -42,8 +42,12 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+    }
 
-        //PlayMusic("Theme");
+    public void PlaySound(AudioClip audio)
+    {
+        musicSource.clip = audio;
+        musicSource.Play();
     }
 
     private void PlayMusic(string name)

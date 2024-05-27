@@ -26,7 +26,7 @@ namespace Menu
             Main = 0,
             Options = 1,
             Credits = 2,
-            Editor = 5,
+            Editor = 3,
             Pause = 10,
             Completed = 11,
             Died = 12,
