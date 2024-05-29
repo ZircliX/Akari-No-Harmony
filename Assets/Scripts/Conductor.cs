@@ -1,4 +1,5 @@
 using Circles;
+using GamePlay;
 using UnityEngine;
 
 public class Conductor : MonoBehaviour
@@ -54,9 +55,9 @@ public class Conductor : MonoBehaviour
     
     private void LoadPrecomputedData()
     {
-        var mapData = JsonSystem.LoadMapToJson(Application.dataPath + "/StreamingAssets/MapData/" + "ZircliX_Test.json");
+        var mapData = JsonSystem.LoadMapToJson(Application.dataPath + "/StreamingAssets/MapData/" + GameManager.Instance.level + ".json");
         
         firstBeatOffset = mapData.songData.songOffset;
-        musicSource.clip = JsonSystem.ConvertToAudioClip(mapData.songData.songAudio);
+        musicSource.clip = JsonSystem.LoadAudioClip(Application.dataPath + "/StreamingAssets/MapData/" + mapData.songData.songName + ".mp3");
     }
 }

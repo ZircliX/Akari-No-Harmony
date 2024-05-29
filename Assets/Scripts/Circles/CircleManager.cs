@@ -19,7 +19,7 @@ namespace Circles
                 Destroy(gameObject);
                 Spawners.Instance.RemoveCircle(this);
             }
-            if (transform.position.y <= -3f)
+            if (transform.position.y <= -5f)
             {
                 PlayerManager.Instance.Hit(-10, -10);
                 

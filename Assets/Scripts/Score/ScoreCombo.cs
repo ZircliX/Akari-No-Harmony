@@ -24,7 +24,7 @@ namespace Score
 
         private void Update()
         {
-            health -= 5f * Time.deltaTime;
+            health -= 3f * Time.deltaTime;
             health = Mathf.Clamp(health, 0, 100);
         }
 

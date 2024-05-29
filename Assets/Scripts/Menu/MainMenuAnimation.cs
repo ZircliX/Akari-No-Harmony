@@ -2,7 +2,6 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Michsky.MUIP;
 using UnityEngine.EventSystems;
 
 namespace Menu

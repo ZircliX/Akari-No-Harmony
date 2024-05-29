@@ -1,7 +1,7 @@
-using System;
 using System.IO;
 using AudioDelegates;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public static class JsonSystem
 {
@@ -10,26 +10,87 @@ public static class JsonSystem
         string json = JsonUtility.ToJson(map, true);
         File.WriteAllText(Application.dataPath  + "/StreamingAssets/MapData/" + map.mapName + ".json", json);
     }
+
+    public static void SaveAudio(AudioClip clip)
+    {
+        var path = Application.dataPath + "/StreamingAssets/MapData/" + clip.name;
+        EncodeMP3.convert(clip, path, 256);
+    }
     
     public static Map LoadMapToJson(string path)
     {
         string jsonData = File.ReadAllText(path);
-        Map mapData = JsonUtility.FromJson<Map>(jsonData);
+        var mapData = JsonUtility.FromJson<Map>(jsonData);
         return mapData;
     }
 
-    public static AudioClip ConvertToAudioClip(SongAudio audio)
-    {   
-        byte[] audioBytes = Convert.FromBase64String(audio.base64AudioData);
-        AudioClip audioClip = AudioClip.Create("AudioClip", audioBytes.Length, audio.channels, audio.sampleRate, false);
-        
-        float[] floatArray = new float[audioBytes.Length / 4];
+    public static AudioClip LoadAudioClip(string filePath)
+    {
+        AudioClip audioClip = null;
+        string extension = Path.GetExtension(filePath).ToLower();
 
-        for (int i = 0; i < floatArray.Length; i++)
+        switch (extension)
         {
-            floatArray[i] = BitConverter.ToSingle(audioBytes, i * 4);
+            case ".mp3":
+                audioClip = LoadMP3(filePath);
+                break;
+            case ".wav":
+                audioClip = LoadWAV(filePath);
+                break;
+            // Add cases for other audio formats if needed
+            default:
+                Debug.LogError($"Unsupported audio file format: {extension}");
+                break;
         }
-        audioClip.SetData(floatArray, 0);
+
+        return audioClip;
+    }
+
+    private static AudioClip LoadMP3(string filePath)
+    {
+        AudioClip audioClip = null;
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip($"file://{filePath}", AudioType.MPEG))
+        {
+            DownloadHandlerAudioClip downloadHandler = new DownloadHandlerAudioClip(www.url, AudioType.MPEG);
+            www.downloadHandler = downloadHandler;
+
+            www.SendWebRequest();
+            while (!www.isDone) { } // Wait for the request to complete
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                audioClip = DownloadHandlerAudioClip.GetContent(www);
+            }
+            else
+            {
+                Debug.LogError($"Failed to load MP3 file: {www.error}");
+            }
+        }
+
+        return audioClip;
+    }
+    
+    private static AudioClip LoadWAV(string filePath)
+    {
+        AudioClip audioClip = null;
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip($"file://{filePath}", AudioType.WAV))
+        {
+            DownloadHandlerAudioClip downloadHandler = new DownloadHandlerAudioClip(www.url, AudioType.WAV);
+            www.downloadHandler = downloadHandler;
+
+            www.SendWebRequest();
+            while (!www.isDone) { } // Wait for the request to complete
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                audioClip = DownloadHandlerAudioClip.GetContent(www);
+            }
+            else
+            {
+                Debug.LogError($"Failed to load WAV file: {www.error}");
+            }
+        }
+
         return audioClip;
     }
 }

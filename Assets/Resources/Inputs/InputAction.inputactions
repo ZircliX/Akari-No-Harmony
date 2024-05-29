@@ -55,7 +55,7 @@
                 {
                     "name": "",
                     "id": "8ef2b0fb-0cf4-4694-99d7-8a1c08e4279f",
-                    "path": "<Keyboard>/i",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -77,7 +77,7 @@
                 {
                     "name": "",
                     "id": "79e55630-0763-49bd-8dd2-cc55fa8c598a",
-                    "path": "<Keyboard>/o",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -99,7 +99,7 @@
                 {
                     "name": "",
                     "id": "eb657377-7862-4fa1-a29e-8e074ca1dce3",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -121,7 +121,7 @@
                 {
                     "name": "",
                     "id": "d51bf028-3f2d-4d40-94ed-8cb143bdb31a",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -154,7 +154,7 @@
                 {
                     "name": "",
                     "id": "8fbf9388-6424-49ff-9faf-ca64970c8366",
-                    "path": "<Gamepad>/dpad/right",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -181,6 +181,15 @@
                     "name": "GoBack",
                     "type": "Button",
                     "id": "59996681-a18a-41fc-b39a-fdd8459d49a0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "54bdb1a4-2766-41d4-ad7e-86c1e26d9155",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -341,6 +350,28 @@
                     "action": "MenuTurn",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7bd42b16-ab8f-4645-ae27-a7641f5ad276",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7e9b00f-6acf-4e77-ada4-b3893930f66a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -9,12 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 90128e2f125b9bc4897a761b86477f08
   - enabled: 1
+    path: Assets/Scenes/LevelSelection.unity
+    guid: b418a165cfe278f40aa5fc202b43f851
+  - enabled: 1
     path: Assets/Scenes/ZircliX_Scene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/options.unity
-    guid: 7c53169feb23db94abb7fe3e9b4ea83f
-  - enabled: 1
-    path: Assets/Scenes/Credit.unity
-    guid: 940b3cea33228084e8839743ecc1ed41
   m_configObjects: {}

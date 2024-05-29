@@ -8,15 +8,12 @@ using UnityEngine.UI;
 public class LevelSelection : MonoBehaviour
 {
     public Button[] lvlButtons;
+    
 
     private void Start()
     {
-        int levelAt = PlayerPrefs.GetInt("levelAt", 1);
-
         for (int i = 0; i < lvlButtons.Length; i++)
         {
-            if (i >= levelAt) continue;
-            
             //Switch from locked to enabled
             /*
             lvlButtons[i].Interactable(true);
@@ -35,8 +32,8 @@ public class LevelSelection : MonoBehaviour
 
     public void LoadLevel(int index)
     {
-        GameManager.Instance.SwitchState(5);
-        SceneManager.LoadScene(index+1);
+        GameManager.Instance.SwitchState(1);
+        SceneManager.LoadScene(index);
     }
     
     public void GoBack(InputAction.CallbackContext context)

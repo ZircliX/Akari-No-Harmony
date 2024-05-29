@@ -17,7 +17,7 @@ namespace PlayerRelated
             perfectTiming = 0.05f,
             goodTiming = 0.1f,
             missTiming = 0.5f;
-        
+
         public int colorIndex;
 
         public static PlayerManager Instance;
@@ -28,19 +28,6 @@ namespace PlayerRelated
         }
         
         #endregion
-
-        public void ColorChangeLeft(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
-            colorIndex--;
-            if (colorIndex < 0) colorIndex = 2;
-        }
-        public void ColorChangeRight(InputAction.CallbackContext context)
-        {
-            if (!context.performed) return;
-            colorIndex++;
-            if (colorIndex > 2) colorIndex = 0;
-        }
 
         public void ClickNoteLeft(InputAction.CallbackContext context)
         {

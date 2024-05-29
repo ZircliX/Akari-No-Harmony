@@ -13,12 +13,15 @@ namespace GameUI
 
         public Image healthBar;
 
-        public SpriteRenderer clickLine;
-        public Color[] colors;
+        public SpriteRenderer[] epuisettes;
+        public Sprite[] colors;
 
         private void Update()
         {
-            clickLine.color = colors[PlayerManager.Instance.colorIndex];
+            foreach (var sr in epuisettes)
+            {
+                sr.sprite = colors[PlayerManager.Instance.colorIndex];
+            }
 
             healthBar.fillAmount = ScoreCombo.Instance.health / 100;
 

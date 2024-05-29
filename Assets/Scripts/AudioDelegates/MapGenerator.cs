@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,9 +13,7 @@ namespace AudioDelegates
         public new AudioClip audio;
         public int bpm;
         public float offset;
-        public string songName;
         private Song songData;
-        private SongAudio so;
     
         [Space]
         [Header("Map Data")]
@@ -52,6 +48,7 @@ namespace AudioDelegates
         private void SaveMap()
         {
             JsonSystem.SaveMapToJson(mapData.mapName, mapData);
+            JsonSystem.SaveAudio(audio);
         }
 
         private void CreateMap()
@@ -87,7 +84,7 @@ namespace AudioDelegates
 
         private bool ShouldChangeCircleType()
         {
-            return Random.Range(0, typeChangeProba) == 0 && numOfSame >= 5;
+            return numOfSame >= 4;
         }
 
         private int GetDuplicateNum()
@@ -121,28 +118,12 @@ namespace AudioDelegates
 
         private void CreateSongData()
         {
-            float[] samples = new float[audio.samples +1];
-            audio.GetData(samples, 0);
-
-            byte[] bytes = new byte[samples.Length * sizeof(float)];
-            Buffer.BlockCopy(samples.ToArray(), 0, bytes, 0, bytes.Length);
-            
-            string base64AudioData = Convert.ToBase64String(bytes);
-            
-            so = new SongAudio
-            {
-                base64AudioData = base64AudioData,
-                sampleRate = audio.frequency,
-                channels = audio.channels,
-                length = audio.length
-            };
-            
             songData = new Song
             {
-                songAudio = so,
                 songBPM = bpm,
                 songOffset = offset,
-                songName = songName
+                songName = audio.name,
+                songLength = audio.length
             };
         }
 
@@ -152,7 +133,7 @@ namespace AudioDelegates
             float currentBeat = 0f;
             float currentSecond = songData.songOffset;
 
-            while (currentSecond < songData.songAudio.length)
+            while (currentSecond < songData.songLength)
             {
                 if (currentBeat % mapSpeed == 0 && currentSecond >= 3)
                 {
@@ -168,10 +149,10 @@ namespace AudioDelegates
     [System.Serializable]
     public class Song
     {
-        public SongAudio songAudio;
         public int songBPM;
         public float songOffset;
         public string songName;
+        public float songLength;
     
         public List<double> songPositionInSeconds = new();
     }
@@ -197,14 +178,5 @@ namespace AudioDelegates
     
         [Range(0, 2)]
         public int columnIndex;
-    }
-    
-    [System.Serializable]
-    public class SongAudio
-    {
-        public string base64AudioData;
-        public int sampleRate;
-        public int channels;
-        public float length;
     }
 }

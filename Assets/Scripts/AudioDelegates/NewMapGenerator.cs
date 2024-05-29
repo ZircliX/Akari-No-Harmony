@@ -28,7 +28,7 @@ namespace AudioDelegates
         
         private List<float[]> spectrumBuffers;
         private const int sampleRate = 44100; // Assuming a sample rate of 44.1 kHz
-        private const int bufferSize = 1024; // Assuming a buffer size of 1024 samples
+        private const int bufferSize = 128; // Assuming a buffer size of 1024 samples
 
         public int windowSize;
         public float localDeviationMultiplier;

@@ -5,6 +5,8 @@ namespace GamePlay
 {
     public class GameManager : MonoBehaviour
     {
+        public string level;
+        
         public GameState state = GameState.None;
         public enum GameState
         {

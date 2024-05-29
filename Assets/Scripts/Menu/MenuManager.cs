@@ -11,6 +11,7 @@ namespace Menu
     public class MenuManager : MonoBehaviour
     {
         private bool isActive = true;
+        public Animator pauseAnimator;
         
         [SerializeField] private GameObject[] panelList;
         [SerializeField] public GameObject[] defaultSelected;
@@ -27,7 +28,7 @@ namespace Menu
             Options = 1,
             Credits = 2,
             Editor = 3,
-            Pause = 10,
+            Pause = 4,
             Completed = 11,
             Died = 12,
             LevelSelection = 20
@@ -125,18 +126,43 @@ namespace Menu
                     GameManager.Instance.SwitchState(1);
                     return;
             }
-        
-            panelList[(int)state].SetActive(true);
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(defaultSelected[(int)state]);
+
+            if ((int)state is > -1 and < 5)
+            {
+                panelList[(int)state].SetActive(true);
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(defaultSelected[(int)state]);    
+            }
         }
 
         public void OpenPause(InputAction.CallbackContext context)
         {
-            if (!context.performed || GameManager.Instance.state != GameManager.GameState.LevelInProgress) return;
+            if (GameManager.Instance.state != GameManager.GameState.LevelInProgress) return;
+
+            if (context.performed)
+            {
+                TogglePauseMenu(true);
+            }
+            else if (context.canceled)
+            {
+                TogglePauseMenu(false);
+            }
         
             ChangeState((int)MenuState.Pause);
-            GameManager.Instance.SwitchState(1);
+            GameManager.Instance.SwitchState(-1);
+        }
+
+        private void TogglePauseMenu(bool open)
+        {
+            switch (state)
+            {
+                case MenuState.None:
+                    pauseAnimator.SetBool("enter", open);
+                    break;
+                case MenuState.Pause:
+                    pauseAnimator.SetBool("exit", open);
+                    break;
+            }
         }
 
         public void GoBack(InputAction.CallbackContext context)

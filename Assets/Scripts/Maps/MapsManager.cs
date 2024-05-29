@@ -5,6 +5,8 @@ namespace Maps
 {
     public class MapsManager : MonoBehaviour
     {
+        private AudioClip sound;
+        
         private void Start()
         {
             ChooseRandomJsonFile();
@@ -12,18 +14,15 @@ namespace Maps
 
         private void ChooseRandomJsonFile()
         {
-            string[] jsonFiles = Directory.GetFiles(Application.dataPath + "/StreamingAssets/MapData/", "*.json");
+            string[] mp3Files = Directory.GetFiles(Application.dataPath + "/StreamingAssets/MapData/", "*.mp3");
 
-            if (jsonFiles.Length > 0)
-            {
-                int randomIndex = Random.Range(0, jsonFiles.Length);
+            if (mp3Files.Length <= 0) return;
+            
+            int randomIndex = Random.Range(0, mp3Files.Length);
                 
-                string randomJsonFilePath = jsonFiles[randomIndex];
+            string randomMusic = mp3Files[randomIndex];
 
-                var map = JsonSystem.LoadMapToJson(randomJsonFilePath);
-
-                AudioManager.Instance.PlaySound(JsonSystem.ConvertToAudioClip(map.songData.songAudio));
-            }
+            //AudioManager.Instance.PlaySound(JsonSystem.LoadAudioClip(randomMusic));
         }
     }
 }

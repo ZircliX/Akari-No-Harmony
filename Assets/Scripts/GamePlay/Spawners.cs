@@ -10,6 +10,7 @@ namespace GamePlay
         private double currentBeatTime;
 
         public Transform[] spawners;
+        private GameObject[] circlesTypes;
     
         private List<Circle> circleList = new();
         public List<List<CircleManager>> spawnedCircles = new()
@@ -29,7 +30,7 @@ namespace GamePlay
         // Start is called before the first frame update
         private void Start()
         {
-            var mapData = JsonSystem.LoadMapToJson(Application.dataPath + "/StreamingAssets/MapData/" + "ZircliX_Test.json");
+            var mapData = JsonSystem.LoadMapToJson(Application.dataPath + "/StreamingAssets/MapData/" + GameManager.Instance.level + ".json");
             circleList = mapData.circles;
         }
 
@@ -37,6 +38,7 @@ namespace GamePlay
         private void Update()
         {
             currentBeatTime = Conductor.Instance.elapsedTime;
+            circlesTypes = Resources.LoadAll<GameObject>("Prefabs/Circles");
 
             SpawnCircles();
         }
@@ -49,8 +51,6 @@ namespace GamePlay
                 double timeToSpawn = circle.timeToSpawn;
 
                 if (!(currentBeatTime >= timeToSpawn)) continue;
-                
-                var circlesTypes = Resources.LoadAll<GameObject>("Prefabs/Circles");
                     
                 // Instantiate the circle and add it to the dictionary
                 var spawnedCircle = Instantiate(circlesTypes[circle.typeIndex],

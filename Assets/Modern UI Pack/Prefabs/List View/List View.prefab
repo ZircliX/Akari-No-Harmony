@@ -528,6 +528,29 @@ MonoBehaviour:
       preferredWidth: 50
       iconScale: 1
     isExpanded: 0
+  - itemTitle: List Item
+    row0:
+      rowType: 1
+      rowIcon: {fileID: 0}
+      rowText: Row text
+      usePreferredWidth: 0
+      preferredWidth: 50
+      iconScale: 1
+    row1:
+      rowType: 1
+      rowIcon: {fileID: 0}
+      rowText: Row text
+      usePreferredWidth: 0
+      preferredWidth: 50
+      iconScale: 1
+    row2:
+      rowType: 1
+      rowIcon: {fileID: 0}
+      rowText: Row text
+      usePreferredWidth: 0
+      preferredWidth: 50
+      iconScale: 1
+    isExpanded: 0
 --- !u!1 &1549129809057771041
 GameObject:
   m_ObjectHideFlags: 0
