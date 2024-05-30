@@ -2,20 +2,30 @@ using AudioDelegates;
 using TMPro;
 using UnityEngine;
 
-public class DisplayMapInfos : MonoBehaviour
+namespace Menu
 {
-    public TextMeshProUGUI diff, length, numCircles;
-
-    public static DisplayMapInfos Instance;
-    private void Awake()
+    public class DisplayMapInfos : MonoBehaviour
     {
-        Instance = this;
-    }
+        public TextMeshProUGUI diff, numCircles, bpm, length;
 
-    public void UpdateUI(Map map)
-    {
-        diff.text = "Difficulty : " + map.mapDiff;
-        //length.text = "Map Length : " + map.songData.songBPM;
-        numCircles.text = "Total Circles : " + map.circles.Count;
+        public static DisplayMapInfos Instance;
+        private void Awake()
+        {
+            Instance = this;
+        }
+
+        public void UpdateUI(Map map)
+        {
+            diff.text = "Difficulté : " + map.mapDiff;
+            numCircles.text = "Nombre Cercles : " + map.circles.Count;
+        
+            bpm.text = "BPM : " + map.songData.songBPM;
+        
+            int totalSeconds = map.songData.songLength;
+            int minutes = totalSeconds / 60;
+            int seconds = totalSeconds % 60;
+            
+            length.text = "Durée : " + $"{minutes:D2}m{seconds:D2}s";
+        }
     }
 }

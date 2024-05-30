@@ -123,7 +123,7 @@ namespace AudioDelegates
                 songBPM = bpm,
                 songOffset = offset,
                 songName = audio.name,
-                songLength = audio.length
+                songLength = (int)audio.length
             };
         }
 
@@ -146,16 +146,18 @@ namespace AudioDelegates
         }
     }
     
+    [System.Serializable]
     public class Song
     {
         public int songBPM;
         public float songOffset;
         public string songName;
-        public float songLength;
+        public int songLength;
     
         public List<double> songPositionInSeconds = new();
     }
     
+    [System.Serializable]
     public class Map
     {
         public string mapName;
@@ -164,6 +166,7 @@ namespace AudioDelegates
         public List<Circle> circles = new();
     }
     
+    [System.Serializable]
     public class Circle
     {
         public int typeIndex;
