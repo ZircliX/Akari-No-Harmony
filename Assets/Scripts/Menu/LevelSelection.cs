@@ -1,52 +1,55 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using AudioDelegates;
 using GamePlay;
-using Menu;
+using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class LevelSelection : MonoBehaviour
+namespace Menu
 {
-    public Button[] lvlButtons;
-    
-
-    private void Start()
+    public class LevelSelection : MonoBehaviour
     {
-        for (int i = 0; i < lvlButtons.Length; i++)
+        public GameObject buttons;
+        public Transform scroll;
+
+        private List<Map> maps;
+        private List<Map> orderedMaps;
+
+        public static LevelSelection Instance;
+
+        private void Awake()
         {
-            //Switch from locked to enabled
-            /*
-            lvlButtons[i].Interactable(true);
-            lvlButtons[i].enableIcon = false;
-            lvlButtons[i].enableText = true;
-            
-            lvlButtons[i].navigationMode = Navigation.Mode.Horizontal;
-            lvlButtons[i].useUINavigation = true;
-            lvlButtons[i].AddUINavigation();
-        
-            lvlButtons[i].SetText((i + 1).ToString());
-            lvlButtons[i].UpdateUI();
-            */
+            Instance = this;
         }
-    }
 
-    public void LoadLevel(int index)
-    {
-        GameManager.Instance.SwitchState(1);
-        SceneManager.LoadScene(index);
-    }
-    
-    public void GoBack(InputAction.CallbackContext context)
-    {
-        if (context.phase != InputActionPhase.Performed) return;
+        private void Start()
+        {
+            string[] mapsPath = Directory.GetFiles(Application.dataPath + "/StreamingAssets/MapData/", "*.json");
+            
+            maps = mapsPath.Select(JsonSystem.LoadMapToJson).ToList();
+            orderedMaps = maps.OrderBy(m => m.mapDiff).ToList();
 
-        SceneManager.LoadScene(0);
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        MenuManager.Instance.ChangeState(0);
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+            foreach (var map in orderedMaps)
+            {
+                SetupMapInfo(map);
+            }
+        }
+
+        private void SetupMapInfo(Map map)
+        {
+            var newMapInfo = Instantiate(buttons, scroll);
+            newMapInfo.name = map.mapName;
+            
+            newMapInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = map.mapName;
+            newMapInfo.GetComponent<MapSelect>().map = map;
+        }
+
+        public void LoadLevel(int index)
+        {
+            GameManager.Instance.SwitchState(1);
+            SceneManager.LoadScene(index);
+        }
     }
 }

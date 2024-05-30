@@ -16,8 +16,6 @@ namespace Maps
         {
             string[] mp3Files = Directory.GetFiles(Application.dataPath + "/StreamingAssets/MapData/", "*.mp3");
 
-            if (mp3Files.Length <= 0) return;
-            
             int randomIndex = Random.Range(0, mp3Files.Length);
                 
             string randomMusic = mp3Files[randomIndex];

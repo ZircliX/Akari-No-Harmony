@@ -1,3 +1,4 @@
+using AudioDelegates;
 using Menu;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace GamePlay
 {
     public class GameManager : MonoBehaviour
     {
-        public string level;
+        public Map level;
         
         public GameState state = GameState.None;
         public enum GameState

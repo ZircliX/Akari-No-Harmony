@@ -55,7 +55,7 @@ public class Conductor : MonoBehaviour
     
     private void LoadPrecomputedData()
     {
-        var mapData = JsonSystem.LoadMapToJson(Application.dataPath + "/StreamingAssets/MapData/" + GameManager.Instance.level + ".json");
+        var mapData = GameManager.Instance.level;
         
         firstBeatOffset = mapData.songData.songOffset;
         musicSource.clip = JsonSystem.LoadAudioClip(Application.dataPath + "/StreamingAssets/MapData/" + mapData.songData.songName + ".mp3");

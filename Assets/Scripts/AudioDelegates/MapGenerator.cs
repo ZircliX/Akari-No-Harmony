@@ -145,8 +145,7 @@ namespace AudioDelegates
             }
         }
     }
-
-    [System.Serializable]
+    
     public class Song
     {
         public int songBPM;
@@ -156,8 +155,7 @@ namespace AudioDelegates
     
         public List<double> songPositionInSeconds = new();
     }
-
-    [System.Serializable]
+    
     public class Map
     {
         public string mapName;
@@ -165,8 +163,7 @@ namespace AudioDelegates
         public Song songData;
         public List<Circle> circles = new();
     }
-
-    [System.Serializable]
+    
     public class Circle
     {
         public int typeIndex;
