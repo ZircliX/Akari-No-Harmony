@@ -1,3 +1,4 @@
+using GamePlay;
 using UnityEngine;
 
 namespace Score
@@ -12,6 +13,8 @@ namespace Score
 
         public static ScoreCombo Instance;
 
+        public int perfect, good, miss, maxCombo;
+
         private void Start()
         {
             Instance = this;
@@ -20,23 +23,38 @@ namespace Score
             score = 0;
             health = 100;
 
+            maxCombo = 0;
         }
 
         private void Update()
         {
             health -= 3f * Time.deltaTime;
             health = Mathf.Clamp(health, 0, 100);
+
+            if (health <= 0)
+            {
+                GameManager.Instance.SwitchState(6);
+            }
         }
 
         public void AddScore(int points)
         {
-            if (points <= 0)
+            switch (points)
             {
-                if (points < 0) combo = 0;
-                return;
+                case <= 0:
+                    combo = 0;
+                    miss++;
+                    return;
+                case 100:
+                    good++;
+                    break;
+                case 300:
+                    perfect++;
+                    break;
             }
-            
+
             combo += 1;
+            if (combo > maxCombo) maxCombo = combo;
 
             multi = combo / 10;
             multi = Mathf.Clamp(multi, 1, 8);

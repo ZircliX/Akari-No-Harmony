@@ -73,12 +73,14 @@ namespace GamePlay
                 case GameState.LevelFinished:
                     Debug.Log("Level Complete");
        
+                    Time.timeScale = 0;
                     MenuManager.Instance.ChangeState((int)MenuManager.MenuState.Completed);
                     break;
             
                 case GameState.PlayerDead:
                     Debug.Log("Player Died");
-                    
+
+                    Time.timeScale = 0;
                     MenuManager.Instance.ChangeState((int)MenuManager.MenuState.Died);
                     break;
 

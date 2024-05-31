@@ -32,15 +32,18 @@ namespace GamePlay
         {
             var mapData = GameManager.Instance.level;
             circleList = mapData.circles;
+            circlesTypes = Resources.LoadAll<GameObject>("Prefabs/Circles");
         }
 
         // Update is called once per frame
         private void Update()
         {
-            currentBeatTime = Conductor.Instance.elapsedTime;
-            circlesTypes = Resources.LoadAll<GameObject>("Prefabs/Circles");
+            if (Conductor.Instance.countdownTimer == 0)
+            {
+                currentBeatTime = Conductor.Instance.elapsedTime;
 
-            SpawnCircles();
+                SpawnCircles();
+            }
         }
 
         private void SpawnCircles()

@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,14 +23,19 @@ namespace Menu
 
         private Sequence animationSequence;
         private const float animationSpeed = 0.25f;
-
-        private void Start()
+        private bool canTurn = true;
+        
+        private IEnumerator Timeout()
         {
-            OnMenuTurn(0);
+            canTurn = false;
+            yield return new WaitForSeconds(0.1f);
+            canTurn = true;
         }
 
         private void OnMenuTurn(int axis)
         {
+            StartCoroutine(Timeout());
+            
             animationSequence = DOTween.Sequence();
             currentIndex = (currentIndex + axis + 10) % 10;
             
@@ -69,6 +75,7 @@ namespace Menu
         public void MenuInput(InputAction.CallbackContext ctx)
         {
             if (!ctx.performed || MenuManager.Instance.state != MenuManager.MenuState.Main) return;
+            if (!canTurn) return;
             
             OnMenuTurn((int)ctx.ReadValue<float>());
             AudioManager.Instance.PlaySFX("menuSwitch");

@@ -1,5 +1,7 @@
+using System.Collections;
 using Circles;
 using GamePlay;
+using TMPro;
 using UnityEngine;
 
 public class Conductor : MonoBehaviour
@@ -17,7 +19,10 @@ public class Conductor : MonoBehaviour
     private float firstBeatOffset;
 
     private AudioSource musicSource;
-        
+    
+    public float countdownDuration = 3f;
+    public float countdownTimer;
+    public TextMeshProUGUI countdownText;
 
     public static Conductor Instance;
 
@@ -29,17 +34,49 @@ public class Conductor : MonoBehaviour
         
         LoadPrecomputedData();
     }
+    
+    private IEnumerator CountdownCoroutine()
+    {
+        while (countdownTimer > 0)
+        {
+            yield return new WaitForSeconds(1f); // Wait for 1 second
+            countdownTimer--;
+            UpdateCountdownText();
+        }
+
+        StartMap();
+        Destroy(countdownText.gameObject);
+    }
+
+    void UpdateCountdownText()
+    {
+        // Update the countdown text with the remaining time
+        countdownText.text = countdownTimer.ToString();
+    }
 
     private void Start()
     {
+        countdownTimer = countdownDuration;
+        StartCoroutine(CountdownCoroutine());
+    }
+
+    private void StartMap()
+    {
         musicSource.Play();
-        
         dspSongTime = AudioSettings.dspTime;
     }
 
     private void Update()
     {
-        elapsedTime = AudioSettings.dspTime - dspSongTime - firstBeatOffset;
+        if (countdownTimer <= 0)
+        {
+            elapsedTime = AudioSettings.dspTime - dspSongTime - firstBeatOffset;
+        
+            if (elapsedTime >= musicSource.clip.length)
+            {
+                GameManager.Instance.SwitchState(5);
+            }
+        }
     }
     
     public double OnBeatClick(CircleManager currentCircle)

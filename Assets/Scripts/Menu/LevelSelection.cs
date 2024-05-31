@@ -12,7 +12,7 @@ namespace Menu
     public class LevelSelection : MonoBehaviour
     {
         public GameObject buttons;
-        public Transform scroll;
+        public Transform content;
 
         private List<Map> maps;
         private List<Map> orderedMaps;
@@ -39,7 +39,7 @@ namespace Menu
 
         private void SetupMapInfo(Map map)
         {
-            var newMapInfo = Instantiate(buttons, scroll);
+            var newMapInfo = Instantiate(buttons, content);
             newMapInfo.name = map.mapName;
             
             newMapInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = map.mapName;

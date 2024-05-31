@@ -14,13 +14,14 @@ namespace GameUI
         public Image healthBar;
 
         public SpriteRenderer[] epuisettes;
-        public Sprite[] colors;
+        public Sprite[] nets;
+        public Sprite[] brokenNets;
 
         private void Update()
         {
             foreach (var sr in epuisettes)
             {
-                sr.sprite = colors[PlayerManager.Instance.colorIndex];
+                sr.sprite = nets[PlayerManager.Instance.colorIndex];
             }
 
             healthBar.fillAmount = ScoreCombo.Instance.health / 100;

@@ -2,6 +2,8 @@ using AudioDelegates;
 using GamePlay;
 using Menu;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MapSelect : MonoBehaviour
 {
@@ -17,7 +19,8 @@ public class MapSelect : MonoBehaviour
         if (isSelected)
         {
             GameManager.Instance.level = map;
-            LevelSelection.Instance.LoadLevel(2);
+            MenuManager.Instance.ChangeState(-1);
+            LevelSelection.Instance.LoadLevel(1);
             isSelected = false;
         }
         else
@@ -29,6 +32,13 @@ public class MapSelect : MonoBehaviour
             
             isSelected = true;
             selectedObject = this;
+            Selected();
         }
+    }
+
+    private void Selected()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(gameObject);
     }
 }

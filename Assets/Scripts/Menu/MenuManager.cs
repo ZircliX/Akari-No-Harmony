@@ -11,7 +11,6 @@ namespace Menu
     public class MenuManager : MonoBehaviour
     {
         private bool isActive = true;
-        public Animator pauseAnimator;
         
         [SerializeField] private GameObject[] panelList;
         [SerializeField] public GameObject[] defaultSelected;
@@ -28,10 +27,10 @@ namespace Menu
             Options = 1,
             Credits = 2,
             Editor = 3,
-            Pause = 4,
-            Completed = 11,
-            Died = 12,
-            LevelSelection = 20
+            LevelSelection = 4,
+            Pause = 5,
+            Completed = 6,
+            Died = 7,
         }
     
         private static MenuManager _instance;
@@ -78,12 +77,6 @@ namespace Menu
             }
         }
 
-        public void Play()
-        {
-            SceneManager.LoadScene(1);
-            ChangeState((int)MenuState.LevelSelection);
-        }
-
         /*
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
@@ -127,49 +120,27 @@ namespace Menu
                     return;
             }
 
-            if ((int)state is > -1 and < 5)
+            if ((int)state is > -1 and < 8)
             {
                 panelList[(int)state].SetActive(true);
                 EventSystem.current.SetSelectedGameObject(null);
-                EventSystem.current.SetSelectedGameObject(defaultSelected[(int)state]);    
+                EventSystem.current.SetSelectedGameObject(defaultSelected[(int)state]);
             }
         }
 
         public void OpenPause(InputAction.CallbackContext context)
         {
-            if (GameManager.Instance.state != GameManager.GameState.LevelInProgress) return;
-
-            if (context.performed)
-            {
-                TogglePauseMenu(true);
-            }
-            else if (context.canceled)
-            {
-                TogglePauseMenu(false);
-            }
-        
+            if (!context.performed) return;
+            
             ChangeState((int)MenuState.Pause);
-            GameManager.Instance.SwitchState(-1);
+            GameManager.Instance.SwitchState(10);
         }
-
-        private void TogglePauseMenu(bool open)
-        {
-            switch (state)
-            {
-                case MenuState.None:
-                    pauseAnimator.SetBool("enter", open);
-                    break;
-                case MenuState.Pause:
-                    pauseAnimator.SetBool("exit", open);
-                    break;
-            }
-        }
-
+        
         public void GoBack(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
 
-            if (state is MenuState.Options or MenuState.Credits)
+            if ((int)state is > 1 and < 6)
             {
                 ChangeState(lastStateIndex);
             }
@@ -196,8 +167,8 @@ namespace Menu
     
         public void Retry()
         {
-            //SwitchState(MenuState.None);
-            //GameManager.Instance.SwitchState(5);
+            ChangeState((int)MenuState.None);
+            GameManager.Instance.SwitchState(5);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
