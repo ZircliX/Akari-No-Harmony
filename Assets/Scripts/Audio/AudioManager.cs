@@ -1,76 +1,68 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace Audio
 {
-    public Sound[] musicSounds, sfxSounds;
-    public AudioSource musicSource, sfxSource;
-
-    private static AudioManager _instance;
-    public static AudioManager Instance
+    public class AudioManager : MonoBehaviour
     {
-        get
+        public Sound[] musicSounds, sfxSounds;
+        public AudioSource musicSource, sfxSource;
+
+        private static AudioManager _instance;
+        public static AudioManager Instance
         {
-            if (_instance == null)
+            get
             {
-                // Optionally, find the GameManager object in the scene, if it's not already set.
-                _instance = FindAnyObjectByType<AudioManager>();
                 if (_instance == null)
                 {
-                    // Create a new GameObject with a GameManager component if none exists.
-                    GameObject gameManager = new GameObject("GameManager");
-                    _instance = gameManager.AddComponent<AudioManager>();
+                    // Optionally, find the GameManager object in the scene, if it's not already set.
+                    _instance = FindAnyObjectByType<AudioManager>();
+                    if (_instance == null)
+                    {
+                        // Create a new GameObject with a GameManager component if none exists.
+                        GameObject audioManager = new GameObject("AudioManager");
+                        _instance = audioManager.AddComponent<AudioManager>();
+                    }
                 }
+                return _instance;
             }
-            return _instance;
         }
-    }
 
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
+        private void Awake()
         {
-            Destroy(gameObject); // Ensure there's only one instance by destroying duplicates.
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject); // Ensure there's only one instance by destroying duplicates.
+            }
+            else
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject); // Optionally, make the GameManager persist across scenes.
+            }
         }
-        else
+    
+        private void Start()
         {
-            _instance = this;
-            DontDestroyOnLoad(gameObject); // Optionally, make the GameManager persist across scenes.
+            DontDestroyOnLoad(gameObject);
         }
-    }
+
+        public void PlaySound(AudioClip audioClip)
+        {
+            musicSource.clip = audioClip;
+            musicSource.Play();
+        }
+
+        public void StopSound()
+        {
+            musicSource.Stop();
+        }
     
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+        public void PlaySFX(string sfxName)
+        {
+            var s = Array.Find(sfxSounds, x => x.name == sfxName);
 
-    public void PlaySound(AudioClip audio)
-    {
-        musicSource.clip = audio;
-        musicSource.Play();
-    }
-
-    private void PlayMusic(string name)
-    {
-        Sound s = Array.Find(musicSounds, x => x.name == name);
-
-        musicSource.clip = s.clip;
-        musicSource.Play();
-    }
-    
-    public void PlaySFX(string name)
-    {
-        Sound s = Array.Find(sfxSounds, x => x.name == name);
-
-        sfxSource.clip = s.clip;
-        sfxSource.Play();
-    }
-
-    public void StopMusic(string name)
-    {
-        Sound s = Array.Find(musicSounds, x => x.name == name);
-        
-        musicSource.clip = s.clip;
-        musicSource.Stop();
+            sfxSource.clip = s.clip;
+            sfxSource.Play();
+        }
     }
 }

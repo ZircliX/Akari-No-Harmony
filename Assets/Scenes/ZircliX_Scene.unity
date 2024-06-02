@@ -602,8 +602,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c9f13ab9da3f6d4695af8c60ce1e135, type: 2}
+  m_sharedMaterial: {fileID: 3086842166976245659, guid: 5c9f13ab9da3f6d4695af8c60ce1e135, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -795,7 +795,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 89, y: 450}
+  m_AnchoredPosition: {x: 100, y: 450}
   m_SizeDelta: {x: 900, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &424761965
@@ -820,8 +820,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c9f13ab9da3f6d4695af8c60ce1e135, type: 2}
+  m_sharedMaterial: {fileID: 3086842166976245659, guid: 5c9f13ab9da3f6d4695af8c60ce1e135, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2033,6 +2033,10 @@ MonoBehaviour:
   score: 0
   combo: 0
   health: 0
+  perfect: 0
+  good: 0
+  miss: 0
+  maxCombo: 0
 --- !u!1 &814355030
 GameObject:
   m_ObjectHideFlags: 0
@@ -4417,126 +4421,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1783471218
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1783471219}
-  - component: {fileID: 1783471220}
-  - component: {fileID: 1783471222}
-  - component: {fileID: 1783471223}
-  - component: {fileID: 1783471221}
-  m_Layer: 0
-  m_Name: MapCreator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1783471219
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783471218}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1783471220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783471218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93b71717625f451468434eac4a47cfbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  create: 0
-  audio: {fileID: 8300000, guid: c4f6fb7f563ca8d47bc1199acd594f72, type: 3}
-  bpm: 130
-  offset: 0.012
-  mapName: Bouncing World
-  mapDiff: 1
-  mapSpeed: 4
-  typeChangeProba: 0
---- !u!114 &1783471221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783471218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10dbf91f015b544418c6b5119583b252, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  create: 0
-  circlesType:
-  - {fileID: 7444164605342579970, guid: 9b2fef278b99cc545b610f422ecc8f58, type: 3}
-  - {fileID: 7444164605342579970, guid: 461aadaefa627b243bb3b924a6a4252a, type: 3}
-  - {fileID: 7444164605342579970, guid: c0cd8036f461a1f4880f3a099c799abf, type: 3}
-  audio: {fileID: 8300000, guid: 6c339049ecb28f347a313b7e04ef43ec, type: 3}
-  bpm: 130
-  offset: 0
-  songName: Bouncing
-  mapName: ZiTest
-  typeChangeProba: 10
-  windowSize: 10
-  localDeviationMultiplier: 0.1
---- !u!114 &1783471222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783471218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93b71717625f451468434eac4a47cfbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  create: 0
-  audio: {fileID: 8300000, guid: 8b1f289a6b1b0dd4ea639c30758dec29, type: 3}
-  bpm: 200
-  offset: 2.45
-  mapName: Exit This Earth Atomosphere
-  mapDiff: 5
-  mapSpeed: 2
-  typeChangeProba: 0
---- !u!114 &1783471223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783471218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93b71717625f451468434eac4a47cfbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  create: 0
-  audio: {fileID: 8300000, guid: f1ebe5165f4240e4c853ff1943e7fa17, type: 3}
-  bpm: 179
-  offset: 0
-  mapName: Bass Drop Freaks - Camelia & Nanahira
-  mapDiff: 10
-  mapSpeed: 1
-  typeChangeProba: 0
 --- !u!1 &1790169632
 GameObject:
   m_ObjectHideFlags: 0
@@ -5172,7 +5056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -750, y: -400}
+  m_AnchoredPosition: {x: -750, y: -425}
   m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1946058874
@@ -5197,8 +5081,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0x
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c9f13ab9da3f6d4695af8c60ce1e135, type: 2}
+  m_sharedMaterial: {fileID: 3086842166976245659, guid: 5c9f13ab9da3f6d4695af8c60ce1e135, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5516,7 +5400,6 @@ SceneRoots:
   - {fileID: 1657511175}
   - {fileID: 787350349}
   - {fileID: 1809316886}
-  - {fileID: 1783471219}
   - {fileID: 1016139316}
   - {fileID: 444248865}
   - {fileID: 452800809}

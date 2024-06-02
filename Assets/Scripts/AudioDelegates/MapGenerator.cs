@@ -4,56 +4,24 @@ using Random = UnityEngine.Random;
 
 namespace AudioDelegates
 {
-    [ExecuteInEditMode]
-    public class MapGenerator : MonoBehaviour
+    public static class MapGenerator
     {
-        public bool create;
-
-        [Header("Song Data")]
-        public new AudioClip audio;
-        public int bpm;
-        public float offset;
-        private Song songData;
-    
-        [Space]
-        [Header("Map Data")]
-        public string mapName;
-        public int mapDiff;
-        public int mapSpeed;
-        private int currentTypeIndex;
-        private Map mapData;
-
-        [Header("Create Duplicates")]
-        private int duplicateNum = 1;
-        private List<int> usedValues = new();
+        private static int currentTypeIndex;
         
-        [Header("Random Color")]
-        public int typeChangeProba;
-        private int numOfSame;
-    
-        private void Update()
-        {
-            if (create)
-            {
-                create = false;
+        private static int duplicateNum = 1;
+        private static readonly List<int> usedValues = new();
+        
+        private static int numOfSameColor;
 
-                CreateSongData();
-                AnalyseSong();
-            
-                CreateMap();
-                SaveMap();
-            }
-        }
-
-        private void SaveMap()
+        public static void SaveMap(Map mapData, AudioClip audioClip, string filePath)
         {
             JsonSystem.SaveMapToJson(mapData.mapName, mapData);
-            JsonSystem.SaveAudio(audio);
+            JsonSystem.SaveAudio(filePath, audioClip);
         }
 
-        private void CreateMap()
+        public static Map CreateMap(string mapName, int mapDiff, Song songData)
         {
-            mapData = new Map
+            var mapData = new Map
             {
                 mapName = mapName,
                 mapDiff = mapDiff,
@@ -63,11 +31,11 @@ namespace AudioDelegates
             foreach (var time in songData.songPositionInSeconds)
             {
                 usedValues.Clear();
-                numOfSame++;
+                numOfSameColor++;
                 
                 if (ShouldChangeCircleType())
                 {
-                    numOfSame = 0;
+                    numOfSameColor = 0;
                     currentTypeIndex = Random.Range(0, 3);
                 }
 
@@ -80,19 +48,21 @@ namespace AudioDelegates
                     mapData.circles.Add(newCircle);
                 }
             }
+
+            return mapData;
         }
 
-        private bool ShouldChangeCircleType()
+        private static bool ShouldChangeCircleType()
         {
-            return numOfSame >= 4;
+            return numOfSameColor >= 4;
         }
 
-        private int GetDuplicateNum()
+        private static int GetDuplicateNum()
         {
             return Random.Range(0, 3) == 0 ? Random.Range(2, 4) : 1;
         }
 
-        private int GetUniqueRandomValue(int min, int max)
+        private static int GetUniqueRandomValue(int min, int max)
         {
             int randomValue;
             do {
@@ -104,7 +74,7 @@ namespace AudioDelegates
             return randomValue;
         }
 
-        private Circle CreateCircle(double time, int typeIndex, int columnIndex)
+        private static Circle CreateCircle(double time, int typeIndex, int columnIndex)
         {
             return new Circle
             {
@@ -116,26 +86,30 @@ namespace AudioDelegates
             };
         }
 
-        private void CreateSongData()
+        public static Song CreateSongData(AudioClip audio, string songName, int bpm, float offset)
         {
-            songData = new Song
+            var songData = new Song
             {
                 songBPM = bpm,
                 songOffset = offset,
-                songName = audio.name,
+                songName = songName,
                 songLength = (int)audio.length
             };
+
+            return songData;
         }
 
-        private void AnalyseSong()
+        public static void AnalyseSong(Song songData, int beatSpeed)
         {
             float secPerBeat = 60f / songData.songBPM;
             float currentBeat = 0f;
             float currentSecond = songData.songOffset;
+            
+            
 
             while (currentSecond < songData.songLength)
             {
-                if (currentBeat % mapSpeed == 0 && currentSecond >= 3)
+                if (currentBeat % beatSpeed == 0 && currentSecond >= 3)
                 {
                     songData.songPositionInSeconds.Add(currentSecond);
                 }

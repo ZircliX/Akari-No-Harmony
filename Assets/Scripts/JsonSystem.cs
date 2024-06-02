@@ -11,10 +11,10 @@ public static class JsonSystem
         File.WriteAllText(Application.dataPath  + "/StreamingAssets/MapData/" + map.mapName + ".json", json);
     }
 
-    public static void SaveAudio(AudioClip clip)
+    public static void SaveAudio(string originalPath, AudioClip clip)
     {
-        var path = Application.dataPath + "/StreamingAssets/MapData/" + clip.name;
-        EncodeMP3.convert(clip, path, 256);
+        var path = Application.dataPath + "/StreamingAssets/MapData/" + clip.name + ".mp3";
+        File.Copy(originalPath, path, false);
     }
     
     public static Map LoadMapToJson(string path)

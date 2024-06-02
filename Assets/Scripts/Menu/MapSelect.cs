@@ -1,3 +1,4 @@
+using Audio;
 using AudioDelegates;
 using GamePlay;
 using Menu;
@@ -22,6 +23,8 @@ public class MapSelect : MonoBehaviour
             MenuManager.Instance.ChangeState(-1);
             LevelSelection.Instance.LoadLevel(1);
             isSelected = false;
+            
+            AudioManager.Instance.StopSound();
         }
         else
         {
@@ -40,5 +43,8 @@ public class MapSelect : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(gameObject);
+        
+        AudioManager.Instance.StopSound();
+        AudioManager.Instance.PlaySound(JsonSystem.LoadAudioClip(Application.dataPath  + "/StreamingAssets/MapData/" + map.songData.songName + ".mp3"));
     }
 }

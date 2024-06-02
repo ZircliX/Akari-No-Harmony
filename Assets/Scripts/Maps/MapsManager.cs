@@ -1,4 +1,5 @@
 using System.IO;
+using Audio;
 using UnityEngine;
 
 namespace Maps
@@ -20,7 +21,7 @@ namespace Maps
                 
             string randomMusic = mp3Files[randomIndex];
 
-            //AudioManager.Instance.PlaySound(JsonSystem.LoadAudioClip(randomMusic));
+            AudioManager.Instance.PlaySound(JsonSystem.LoadAudioClip(randomMusic));
         }
     }
 }
