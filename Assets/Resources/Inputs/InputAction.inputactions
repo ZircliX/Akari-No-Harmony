@@ -249,6 +249,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "09cdecb3-d2d1-4ea8-adc4-bb2889584216",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -308,7 +317,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "ArrowsHorizontal",
+                    "name": "ArrowsVertical",
                     "id": "edd1dc7b-3c75-4ba5-a459-1014c78ea0c3",
                     "path": "1DAxis",
                     "interactions": "",
@@ -333,6 +342,39 @@
                     "name": "positive",
                     "id": "fb9c498d-177e-4d30-a8e0-ebcddfffe5b5",
                     "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "ArrowsHorizontal",
+                    "id": "3f6fb7a5-7920-4f3a-9f22-74158b758b3c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuTurn",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "fd5d8d6a-f7ea-4fec-ab9d-837fd57c2d99",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "9afe992c-5051-4670-a1ee-9883c2be4e33",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -374,6 +416,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "PadVertical",
+                    "id": "72d868b4-e523-4539-92a4-c8764da35328",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuTurn",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "73524189-243a-4d19-8ccf-eedfd3cc550f",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "772dace1-4a33-47f9-ba6c-65be914226a5",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "7bd42b16-ab8f-4645-ae27-a7641f5ad276",
                     "path": "<Gamepad>/start",
@@ -392,6 +467,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bc8ea8b-6c6d-454b-91ad-04e5dd680302",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "896b7ed3-fc28-4385-a5cd-4fa1121a9c31",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

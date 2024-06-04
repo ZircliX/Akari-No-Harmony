@@ -19,7 +19,7 @@ namespace AudioDelegates
             JsonSystem.SaveAudio(filePath, audioClip);
         }
 
-        public static Map CreateMap(string mapName, int mapDiff, Song songData)
+        public static Map CreateMap(string mapName, int mapDiff, float mapSpeed, Song songData)
         {
             var mapData = new Map
             {
@@ -44,7 +44,7 @@ namespace AudioDelegates
                 for (int i = 0; i < duplicateNum; i++)
                 {
                     int columnIndex = GetUniqueRandomValue(0, 3);
-                    var newCircle = CreateCircle(time, currentTypeIndex, columnIndex);
+                    var newCircle = CreateCircle(time, mapSpeed, currentTypeIndex, columnIndex);
                     mapData.circles.Add(newCircle);
                 }
             }
@@ -74,13 +74,13 @@ namespace AudioDelegates
             return randomValue;
         }
 
-        private static Circle CreateCircle(double time, int typeIndex, int columnIndex)
+        private static Circle CreateCircle(double time, float mapSpeed, int typeIndex, int columnIndex)
         {
             return new Circle
             {
                 typeIndex = typeIndex,
-                downSpeed = 4f,
-                timeToSpawn = time - 2f,
+                downSpeed = mapSpeed,
+                timeToSpawn = time - 9f / mapSpeed,
                 timeToBeat = time,
                 columnIndex = columnIndex
             };
@@ -104,8 +104,6 @@ namespace AudioDelegates
             float secPerBeat = 60f / songData.songBPM;
             float currentBeat = 0f;
             float currentSecond = songData.songOffset;
-            
-            
 
             while (currentSecond < songData.songLength)
             {

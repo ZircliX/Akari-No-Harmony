@@ -48,7 +48,7 @@ public class Conductor : MonoBehaviour
         Destroy(countdownText.gameObject);
     }
 
-    void UpdateCountdownText()
+    private void UpdateCountdownText()
     {
         // Update the countdown text with the remaining time
         countdownText.text = countdownTimer.ToString();
@@ -68,13 +68,20 @@ public class Conductor : MonoBehaviour
 
     private void Update()
     {
-        if (countdownTimer <= 0)
+        if (countdownTimer <= 0 && GameManager.Instance.state == GameManager.GameState.LevelInProgress)
         {
             elapsedTime = AudioSettings.dspTime - dspSongTime - firstBeatOffset;
         
             if (elapsedTime >= musicSource.clip.length)
             {
                 GameManager.Instance.SwitchState(5);
+            }
+        }
+        else
+        {
+            if (musicSource.clip is not null)
+            {
+                musicSource.Pause();
             }
         }
     }

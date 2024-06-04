@@ -40,11 +40,6 @@ namespace Audio
                 DontDestroyOnLoad(gameObject); // Optionally, make the GameManager persist across scenes.
             }
         }
-    
-        private void Start()
-        {
-            DontDestroyOnLoad(gameObject);
-        }
 
         public void PlaySound(AudioClip audioClip)
         {

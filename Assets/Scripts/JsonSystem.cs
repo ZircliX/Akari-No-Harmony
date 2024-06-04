@@ -49,22 +49,20 @@ public static class JsonSystem
     private static AudioClip LoadMP3(string filePath)
     {
         AudioClip audioClip = null;
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip($"file://{filePath}", AudioType.MPEG))
+        using var www = UnityWebRequestMultimedia.GetAudioClip($"file://{filePath}", AudioType.MPEG);
+        var downloadHandler = new DownloadHandlerAudioClip(www.url, AudioType.MPEG);
+        www.downloadHandler = downloadHandler;
+
+        www.SendWebRequest();
+        while (!www.isDone) { } // Wait for the request to complete
+
+        if (www.result == UnityWebRequest.Result.Success)
         {
-            DownloadHandlerAudioClip downloadHandler = new DownloadHandlerAudioClip(www.url, AudioType.MPEG);
-            www.downloadHandler = downloadHandler;
-
-            www.SendWebRequest();
-            while (!www.isDone) { } // Wait for the request to complete
-
-            if (www.result == UnityWebRequest.Result.Success)
-            {
-                audioClip = DownloadHandlerAudioClip.GetContent(www);
-            }
-            else
-            {
-                Debug.LogError($"Failed to load MP3 file: {www.error}");
-            }
+            audioClip = DownloadHandlerAudioClip.GetContent(www);
+        }
+        else
+        {
+            Debug.LogError($"Failed to load MP3 file: {www.error}");
         }
 
         return audioClip;
@@ -73,22 +71,20 @@ public static class JsonSystem
     private static AudioClip LoadWAV(string filePath)
     {
         AudioClip audioClip = null;
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip($"file://{filePath}", AudioType.WAV))
+        using var www = UnityWebRequestMultimedia.GetAudioClip($"file://{filePath}", AudioType.WAV);
+        var downloadHandler = new DownloadHandlerAudioClip(www.url, AudioType.WAV);
+        www.downloadHandler = downloadHandler;
+
+        www.SendWebRequest();
+        while (!www.isDone) { } // Wait for the request to complete
+
+        if (www.result == UnityWebRequest.Result.Success)
         {
-            DownloadHandlerAudioClip downloadHandler = new DownloadHandlerAudioClip(www.url, AudioType.WAV);
-            www.downloadHandler = downloadHandler;
-
-            www.SendWebRequest();
-            while (!www.isDone) { } // Wait for the request to complete
-
-            if (www.result == UnityWebRequest.Result.Success)
-            {
-                audioClip = DownloadHandlerAudioClip.GetContent(www);
-            }
-            else
-            {
-                Debug.LogError($"Failed to load WAV file: {www.error}");
-            }
+            audioClip = DownloadHandlerAudioClip.GetContent(www);
+        }
+        else
+        {
+            Debug.LogError($"Failed to load WAV file: {www.error}");
         }
 
         return audioClip;

@@ -12,6 +12,7 @@ public class EditorPanel : MonoBehaviour
     [Space]
         public TMP_InputField mapNameText;
         public TMP_InputField mapDiffText;
+        public TMP_InputField mapSpeedText;
         public TMP_InputField beatSpeedText;
 
     [Header("Audio Data")] 
@@ -24,6 +25,7 @@ public class EditorPanel : MonoBehaviour
     [Header("Map Data")] 
         private string mapName;
         private int mapDiff;
+        private float mapSpeed;
         private int beatSpeed;
         private Map mapData;
 
@@ -41,6 +43,7 @@ public class EditorPanel : MonoBehaviour
         {
             mapSong = JsonSystem.LoadAudioClip(path);
             audioFilePath = path;
+            Debug.Log(audioFilePath);
         });
     }
 
@@ -51,7 +54,7 @@ public class EditorPanel : MonoBehaviour
         songData = MapGenerator.CreateSongData(mapSong, songName, bpm, offset);
         MapGenerator.AnalyseSong(songData, beatSpeed);
         
-        mapData = MapGenerator.CreateMap(mapName, mapDiff, songData);
+        mapData = MapGenerator.CreateMap(mapName, mapDiff, mapSpeed, songData);
         
         MapGenerator.SaveMap(mapData, mapSong, audioFilePath);
     }
@@ -65,6 +68,7 @@ public class EditorPanel : MonoBehaviour
         
         mapName = mapNameText.text;
         int.TryParse(mapDiffText.text, out mapDiff);
+        float.TryParse(mapSpeedText.text, out mapSpeed);
         int.TryParse(beatSpeedText.text, out beatSpeed);
     }
 }

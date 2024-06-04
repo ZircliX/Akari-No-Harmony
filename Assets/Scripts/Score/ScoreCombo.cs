@@ -28,10 +28,10 @@ namespace Score
 
         private void Update()
         {
-            health -= 3f * Time.deltaTime;
+            health -= GameManager.Instance.level.mapDiff * Time.deltaTime;
             health = Mathf.Clamp(health, 0, 100);
 
-            if (health <= 0)
+            if (health <= 0 && GameManager.Instance.state != GameManager.GameState.PlayerDead)
             {
                 GameManager.Instance.SwitchState(6);
             }

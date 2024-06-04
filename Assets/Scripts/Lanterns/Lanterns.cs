@@ -1,4 +1,5 @@
 using Dreamteck.Splines;
+using GamePlay;
 using PlayerRelated;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,19 +15,17 @@ namespace Lanterns
         private int currentIndex = 3;
         private int index;
         private const float animationSpeed = 4f;
-
-        private bool animate;
+        
         private int axis;
 
         void Start()
         {
-            animate = true;
             axis = 0;
         }
 
         private void Update()
         {
-            if (animate)
+            if (GameManager.Instance.state == GameManager.GameState.LevelInProgress)
             {
                 currentIndex = (currentIndex + axis + 9) % 9;
 
@@ -43,7 +42,6 @@ namespace Lanterns
                     spline.SetPercent(Mathf.Lerp((float)spline.GetPercent(), lanternsPos[index], animationSpeed * Time.deltaTime));
                 }
 
-                //animate = false;
                 axis = 0;
             }
         }
@@ -51,14 +49,12 @@ namespace Lanterns
         public void ColorChangeLeft(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            animate = true;
             axis = 1;
         }
 
         public void ColorChangeRight(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            animate = true;
             axis = -1;
         }
     }

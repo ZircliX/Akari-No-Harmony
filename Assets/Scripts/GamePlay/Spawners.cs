@@ -26,8 +26,7 @@ namespace GamePlay
         {
             Instance = this;
         }
-    
-        // Start is called before the first frame update
+
         private void Start()
         {
             var mapData = GameManager.Instance.level;
@@ -35,15 +34,10 @@ namespace GamePlay
             circlesTypes = Resources.LoadAll<GameObject>("Prefabs/Circles");
         }
 
-        // Update is called once per frame
         private void Update()
         {
-            if (Conductor.Instance.countdownTimer == 0)
-            {
-                currentBeatTime = Conductor.Instance.elapsedTime;
-
-                SpawnCircles();
-            }
+            currentBeatTime = Conductor.Instance.elapsedTime;
+            SpawnCircles();
         }
 
         private void SpawnCircles()

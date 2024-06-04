@@ -47,6 +47,8 @@ namespace PlayerRelated
 
         private void OnBeatClick(int clickIndex)
         {
+            if (Spawners.Instance.spawnedCircles[clickIndex].Count <= 0) return;
+            
             currentCircle = Spawners.Instance.spawnedCircles[clickIndex][0];
             
             timingDifference = Conductor.Instance.OnBeatClick(currentCircle);

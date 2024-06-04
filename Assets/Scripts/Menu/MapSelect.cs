@@ -4,7 +4,6 @@ using GamePlay;
 using Menu;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class MapSelect : MonoBehaviour
 {

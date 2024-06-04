@@ -1,30 +1,28 @@
 using System.Collections;
 using Audio;
-using DG.Tweening;
+using Dreamteck.Splines;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Menu
 {
     public class MainMenuAnimation : MonoBehaviour
     {
-        public GameObject[] lanternPos;
-        public GameObject[] buttonPos;
-
+        public float[] lanternsPos;
+        public float[] lanternScale;
+        public Color[] lanternColor;
         public GameObject[] lanterns;
-        public GameObject[] buttons;
-
-        public float[] alpha;
 
         private int currentIndex;
         private int index;
         private int buttonSelected;
 
-        private Sequence animationSequence;
-        private const float animationSpeed = 0.25f;
+        private const float animationSpeed = 4f;
+
         private bool canTurn = true;
+        private int axis;
         
         private IEnumerator Timeout()
         {
@@ -33,53 +31,42 @@ namespace Menu
             canTurn = true;
         }
 
-        private void OnMenuTurn(int axis)
+        private void Update()
         {
-            StartCoroutine(Timeout());
-            
-            animationSequence = DOTween.Sequence();
             currentIndex = (currentIndex + axis + 10) % 10;
             
-            for (int i = 0; i < buttons.Length; i++)
+            for (int i = 0; i < lanterns.Length; i++)
             {
                 index = (currentIndex + i + 10) % 10;
                 if (index == 4) buttonSelected = i;
-
-                buttons[i].SetActive(index is < 8 and > 1);
+                
                 lanterns[i].SetActive(index is < 8 and > 1);
-                lanterns[i].GetComponent<Image>().color = new Color(alpha[index], alpha[index],alpha[index]);
+                
+                var spline = lanterns[i].GetComponent<SplineFollower>();
+                spline.SetPercent(Mathf.Lerp((float)spline.GetPercent(), lanternsPos[index], animationSpeed * Time.deltaTime));
+                
+                var sr = lanterns[i].GetComponent<Image>();
+                sr.color = Color.Lerp(sr.color, lanternColor[index], animationSpeed * Time.deltaTime * animationSpeed);
 
-                Tween positionTween = buttons[i].GetComponent<RectTransform>()
-                    .DOAnchorPos(buttonPos[index].GetComponent<RectTransform>().localPosition, animationSpeed);
-                Tween scaleTween = buttons[i].GetComponent<RectTransform>().
-                    DOScale(buttonPos[index].GetComponent<RectTransform>().localScale, animationSpeed);
-
-                animationSequence.Join(positionTween);
-                animationSequence.Join(scaleTween);
-
-                positionTween = lanterns[i].GetComponent<RectTransform>()
-                    .DOAnchorPos(lanternPos[index].GetComponent<RectTransform>().localPosition, animationSpeed);
-                scaleTween = lanterns[i].GetComponent<RectTransform>()
-                    .DOScale(lanternPos[index].GetComponent<RectTransform>().localScale, animationSpeed);
-
-                animationSequence.Join(positionTween);
-                animationSequence.Join(scaleTween);
+                var scale = lanterns[i].GetComponent<RectTransform>();
+                scale.localScale = Vector3.Lerp(scale.localScale, new Vector3(lanternScale[index], lanternScale[index], lanternScale[index]), animationSpeed * Time.deltaTime);
             }
             
             EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(buttons[buttonSelected]);
-            MenuManager.Instance.defaultSelected[0] = buttons[buttonSelected];
+            EventSystem.current.SetSelectedGameObject(lanterns[buttonSelected]);
+            MenuManager.Instance.defaultSelected[0] = lanterns[buttonSelected];
             
-            animationSequence.Play();
+            axis = 0;
         }
 
         public void MenuInput(InputAction.CallbackContext ctx)
         {
             if (!ctx.performed || MenuManager.Instance.state != MenuManager.MenuState.Main) return;
             if (!canTurn) return;
-            
-            OnMenuTurn((int)ctx.ReadValue<float>());
-            AudioManager.Instance.PlaySFX("menuSwitch");
+            StartCoroutine(Timeout());
+
+            axis = (int)ctx.ReadValue<float>();
+            AudioManager.Instance.PlaySFX("Hover");
         }
     }
 }

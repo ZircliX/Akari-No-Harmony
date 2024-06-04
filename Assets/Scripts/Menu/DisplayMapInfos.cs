@@ -16,8 +16,8 @@ namespace Menu
 
         public void UpdateUI(Map map)
         {
-            diff.text = "Difficulté : " + map.mapDiff;
-            numCircles.text = "Nombre Cercles : " + map.circles.Count;
+            diff.text = "difficulty : " + map.mapDiff;
+            numCircles.text = "Circles : " + map.circles.Count;
         
             bpm.text = "BPM : " + map.songData.songBPM;
         
@@ -25,7 +25,7 @@ namespace Menu
             int minutes = totalSeconds / 60;
             int seconds = totalSeconds % 60;
             
-            length.text = "Durée : " + $"{minutes:D2}m{seconds:D2}s";
+            length.text = "Length : " + $"{minutes:D2}m{seconds:D2}s";
         }
     }
 }

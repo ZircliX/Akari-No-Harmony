@@ -15,7 +15,7 @@ namespace Menu
         [SerializeField] private GameObject[] panelList;
         [SerializeField] public GameObject[] defaultSelected;
 
-        [SerializeField] private AudioMixerGroup[] audioSources;
+        [SerializeField] private AudioMixer[] audioMixers;
         [SerializeField] private Slider[] audioSliders;
     
         private int lastStateIndex;
@@ -72,18 +72,18 @@ namespace Menu
 
             for (int i = 0; i < 2; i++)
             {
-                audioSources[i].audioMixer.SetFloat("volume", PlayerPrefs.GetFloat("Volume" + i, 0f));
+                audioMixers[i].SetFloat("volume", PlayerPrefs.GetFloat("Volume" + i, 0f));
                 audioSliders[i].value = PlayerPrefs.GetFloat("Volume" + i, 0f);
             }
         }
 
-        /*
+        
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            SwitchState(0);
+            ChangeState(0);
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
-        */
+        
 
         public void Quit()
         {
@@ -93,7 +93,7 @@ namespace Menu
         public void GoToMenu()
         {
             SceneManager.LoadScene(0);
-            //SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         public void ChangeState(int newState)
@@ -150,14 +150,14 @@ namespace Menu
         {
             if (!isActive) return;
             
-            audioSources[index].audioMixer.SetFloat("volume", audioSliders[index].value);
+            audioMixers[index].SetFloat("volume", audioSliders[index].value);
             PlayerPrefs.SetFloat("Volume" + index, audioSliders[index].value);
         }
         
         public void VolumeState(int index)
         {
             isActive = !isActive;
-            audioSources[index].audioMixer.SetFloat("volume", isActive ? PlayerPrefs.GetFloat("Volume" + index, audioSliders[index].value) : -80);
+            audioMixers[index].SetFloat("volume", isActive ? PlayerPrefs.GetFloat("Volume" + index, audioSliders[index].value) : -80);
         }
         
         public void SetFullscreen()
