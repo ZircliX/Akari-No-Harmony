@@ -1,10 +1,9 @@
 using Circles;
-using GamePlay;
 using Score;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace PlayerRelated
+namespace GamePlay
 {
     public class PlayerManager : MonoBehaviour
     {
@@ -14,9 +13,9 @@ namespace PlayerRelated
         private float timingDifference;
 
         private const float
-            perfectTiming = 0.05f,
-            goodTiming = 0.1f,
-            missTiming = 0.5f;
+            perfectTiming = 0.1f,
+            goodTiming = 0.2f,
+            missTiming = 0.4f;
 
         public int colorIndex;
 

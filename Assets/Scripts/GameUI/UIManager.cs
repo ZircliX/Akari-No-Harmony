@@ -1,4 +1,4 @@
-using PlayerRelated;
+using GamePlay;
 using Score;
 using UnityEngine;
 using TMPro;
