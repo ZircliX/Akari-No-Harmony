@@ -66,7 +66,7 @@ namespace Menu
             StartCoroutine(Timeout());
 
             axis = (int)ctx.ReadValue<float>();
-            AudioManager.Instance.PlaySFX("Hover");
+            AudioManager.Instance.PlaySFX("Select");
         }
     }
 }

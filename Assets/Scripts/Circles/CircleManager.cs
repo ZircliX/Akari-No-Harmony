@@ -8,6 +8,7 @@ namespace Circles
     public class CircleManager : MonoBehaviour
     {
         public bool isHit;
+        private bool canHit = true;
         public Circle circleData;
 
         private void Update()
@@ -16,15 +17,14 @@ namespace Circles
             
             if (isHit)
             {
-                Destroy(gameObject);
-                Spawners.Instance.RemoveCircle(this);
+                Spawners.Instance.RemoveCircle(this, 0f);
             }
-            if (transform.position.y <= -6f)
+            if (transform.position.y <= -4.25f && canHit)
             {
+                canHit = false;
                 PlayerManager.Instance.Hit(-10, -10);
                 
-                Destroy(gameObject);
-                Spawners.Instance.RemoveCircle(this);
+                Spawners.Instance.RemoveCircle(this, 3f);
             }
         }
     }

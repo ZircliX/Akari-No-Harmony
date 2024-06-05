@@ -2192,7 +2192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4770269427816185946, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
       propertyPath: sfxSounds.Array.data[0].name
-      value: Hover
+      value: Select
       objectReference: {fileID: 0}
     - target: {fileID: 4770269427816185946, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
       propertyPath: sfxSounds.Array.data[1].clip
@@ -2206,6 +2206,10 @@ PrefabInstance:
       propertyPath: musicSounds.Array.data[0].clip
       value: 
       objectReference: {fileID: 8300000, guid: 3d624c46dced4654a848dd9242c0f2b2, type: 3}
+    - target: {fileID: 4770269427816185946, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
+      propertyPath: musicSounds.Array.data[0].name
+      value: Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 6271834289695154854, guid: 0c1ec298fb7e250489e22a271f46b5de, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -3047,7 +3051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -250}
+  m_AnchoredPosition: {x: -200, y: -275}
   m_SizeDelta: {x: 800, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &254567202
@@ -3616,7 +3620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -50}
+  m_AnchoredPosition: {x: -200, y: -25}
   m_SizeDelta: {x: 800, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296957299
@@ -3949,7 +3953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 50}
+  m_AnchoredPosition: {x: -200, y: -125}
   m_SizeDelta: {x: 800, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &328678773
@@ -10302,6 +10306,7 @@ GameObject:
   - component: {fileID: 1018522514}
   - component: {fileID: 1018522516}
   - component: {fileID: 1018522515}
+  - component: {fileID: 1018522517}
   m_Layer: 5
   m_Name: PanelWin
   m_TagString: Untagged
@@ -10325,9 +10330,9 @@ RectTransform:
   - {fileID: 880058100}
   - {fileID: 687585545}
   - {fileID: 869187669}
-  - {fileID: 328678772}
-  - {fileID: 296957298}
   - {fileID: 1293295997}
+  - {fileID: 296957298}
+  - {fileID: 328678772}
   - {fileID: 254567201}
   m_Father: {fileID: 1264197675}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10374,6 +10379,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018522513}
   m_CullTransparentMesh: 1
+--- !u!114 &1018522517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018522513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6cfcf46d473354ba77615d47ec2d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perfect: {fileID: 1293295998}
+  good: {fileID: 296957299}
+  miss: {fileID: 328678773}
+  maxCombo: {fileID: 254567202}
 --- !u!1 &1021355139
 GameObject:
   m_ObjectHideFlags: 0
@@ -12725,7 +12746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -150}
+  m_AnchoredPosition: {x: -200, y: 75}
   m_SizeDelta: {x: 800, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1293295998
@@ -19532,7 +19553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224806151493049248, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224806151493049248, guid: 71766f1bef30953409612c3803df740a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -19886,7 +19907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172873543143941969, guid: 37e463a4d4b7c7f4e9a55da535103169, type: 3}
       propertyPath: latestTabIndex
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5172873543143941969, guid: 37e463a4d4b7c7f4e9a55da535103169, type: 3}
       propertyPath: navigationMode
@@ -19918,7 +19939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172873543143941969, guid: 37e463a4d4b7c7f4e9a55da535103169, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5172873543143941969, guid: 37e463a4d4b7c7f4e9a55da535103169, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -19930,7 +19951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172873543143941969, guid: 37e463a4d4b7c7f4e9a55da535103169, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeState
+      value: GoToMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5172873543143941969, guid: 37e463a4d4b7c7f4e9a55da535103169, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

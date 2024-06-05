@@ -14,7 +14,7 @@ public static class JsonSystem
     public static void SaveAudio(string originalPath, AudioClip clip)
     {
         var path = Application.dataPath + "/StreamingAssets/MapData/" + clip.name + ".mp3";
-        File.Copy(originalPath, path, false);
+        File.Copy(originalPath, path, true);
     }
     
     public static Map LoadMapToJson(string path)

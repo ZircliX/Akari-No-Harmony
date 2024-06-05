@@ -62,10 +62,10 @@ namespace GamePlay
             }
         }
 
-        public void RemoveCircle(CircleManager cm)
+        public void RemoveCircle(CircleManager cm, float timeout)
         {
             spawnedCircles[cm.circleData.columnIndex].Remove(cm);
-            Destroy(cm.gameObject);
+            Destroy(cm.gameObject, timeout);
         }
     }
 }
