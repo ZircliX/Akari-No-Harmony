@@ -1,296 +1,1084 @@
 {
     "mapName": "Camelia - Bassfreak Drop",
-    "mapDiff": 3,
+    "mapDiff": 8,
     "songData": {
         "songBPM": 179,
         "songOffset": 0.0,
         "songName": "Camelia - Bassfreak Drop",
         "songLength": 34,
         "songPositionInSeconds": [
+            1.3407821655273438,
+            1.6759777069091797,
+            2.0111732482910158,
+            2.3463687896728517,
             2.6815643310546877,
+            3.0167598724365236,
+            3.3519554138183595,
+            3.6871509552001955,
             4.022346496582031,
+            4.357542037963867,
+            4.692737579345703,
+            5.027933120727539,
             5.363128662109375,
+            5.698324203491211,
+            6.033519744873047,
+            6.368715286254883,
             6.703910827636719,
+            7.039106369018555,
+            7.374301910400391,
+            7.709497451782227,
             8.044692993164063,
+            8.379888534545899,
+            8.715084075927735,
+            9.05027961730957,
             9.385475158691407,
+            9.720670700073243,
+            10.055866241455079,
+            10.391061782836914,
             10.72625732421875,
+            11.061452865600586,
+            11.396648406982422,
+            11.731843948364258,
             12.067039489746094,
+            12.40223503112793,
+            12.737430572509766,
+            13.072626113891602,
             13.407821655273438,
+            13.743017196655274,
+            14.07821273803711,
+            14.413408279418946,
             14.748603820800782,
+            15.083799362182618,
+            15.418994903564454,
+            15.754190444946289,
             16.089385986328126,
+            16.42458152770996,
+            16.759777069091798,
+            17.094972610473634,
             17.43016815185547,
+            17.765363693237306,
+            18.10055923461914,
+            18.435754776000978,
             18.770950317382814,
+            19.10614585876465,
+            19.441341400146486,
+            19.77653694152832,
             20.111732482910158,
+            20.446928024291993,
+            20.782123565673829,
+            21.117319107055665,
             21.4525146484375,
+            21.787710189819337,
+            22.122905731201173,
+            22.458101272583009,
             22.793296813964845,
+            23.12849235534668,
+            23.463687896728517,
+            23.79888343811035,
             24.134078979492189,
+            24.469274520874025,
+            24.80447006225586,
+            25.139665603637697,
             25.47486114501953,
+            25.810056686401368,
+            26.145252227783204,
+            26.48044776916504,
             26.815643310546876,
+            27.15083885192871,
+            27.486034393310548,
+            27.821229934692384,
             28.15642547607422,
+            28.491621017456056,
+            28.82681655883789,
+            29.162012100219728,
             29.497207641601564,
+            29.8324031829834,
+            30.167598724365236,
+            30.50279426574707,
             30.837989807128908,
+            31.173185348510743,
+            31.508380889892579,
+            31.843576431274415,
             32.17877197265625,
-            33.519561767578128
+            32.51396942138672,
+            32.84916687011719,
+            33.184364318847659,
+            33.519561767578128,
+            33.854759216308597
         ]
     },
     "circles": [
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 0.4315643310546875,
-            "timeToBeat": 2.6815643310546877,
+            "downSpeed": 7.0,
+            "timeToSpawn": 0.05506787821650505,
+            "timeToBeat": 1.3407821655273438,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 0.3902634084224701,
+            "timeToBeat": 1.6759777069091797,
             "columnIndex": 2
         },
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 1.7723464965820313,
-            "timeToBeat": 4.022346496582031,
+            "downSpeed": 7.0,
+            "timeToSpawn": 0.7254589796066284,
+            "timeToBeat": 2.0111732482910158,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 0.7254589796066284,
+            "timeToBeat": 2.0111732482910158,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 0.7254589796066284,
+            "timeToBeat": 2.0111732482910158,
             "columnIndex": 0
         },
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 3.113128662109375,
-            "timeToBeat": 5.363128662109375,
+            "downSpeed": 7.0,
+            "timeToSpawn": 1.0606545209884644,
+            "timeToBeat": 2.3463687896728517,
             "columnIndex": 2
         },
         {
-            "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 4.453910827636719,
-            "timeToBeat": 6.703910827636719,
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 1.0606545209884644,
+            "timeToBeat": 2.3463687896728517,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 1.3958500623703004,
+            "timeToBeat": 2.6815643310546877,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 1.7310456037521363,
+            "timeToBeat": 3.0167598724365236,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 2.0662410259246828,
+            "timeToBeat": 3.3519554138183595,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 2.0662410259246828,
+            "timeToBeat": 3.3519554138183595,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 2.0662410259246828,
+            "timeToBeat": 3.3519554138183595,
             "columnIndex": 1
         },
         {
             "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 5.7946929931640629,
+            "downSpeed": 7.0,
+            "timeToSpawn": 2.4014365673065187,
+            "timeToBeat": 3.6871509552001955,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 2.4014365673065187,
+            "timeToBeat": 3.6871509552001955,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 2.7366321086883547,
+            "timeToBeat": 4.022346496582031,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 3.0718276500701906,
+            "timeToBeat": 4.357542037963867,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 3.0718276500701906,
+            "timeToBeat": 4.357542037963867,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 3.0718276500701906,
+            "timeToBeat": 4.357542037963867,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 3.4070231914520265,
+            "timeToBeat": 4.692737579345703,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 3.4070231914520265,
+            "timeToBeat": 4.692737579345703,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 3.7422187328338625,
+            "timeToBeat": 5.027933120727539,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 4.077414512634277,
+            "timeToBeat": 5.363128662109375,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 4.412610054016113,
+            "timeToBeat": 5.698324203491211,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 4.747805595397949,
+            "timeToBeat": 6.033519744873047,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 5.083001136779785,
+            "timeToBeat": 6.368715286254883,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 5.418196678161621,
+            "timeToBeat": 6.703910827636719,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 5.753392219543457,
+            "timeToBeat": 7.039106369018555,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 5.753392219543457,
+            "timeToBeat": 7.039106369018555,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 6.088587760925293,
+            "timeToBeat": 7.374301910400391,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 6.423783302307129,
+            "timeToBeat": 7.709497451782227,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 6.758978843688965,
             "timeToBeat": 8.044692993164063,
             "columnIndex": 2
         },
         {
             "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 7.135475158691406,
+            "downSpeed": 7.0,
+            "timeToSpawn": 7.094174385070801,
+            "timeToBeat": 8.379888534545899,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 7.429369926452637,
+            "timeToBeat": 8.715084075927735,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 7.429369926452637,
+            "timeToBeat": 8.715084075927735,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 7.764565467834473,
+            "timeToBeat": 9.05027961730957,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 8.099761009216309,
             "timeToBeat": 9.385475158691407,
             "columnIndex": 2
         },
         {
             "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 7.135475158691406,
-            "timeToBeat": 9.385475158691407,
+            "downSpeed": 7.0,
+            "timeToSpawn": 8.434956550598145,
+            "timeToBeat": 9.720670700073243,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 8.77015209197998,
+            "timeToBeat": 10.055866241455079,
             "columnIndex": 0
         },
         {
             "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 8.47625732421875,
+            "downSpeed": 7.0,
+            "timeToSpawn": 8.77015209197998,
+            "timeToBeat": 10.055866241455079,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 8.77015209197998,
+            "timeToBeat": 10.055866241455079,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 9.105347633361817,
+            "timeToBeat": 10.391061782836914,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 9.105347633361817,
+            "timeToBeat": 10.391061782836914,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 9.440543174743653,
             "timeToBeat": 10.72625732421875,
-            "columnIndex": 0
+            "columnIndex": 1
         },
         {
-            "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 9.817039489746094,
-            "timeToBeat": 12.067039489746094,
-            "columnIndex": 0
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 9.775738716125489,
+            "timeToBeat": 11.061452865600586,
+            "columnIndex": 1
         },
         {
-            "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 9.817039489746094,
-            "timeToBeat": 12.067039489746094,
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 10.110934257507325,
+            "timeToBeat": 11.396648406982422,
             "columnIndex": 1
         },
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 9.817039489746094,
-            "timeToBeat": 12.067039489746094,
-            "columnIndex": 2
-        },
-        {
-            "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 11.157821655273438,
-            "timeToBeat": 13.407821655273438,
-            "columnIndex": 2
-        },
-        {
-            "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 11.157821655273438,
-            "timeToBeat": 13.407821655273438,
+            "downSpeed": 7.0,
+            "timeToSpawn": 10.44612979888916,
+            "timeToBeat": 11.731843948364258,
             "columnIndex": 1
         },
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 11.157821655273438,
-            "timeToBeat": 13.407821655273438,
+            "downSpeed": 7.0,
+            "timeToSpawn": 10.781325340270996,
+            "timeToBeat": 12.067039489746094,
             "columnIndex": 0
         },
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 12.498603820800782,
+            "downSpeed": 7.0,
+            "timeToSpawn": 11.116520881652832,
+            "timeToBeat": 12.40223503112793,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 11.451716423034668,
+            "timeToBeat": 12.737430572509766,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 11.451716423034668,
+            "timeToBeat": 12.737430572509766,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 11.451716423034668,
+            "timeToBeat": 12.737430572509766,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 11.786911964416504,
+            "timeToBeat": 13.072626113891602,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 12.12210750579834,
+            "timeToBeat": 13.407821655273438,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 12.12210750579834,
+            "timeToBeat": 13.407821655273438,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 12.457303047180176,
+            "timeToBeat": 13.743017196655274,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 12.792498588562012,
+            "timeToBeat": 14.07821273803711,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 13.127694129943848,
+            "timeToBeat": 14.413408279418946,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 13.127694129943848,
+            "timeToBeat": 14.413408279418946,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 13.462889671325684,
             "timeToBeat": 14.748603820800782,
-            "columnIndex": 0
+            "columnIndex": 2
         },
         {
-            "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 13.839385986328125,
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 13.79808521270752,
+            "timeToBeat": 15.083799362182618,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 13.79808521270752,
+            "timeToBeat": 15.083799362182618,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 14.133280754089356,
+            "timeToBeat": 15.418994903564454,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 14.468476295471192,
+            "timeToBeat": 15.754190444946289,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 14.468476295471192,
+            "timeToBeat": 15.754190444946289,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 14.803671836853028,
             "timeToBeat": 16.089385986328126,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 15.138867378234864,
+            "timeToBeat": 16.42458152770996,
             "columnIndex": 2
         },
         {
             "typeIndex": 2,
-            "downSpeed": 4.0,
-            "timeToSpawn": 15.180168151855469,
+            "downSpeed": 7.0,
+            "timeToSpawn": 15.4740629196167,
+            "timeToBeat": 16.759777069091798,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 15.809258460998536,
+            "timeToBeat": 17.094972610473634,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 16.144453048706056,
             "timeToBeat": 17.43016815185547,
-            "columnIndex": 0
-        },
-        {
-            "typeIndex": 2,
-            "downSpeed": 4.0,
-            "timeToSpawn": 16.520950317382814,
-            "timeToBeat": 18.770950317382814,
-            "columnIndex": 0
-        },
-        {
-            "typeIndex": 2,
-            "downSpeed": 4.0,
-            "timeToSpawn": 17.861732482910158,
-            "timeToBeat": 20.111732482910158,
-            "columnIndex": 0
-        },
-        {
-            "typeIndex": 2,
-            "downSpeed": 4.0,
-            "timeToSpawn": 19.2025146484375,
-            "timeToBeat": 21.4525146484375,
             "columnIndex": 1
         },
         {
-            "typeIndex": 2,
-            "downSpeed": 4.0,
-            "timeToSpawn": 19.2025146484375,
-            "timeToBeat": 21.4525146484375,
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 16.47964859008789,
+            "timeToBeat": 17.765363693237306,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 16.814844131469728,
+            "timeToBeat": 18.10055923461914,
             "columnIndex": 0
         },
         {
-            "typeIndex": 2,
-            "downSpeed": 4.0,
-            "timeToSpawn": 19.2025146484375,
-            "timeToBeat": 21.4525146484375,
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 17.150039672851564,
+            "timeToBeat": 18.435754776000978,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 17.4852352142334,
+            "timeToBeat": 18.770950317382814,
             "columnIndex": 2
         },
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 20.543296813964845,
-            "timeToBeat": 22.793296813964845,
+            "downSpeed": 7.0,
+            "timeToSpawn": 17.820430755615236,
+            "timeToBeat": 19.10614585876465,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 18.15562629699707,
+            "timeToBeat": 19.441341400146486,
             "columnIndex": 1
         },
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 21.884078979492189,
-            "timeToBeat": 24.134078979492189,
+            "downSpeed": 7.0,
+            "timeToSpawn": 18.15562629699707,
+            "timeToBeat": 19.441341400146486,
             "columnIndex": 0
         },
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 23.22486114501953,
+            "downSpeed": 7.0,
+            "timeToSpawn": 18.15562629699707,
+            "timeToBeat": 19.441341400146486,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 18.490821838378908,
+            "timeToBeat": 19.77653694152832,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 18.826017379760743,
+            "timeToBeat": 20.111732482910158,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 19.161212921142579,
+            "timeToBeat": 20.446928024291993,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 19.161212921142579,
+            "timeToBeat": 20.446928024291993,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 19.496408462524415,
+            "timeToBeat": 20.782123565673829,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 19.83160400390625,
+            "timeToBeat": 21.117319107055665,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 20.166799545288087,
+            "timeToBeat": 21.4525146484375,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 20.501995086669923,
+            "timeToBeat": 21.787710189819337,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 20.837190628051759,
+            "timeToBeat": 22.122905731201173,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 20.837190628051759,
+            "timeToBeat": 22.122905731201173,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 21.172386169433595,
+            "timeToBeat": 22.458101272583009,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 21.172386169433595,
+            "timeToBeat": 22.458101272583009,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 21.50758171081543,
+            "timeToBeat": 22.793296813964845,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 21.842777252197267,
+            "timeToBeat": 23.12849235534668,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 21.842777252197267,
+            "timeToBeat": 23.12849235534668,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 22.1779727935791,
+            "timeToBeat": 23.463687896728517,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 22.513168334960939,
+            "timeToBeat": 23.79888343811035,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 22.848363876342775,
+            "timeToBeat": 24.134078979492189,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 23.18355941772461,
+            "timeToBeat": 24.469274520874025,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 23.18355941772461,
+            "timeToBeat": 24.469274520874025,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 23.18355941772461,
+            "timeToBeat": 24.469274520874025,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 23.518754959106447,
+            "timeToBeat": 24.80447006225586,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 23.518754959106447,
+            "timeToBeat": 24.80447006225586,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 23.85395050048828,
+            "timeToBeat": 25.139665603637697,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 24.189146041870118,
             "timeToBeat": 25.47486114501953,
             "columnIndex": 2
         },
         {
-            "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 24.565643310546876,
-            "timeToBeat": 26.815643310546876,
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 24.189146041870118,
+            "timeToBeat": 25.47486114501953,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 24.524341583251954,
+            "timeToBeat": 25.810056686401368,
             "columnIndex": 1
         },
         {
-            "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 24.565643310546876,
-            "timeToBeat": 26.815643310546876,
-            "columnIndex": 2
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 24.85953712463379,
+            "timeToBeat": 26.145252227783204,
+            "columnIndex": 1
         },
         {
-            "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 24.565643310546876,
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 25.194732666015626,
+            "timeToBeat": 26.48044776916504,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 25.52992820739746,
             "timeToBeat": 26.815643310546876,
             "columnIndex": 0
         },
         {
-            "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 25.90642547607422,
-            "timeToBeat": 28.15642547607422,
-            "columnIndex": 2
-        },
-        {
-            "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 25.90642547607422,
-            "timeToBeat": 28.15642547607422,
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 25.865123748779298,
+            "timeToBeat": 27.15083885192871,
             "columnIndex": 0
         },
         {
-            "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 25.90642547607422,
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 26.200319290161134,
+            "timeToBeat": 27.486034393310548,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 26.53551483154297,
+            "timeToBeat": 27.821229934692384,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 26.53551483154297,
+            "timeToBeat": 27.821229934692384,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 26.53551483154297,
+            "timeToBeat": 27.821229934692384,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 26.870710372924806,
             "timeToBeat": 28.15642547607422,
             "columnIndex": 1
         },
         {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 27.20590591430664,
+            "timeToBeat": 28.491621017456056,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 27.541101455688478,
+            "timeToBeat": 28.82681655883789,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 27.541101455688478,
+            "timeToBeat": 28.82681655883789,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 27.541101455688478,
+            "timeToBeat": 28.82681655883789,
+            "columnIndex": 0
+        },
+        {
             "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 27.247207641601564,
+            "downSpeed": 7.0,
+            "timeToSpawn": 27.876296997070314,
+            "timeToBeat": 29.162012100219728,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 28.21149253845215,
             "timeToBeat": 29.497207641601564,
-            "columnIndex": 1
-        },
-        {
-            "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 28.587989807128908,
-            "timeToBeat": 30.837989807128908,
             "columnIndex": 0
         },
         {
             "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 28.587989807128908,
+            "downSpeed": 7.0,
+            "timeToSpawn": 28.546688079833986,
+            "timeToBeat": 29.8324031829834,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 1,
+            "downSpeed": 7.0,
+            "timeToSpawn": 28.88188362121582,
+            "timeToBeat": 30.167598724365236,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 29.217079162597658,
+            "timeToBeat": 30.50279426574707,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 29.552274703979493,
             "timeToBeat": 30.837989807128908,
             "columnIndex": 1
         },
         {
-            "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 28.587989807128908,
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 29.552274703979493,
             "timeToBeat": 30.837989807128908,
             "columnIndex": 2
         },
         {
-            "typeIndex": 1,
-            "downSpeed": 4.0,
-            "timeToSpawn": 29.92877197265625,
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 29.552274703979493,
+            "timeToBeat": 30.837989807128908,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 29.887470245361329,
+            "timeToBeat": 31.173185348510743,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 2,
+            "downSpeed": 7.0,
+            "timeToSpawn": 30.222665786743165,
+            "timeToBeat": 31.508380889892579,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 30.557861328125,
+            "timeToBeat": 31.843576431274415,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 30.893056869506837,
             "timeToBeat": 32.17877197265625,
             "columnIndex": 0
         },
         {
             "typeIndex": 0,
-            "downSpeed": 4.0,
-            "timeToSpawn": 31.269561767578126,
+            "downSpeed": 7.0,
+            "timeToSpawn": 31.228254318237306,
+            "timeToBeat": 32.51396942138672,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 31.563451766967775,
+            "timeToBeat": 32.84916687011719,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 31.563451766967775,
+            "timeToBeat": 32.84916687011719,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 31.898649215698243,
+            "timeToBeat": 33.184364318847659,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 31.898649215698243,
+            "timeToBeat": 33.184364318847659,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 31.898649215698243,
+            "timeToBeat": 33.184364318847659,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 32.233848571777347,
             "timeToBeat": 33.519561767578128,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 32.233848571777347,
+            "timeToBeat": 33.519561767578128,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 32.233848571777347,
+            "timeToBeat": 33.519561767578128,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 7.0,
+            "timeToSpawn": 32.56904602050781,
+            "timeToBeat": 33.854759216308597,
             "columnIndex": 1
         }
     ]

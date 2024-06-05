@@ -2,7 +2,7 @@ using System.IO;
 using Audio;
 using UnityEngine;
 
-namespace Maps
+namespace Menu
 {
     public class MapsManager : MonoBehaviour
     {
@@ -19,8 +19,7 @@ namespace Maps
                 
             string randomMusic = mp3Files[randomIndex];
 
-            //AudioManager.Instance.PlaySound(JsonSystem.LoadAudioClip(randomMusic));
-            AudioManager.Instance.PlayMusic("Menu");
+            AudioManager.Instance.PlaySound(JsonSystem.LoadAudioClip(randomMusic));
         }
     }
 }

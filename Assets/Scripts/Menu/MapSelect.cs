@@ -1,49 +1,40 @@
 using Audio;
 using AudioDelegates;
+using DG.Tweening;
 using GamePlay;
-using Menu;
+using GameUI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MapSelect : MonoBehaviour
+namespace Menu
 {
-    private static MapSelect selectedObject;
-
-    private bool isSelected;
-    public Map map;
-
-    public void OnClick()
+    public class MapSelect : MonoBehaviour
     {
-        DisplayMapInfos.Instance.UpdateUI(map);
+       public Map map;
 
-        if (isSelected)
+        public void OnClick()
         {
             GameManager.Instance.level = map;
             MenuManager.Instance.ChangeState(-1);
             LevelSelection.Instance.LoadLevel(1);
-            isSelected = false;
+                
+            AudioManager.Instance.PlaySFX("Select");
             
             AudioManager.Instance.StopSound();
         }
-        else
-        {
-            if (selectedObject != null)
-            {
-                selectedObject.isSelected = false;
-            }
-            
-            isSelected = true;
-            selectedObject = this;
-            Selected();
-        }
-    }
-
-    private void Selected()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(gameObject);
         
-        AudioManager.Instance.StopSound();
-        AudioManager.Instance.PlaySound(JsonSystem.LoadAudioClip(Application.dataPath  + "/StreamingAssets/MapData/" + map.songData.songName + ".mp3"));
+        public void OnHover()
+        {
+            DisplayMapInfos.Instance.UpdateUI(map);
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(gameObject);
+            
+            AudioManager.Instance.PlaySFX("Hover");
+        
+            AudioManager.Instance.StopSound();
+            AudioManager.Instance.PlaySound(JsonSystem.LoadAudioClip(Application.dataPath  + "/StreamingAssets/MapData/" + map.songData.songName + ".mp3"));
+        }
+
     }
 }

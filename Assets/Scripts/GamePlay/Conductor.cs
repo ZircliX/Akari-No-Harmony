@@ -16,6 +16,7 @@ namespace GamePlay
         private float timingDifference;
     
         private float dspSongTime;
+        private float pauseTime;
 
         private float firstBeatOffset;
 
@@ -69,21 +70,20 @@ namespace GamePlay
 
         private void Update()
         {
-            if (countdownTimer <= 0 && GameManager.Instance.state == GameManager.GameState.LevelInProgress)
+            if (countdownTimer > 0) return;
+            
+            if (GameManager.Instance.state == GameManager.GameState.LevelInProgress)
             {
-                elapsedTime = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+                elapsedTime = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset - pauseTime);
         
                 if (elapsedTime >= musicSource.clip.length)
                 {
                     GameManager.Instance.SwitchState(5);
                 }
             }
-            else
+            if (GameManager.Instance.state == GameManager.GameState.GamePause)
             {
-                if (musicSource.clip is not null)
-                {
-                    musicSource.Pause();
-                }
+                pauseTime += Time.deltaTime;
             }
         }
     
@@ -93,7 +93,7 @@ namespace GamePlay
         
             currentCirclePositionInSeconds = currentCircle.circleData.timeToBeat;
         
-            timingDifference = Mathf.Abs((float)(currentCirclePositionInSeconds - lastUserInputTime));
+            timingDifference = Mathf.Abs(currentCirclePositionInSeconds - lastUserInputTime);
         
             return timingDifference;
         }

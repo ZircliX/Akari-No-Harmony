@@ -1,6 +1,7 @@
 using System.Collections;
 using Audio;
 using Dreamteck.Splines;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
@@ -14,6 +15,7 @@ namespace Menu
         public float[] lanternScale;
         public Color[] lanternColor;
         public GameObject[] lanterns;
+        public TextMeshProUGUI[] texts;
 
         private int currentIndex;
         private int index;
@@ -27,7 +29,7 @@ namespace Menu
         private IEnumerator Timeout()
         {
             canTurn = false;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             canTurn = true;
         }
 
@@ -46,7 +48,8 @@ namespace Menu
                 spline.SetPercent(Mathf.Lerp((float)spline.GetPercent(), lanternsPos[index], animationSpeed * Time.deltaTime));
                 
                 var sr = lanterns[i].GetComponent<Image>();
-                sr.color = Color.Lerp(sr.color, lanternColor[index], animationSpeed * Time.deltaTime * animationSpeed);
+                sr.color = Color.Lerp(sr.color, lanternColor[index], animationSpeed * Time.deltaTime);
+                texts[i].color = Color.Lerp(texts[i].color, lanternColor[index], animationSpeed * Time.deltaTime);
 
                 var scale = lanterns[i].GetComponent<RectTransform>();
                 scale.localScale = Vector3.Lerp(scale.localScale, new Vector3(lanternScale[index], lanternScale[index], lanternScale[index]), animationSpeed * Time.deltaTime);
@@ -66,7 +69,7 @@ namespace Menu
             StartCoroutine(Timeout());
 
             axis = (int)ctx.ReadValue<float>();
-            AudioManager.Instance.PlaySFX("Select");
+            AudioManager.Instance.PlaySFX("Hover");
         }
     }
 }

@@ -2,7 +2,7 @@ using AudioDelegates;
 using TMPro;
 using UnityEngine;
 
-namespace Menu
+namespace GameUI
 {
     public class DisplayMapInfos : MonoBehaviour
     {

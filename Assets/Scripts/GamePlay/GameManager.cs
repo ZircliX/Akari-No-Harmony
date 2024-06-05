@@ -1,3 +1,4 @@
+using Audio;
 using AudioDelegates;
 using Menu;
 using UnityEngine;
@@ -65,7 +66,8 @@ namespace GamePlay
             {
                 case GameState.LevelInProgress:
                     Debug.Log("Game started / resumed !");
-                
+                    
+                    AudioManager.Instance.MusicResume();
                     Cursor.lockState = CursorLockMode.Confined;
                     Cursor.visible = false;
                     break;
@@ -80,6 +82,7 @@ namespace GamePlay
                 case GameState.PlayerDead:
                     Debug.Log("Player Died");
 
+                    AudioManager.Instance.MusicPause();
                     Time.timeScale = 0;
                     MenuManager.Instance.ChangeState((int)MenuManager.MenuState.Died);
                     break;
@@ -87,6 +90,7 @@ namespace GamePlay
                 case GameState.GamePause:
                     Debug.Log("Game is paused !");
                 
+                    AudioManager.Instance.MusicPause();
                     Time.timeScale = 0f;
                     break;
             }

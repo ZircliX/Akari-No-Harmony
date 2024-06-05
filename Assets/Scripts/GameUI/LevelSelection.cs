@@ -3,11 +3,12 @@ using System.IO;
 using System.Linq;
 using AudioDelegates;
 using GamePlay;
+using Menu;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Menu
+namespace GameUI
 {
     public class LevelSelection : MonoBehaviour
     {
@@ -24,8 +25,18 @@ namespace Menu
             Instance = this;
         }
 
-        private void Start()
+        private void OnEnable()
         {
+            GetMaps();
+        }
+
+        public void GetMaps()
+        {
+            for (int i = 0; i < content.childCount; i++)
+            {
+                Destroy(content.GetChild(i).gameObject);
+            }
+            
             string[] mapsPath = Directory.GetFiles(Application.dataPath + "/StreamingAssets/MapData/", "*.json");
             
             maps = mapsPath.Select(JsonSystem.LoadMapToJson).ToList();

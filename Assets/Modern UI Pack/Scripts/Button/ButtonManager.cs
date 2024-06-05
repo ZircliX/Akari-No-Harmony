@@ -315,7 +315,6 @@ namespace Michsky.MUIP
         public void OnPointerClick(PointerEventData eventData)
         {
             if (isInteractable == false || eventData.button != PointerEventData.InputButton.Left) { return; }
-            if (enableButtonSounds == true && useClickSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(clickSound); }
 
             // Invoke click actions
             onClick.Invoke();

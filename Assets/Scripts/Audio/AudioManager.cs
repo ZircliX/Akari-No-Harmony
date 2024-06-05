@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Audio
 {
@@ -63,9 +64,18 @@ namespace Audio
         public void PlaySFX(string sfxName)
         {
             var s = Array.Find(sfxSounds, x => x.name == sfxName);
+            
+            sfxSource.PlayOneShot(s.clip);
+        }
 
-            sfxSource.clip = s.clip;
-            sfxSource.Play();
+        public void MusicPause()
+        {
+            musicSource.Pause();
+        }
+
+        public void MusicResume()
+        {
+            musicSource.UnPause();
         }
     }
 }

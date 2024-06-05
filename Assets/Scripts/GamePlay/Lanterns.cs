@@ -1,3 +1,4 @@
+using Audio;
 using Dreamteck.Splines;
 using GamePlay;
 using UnityEngine;
@@ -49,12 +50,14 @@ namespace Lanterns
         {
             if (!context.performed) return;
             axis = 1;
+            AudioManager.Instance.PlaySFX("Switch");
         }
 
         public void ColorChangeRight(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
             axis = -1;
+            AudioManager.Instance.PlaySFX("Switch");
         }
     }
 }

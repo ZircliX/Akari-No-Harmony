@@ -1,0 +1,52 @@
+{
+    "mapName": "sfsdfsf",
+    "mapDiff": 1,
+    "songData": {
+        "songBPM": 1,
+        "songOffset": 1.0,
+        "songName": "sfsefsef",
+        "songLength": 186,
+        "songPositionInSeconds": [
+            61.0,
+            121.0,
+            181.0
+        ]
+    },
+    "circles": [
+        {
+            "typeIndex": 0,
+            "downSpeed": 1.0,
+            "timeToSpawn": 52.0,
+            "timeToBeat": 61.0,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 1.0,
+            "timeToSpawn": 112.0,
+            "timeToBeat": 121.0,
+            "columnIndex": 0
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 1.0,
+            "timeToSpawn": 112.0,
+            "timeToBeat": 121.0,
+            "columnIndex": 2
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 1.0,
+            "timeToSpawn": 112.0,
+            "timeToBeat": 121.0,
+            "columnIndex": 1
+        },
+        {
+            "typeIndex": 0,
+            "downSpeed": 1.0,
+            "timeToSpawn": 172.0,
+            "timeToBeat": 181.0,
+            "columnIndex": 2
+        }
+    ]
+}

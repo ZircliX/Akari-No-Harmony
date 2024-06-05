@@ -13,8 +13,8 @@ namespace GamePlay
         private float timingDifference;
 
         private const float
-            perfectTiming = 0.1f,
-            goodTiming = 0.2f,
+            perfectTiming = 0.08f,
+            goodTiming = 0.18f,
             missTiming = 0.4f;
 
         public int colorIndex;

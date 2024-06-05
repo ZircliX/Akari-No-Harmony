@@ -1,3 +1,4 @@
+using Audio;
 using GamePlay;
 using UnityEngine;
 
@@ -47,12 +48,15 @@ namespace Score
                 case <= 0:
                     combo = 0;
                     miss++;
+                    AudioManager.Instance.PlaySFX("Miss");
                     return;
                 case 100:
                     good++;
+                    AudioManager.Instance.PlaySFX("Hit");
                     break;
                 case 300:
                     perfect++;
+                    AudioManager.Instance.PlaySFX("Hit");
                     break;
             }
 

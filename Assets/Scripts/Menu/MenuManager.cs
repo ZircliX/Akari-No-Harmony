@@ -10,7 +10,7 @@ namespace Menu
 {
     public class MenuManager : MonoBehaviour
     {
-        private bool isActive = true;
+        private bool isActive;
         
         [SerializeField] private GameObject[] panelList;
         [SerializeField] public GameObject[] defaultSelected;
@@ -70,6 +70,7 @@ namespace Menu
         {
             CheckStateChange();
 
+            isActive = true;
             for (int i = 0; i < 2; i++)
             {
                 audioMixers[i].SetFloat("volume", PlayerPrefs.GetFloat("Volume" + i, 0f));
@@ -119,13 +120,10 @@ namespace Menu
                     GameManager.Instance.SwitchState(1);
                     return;
             }
-
-            if ((int)state is > -1 and < 8)
-            {
-                panelList[(int)state].SetActive(true);
-                EventSystem.current.SetSelectedGameObject(null);
-                EventSystem.current.SetSelectedGameObject(defaultSelected[(int)state]);
-            }
+            
+            panelList[(int)state].SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(defaultSelected[(int)state]);
         }
 
         public void OpenPause(InputAction.CallbackContext context)
@@ -168,7 +166,7 @@ namespace Menu
         public void Retry()
         {
             ChangeState((int)MenuState.None);
-            GameManager.Instance.SwitchState(5);
+            GameManager.Instance.SwitchState(1);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
