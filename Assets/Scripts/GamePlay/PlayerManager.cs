@@ -1,4 +1,6 @@
+using System.Collections;
 using Circles;
+using GameUI;
 using Score;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +10,8 @@ namespace GamePlay
     public class PlayerManager : MonoBehaviour
     {
         #region Class Variables
+        
+        public bool[] brokenIndex;
 
         private CircleManager currentCircle;
         private float timingDifference;
@@ -15,15 +19,21 @@ namespace GamePlay
         private const float
             perfectTiming = 0.08f,
             goodTiming = 0.18f,
-            missTiming = 0.4f;
+            missTiming = 0.55f;
 
         public int colorIndex;
+        private string[] rang = { "Left", "Middle", "Right" };
 
         public static PlayerManager Instance;
 
         private void Awake()
         {
             Instance = this;
+        }
+
+        private void Start()
+        {
+            brokenIndex = new[] { false, false, false };
         }
         
         #endregion
@@ -59,6 +69,7 @@ namespace GamePlay
             
             (int score, int health) = CalculateScoreAndHealth(timingDifference, correctHit);
             Hit(health, score);
+            PlayFeedbacks(score, clickIndex);
             currentCircle.isHit = true;
         }
 
@@ -78,6 +89,26 @@ namespace GamePlay
         {
             ScoreCombo.Instance.health += health;
             ScoreCombo.Instance.AddScore(points);
+        }
+
+        private void PlayFeedbacks(int score, int index)
+        {
+            switch (score)
+            {
+                case > 0:
+                    VFXManager.Instance.PlayVFX("Splash" + rang[index]);
+                    break;
+                case <= 0:
+                    StartCoroutine(SetBroken(index));
+                    break;
+            }
+        }
+
+        private IEnumerator SetBroken(int index)
+        {
+            brokenIndex[index] = true;
+            yield return new WaitForSeconds(0.3f);
+            brokenIndex[index] = false;
         }
     }
 }

@@ -1,5 +1,7 @@
+using System.Collections;
 using Audio;
 using GamePlay;
+using GameUI;
 using UnityEngine;
 
 namespace Score
@@ -29,7 +31,7 @@ namespace Score
 
         private void Update()
         {
-            if (Conductor.Instance.countdownTimer <= 0)
+            if (Conductor.Instance.countdownTimer <= 0 && GameManager.Instance.state == GameManager.GameState.LevelInProgress)
             {
                 health -= GameManager.Instance.level.mapDiff * Time.deltaTime;
                 health = Mathf.Clamp(health, 0, 100);
@@ -65,6 +67,18 @@ namespace Score
 
             multi = combo / 10;
             multi = Mathf.Clamp(multi, 1, 8);
+            switch (multi)
+            {
+                case 2:
+                    VFXManager.Instance.PlayVFX("Lanterns");
+                    break;
+                case 4:
+                    VFXManager.Instance.PlayVFX("Firework");
+                    break;
+                case 8:
+                    VFXManager.Instance.PlayVFX("BurstLanterns");
+                    break;
+            }
 
             score += points * multi;
         }

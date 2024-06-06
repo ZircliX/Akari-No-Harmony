@@ -1,4 +1,6 @@
+using Audio;
 using GamePlay;
+using GameUI;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
@@ -10,7 +12,7 @@ namespace Menu
 {
     public class MenuManager : MonoBehaviour
     {
-        private bool isActive;
+        private bool[] isActive;
         
         [SerializeField] private GameObject[] panelList;
         [SerializeField] public GameObject[] defaultSelected;
@@ -70,7 +72,8 @@ namespace Menu
         {
             CheckStateChange();
 
-            isActive = true;
+            isActive = new []{false, false};
+            
             for (int i = 0; i < 2; i++)
             {
                 audioMixers[i].SetFloat("volume", PlayerPrefs.GetFloat("Volume" + i, 0f));
@@ -78,23 +81,26 @@ namespace Menu
             }
         }
 
-        
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        public void ResumeMusic()
         {
-            ChangeState(0);
-            SceneManager.sceneLoaded -= OnSceneLoaded;
+            AudioManager.Instance.MusicResume();
         }
         
-
+        private void OnSceneLoadedMenu(Scene scene, LoadSceneMode mode)
+        {
+            ChangeState(4);
+            SceneManager.sceneLoaded -= OnSceneLoadedMenu;
+        }
+        
+        public void GoToMenu()
+        {
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            SceneManager.sceneLoaded += OnSceneLoadedMenu;
+        }
+        
         public void Quit()
         {
             Application.Quit();
-        }
-
-        public void GoToMenu()
-        {
-            SceneManager.LoadScene(0);
-            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         public void ChangeState(int newState)
@@ -119,6 +125,9 @@ namespace Menu
                 case MenuState.None:
                     GameManager.Instance.SwitchState(1);
                     return;
+                case MenuState.Died:
+                    SceneManager.LoadScene(2, LoadSceneMode.Single);
+                    break;
             }
             
             panelList[(int)state].SetActive(true);
@@ -129,6 +138,7 @@ namespace Menu
         public void OpenPause(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
+            if (state is not MenuState.None) return;
             
             ChangeState((int)MenuState.Pause);
             GameManager.Instance.SwitchState(10);
@@ -146,7 +156,7 @@ namespace Menu
 
         public void UpdateSound(int index)
         {
-            if (!isActive) return;
+            if (!isActive[index]) return;
             
             audioMixers[index].SetFloat("volume", audioSliders[index].value);
             PlayerPrefs.SetFloat("Volume" + index, audioSliders[index].value);
@@ -154,20 +164,31 @@ namespace Menu
         
         public void VolumeState(int index)
         {
-            isActive = !isActive;
-            audioMixers[index].SetFloat("volume", isActive ? PlayerPrefs.GetFloat("Volume" + index, audioSliders[index].value) : -80);
+            isActive[index] = !isActive[index];
+            audioMixers[index].SetFloat("volume", isActive[index] ? PlayerPrefs.GetFloat("Volume" + index, audioSliders[index].value) : -80);
         }
         
         public void SetFullscreen()
         {
             Screen.fullScreen = !Screen.fullScreen;
         }
-    
+        
+        private void OnSceneLoadedRetry(Scene scene, LoadSceneMode mode)
+        {
+            GameManager.Instance.level = LevelSelection.orderedMaps[GameManager.Instance.levelIndex];
+            GameManager.Instance.levelSong = LevelSelection.clipsList[GameManager.Instance.levelIndex];
+            
+            ChangeState(-1);
+            AudioManager.Instance.StopSound();
+            SceneManager.sceneLoaded -= OnSceneLoadedRetry;
+        }
+        
         public void Retry()
         {
-            ChangeState((int)MenuState.None);
-            GameManager.Instance.SwitchState(1);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GoToMenu();
+            
+            SceneManager.LoadScene(1);
+            SceneManager.sceneLoaded += OnSceneLoadedRetry;
         }
     }
 }

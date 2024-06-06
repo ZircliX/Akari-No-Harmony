@@ -386,7 +386,6 @@ namespace Michsky.MUIP
         {
             if (isInteractable == false) { return; }
             if (animationSolution == AnimationSolution.ScriptBased) { StartCoroutine("SetNormal"); }
-            if (enableButtonSounds == true && useClickSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(clickSound); }
 
             onClick.Invoke();
         }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using AudioDelegates;
 using Circles;
+using MapsGenerators;
 using UnityEngine;
 
 namespace GamePlay
@@ -8,10 +8,11 @@ namespace GamePlay
     public class Spawners : MonoBehaviour
     {
         private double currentBeatTime;
+        private Map mapData;
 
         public Transform[] spawners;
         private GameObject[] circlesTypes;
-    
+
         private List<Circle> circleList = new();
         public List<List<CircleManager>> spawnedCircles = new()
         {
@@ -26,10 +27,10 @@ namespace GamePlay
         {
             Instance = this;
         }
-
-        private void Start()
+        
+        private void OnEnable()
         {
-            var mapData = GameManager.Instance.level;
+            mapData = GameManager.Instance.level;
             circleList = mapData.circles;
             circlesTypes = Resources.LoadAll<GameObject>("Prefabs/Circles");
         }
@@ -45,7 +46,7 @@ namespace GamePlay
             //Spawn circles
             foreach (var circle in circleList)
             {
-                double timeToSpawn = circle.timeToSpawn;
+                float timeToSpawn = circle.timeToSpawn;
 
                 if (!(currentBeatTime >= timeToSpawn)) continue;
                     

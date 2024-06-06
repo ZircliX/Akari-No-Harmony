@@ -1,40 +1,52 @@
 using Audio;
 using AudioDelegates;
-using DG.Tweening;
 using GamePlay;
 using GameUI;
+using MapsGenerators;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace Menu
 {
     public class MapSelect : MonoBehaviour
     {
        public Map map;
+       public int mapIndex;
+
+       private AudioClip clip;
 
         public void OnClick()
         {
             GameManager.Instance.level = map;
+            GameManager.Instance.levelIndex = mapIndex;
+            GameManager.Instance.levelSong = LevelSelection.clipsList[mapIndex];
+            
             MenuManager.Instance.ChangeState(-1);
-            LevelSelection.Instance.LoadLevel(1);
+            SceneManager.LoadScene(1);
                 
             AudioManager.Instance.PlaySFX("Select");
-            
             AudioManager.Instance.StopSound();
         }
         
         public void OnHover()
         {
-            DisplayMapInfos.Instance.UpdateUI(map);
-
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(gameObject);
-            
-            AudioManager.Instance.PlaySFX("Hover");
-        
-            AudioManager.Instance.StopSound();
-            AudioManager.Instance.PlaySound(JsonSystem.LoadAudioClip(Application.dataPath  + "/StreamingAssets/MapData/" + map.songData.songName + ".mp3"));
+            Selected();
         }
 
+        public void OnSelect()
+        {
+            Selected();
+        }
+
+        private void Selected()
+        {
+            DisplayMapInfos.Instance.UpdateUI(map);
+            
+            AudioManager.Instance.PlaySFX("Hover");
+            AudioManager.Instance.StopSound();
+
+            clip = LevelSelection.clipsList[mapIndex];
+            AudioManager.Instance.PlaySound(clip);
+        }
     }
 }

@@ -1,0 +1,22 @@
+{
+    "mapName": "azdaz",
+    "mapDiff": 2,
+    "songData": {
+        "songBPM": 1,
+        "songOffset": 0.0,
+        "songName": "azaz",
+        "songLength": 219,
+        "songPositionInSeconds": [
+            120.0
+        ]
+    },
+    "circles": [
+        {
+            "typeIndex": 0,
+            "downSpeed": 2.0,
+            "timeToSpawn": 115.5,
+            "timeToBeat": 120.0,
+            "columnIndex": 1
+        }
+    ]
+}

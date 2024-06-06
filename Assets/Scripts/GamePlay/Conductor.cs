@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio;
 using Circles;
 using TMPro;
 using UnityEngine;
@@ -8,8 +9,8 @@ namespace GamePlay
     public class Conductor : MonoBehaviour
     {
         private float currentCirclePositionInSeconds;
-        
-        public float elapsedTime { get; private set; }
+
+        public float elapsedTime;
     
         private float lastUserInputTime;
 
@@ -19,12 +20,12 @@ namespace GamePlay
         private float pauseTime;
 
         private float firstBeatOffset;
-
-        private AudioSource musicSource;
     
         public float countdownDuration = 3f;
         public float countdownTimer;
         public TextMeshProUGUI countdownText;
+
+        private AudioClip song;
 
         public static Conductor Instance;
 
@@ -32,9 +33,12 @@ namespace GamePlay
         {
             Instance = this;
         
-            musicSource = GetComponent<AudioSource>();
-        
             LoadPrecomputedData();
+        }
+
+        private void OnEnable()
+        {
+            elapsedTime = 0f;
         }
     
         private IEnumerator CountdownCoroutine()
@@ -43,17 +47,11 @@ namespace GamePlay
             {
                 yield return new WaitForSeconds(1f); // Wait for 1 second
                 countdownTimer--;
-                UpdateCountdownText();
+                countdownText.text = countdownTimer.ToString();
             }
 
             StartMap();
             Destroy(countdownText.gameObject);
-        }
-
-        private void UpdateCountdownText()
-        {
-            // Update the countdown text with the remaining time
-            countdownText.text = countdownTimer.ToString();
         }
 
         private void Start()
@@ -64,7 +62,7 @@ namespace GamePlay
 
         private void StartMap()
         {
-            musicSource.Play();
+            AudioManager.Instance.PlaySound(song);
             dspSongTime = (float)AudioSettings.dspTime;
         }
 
@@ -76,7 +74,7 @@ namespace GamePlay
             {
                 elapsedTime = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset - pauseTime);
         
-                if (elapsedTime >= musicSource.clip.length)
+                if (elapsedTime >= song.length)
                 {
                     GameManager.Instance.SwitchState(5);
                 }
@@ -103,7 +101,7 @@ namespace GamePlay
             var mapData = GameManager.Instance.level;
         
             firstBeatOffset = mapData.songData.songOffset;
-            musicSource.clip = JsonSystem.LoadAudioClip(Application.dataPath + "/StreamingAssets/MapData/" + mapData.songData.songName + ".mp3");
+            song = GameManager.Instance.levelSong;
         }
     }
 }

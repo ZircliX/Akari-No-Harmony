@@ -12,7 +12,7 @@ namespace Lanterns
         public GameObject[] lanterns;
         public Color[] colors;
 
-        private int currentIndex = 3;
+        private int currentIndex;
         private int index;
         private const float animationSpeed = 4f;
         
@@ -21,6 +21,7 @@ namespace Lanterns
         void Start()
         {
             axis = 0;
+            currentIndex = 1 + GameManager.Instance.level.circles[0].typeIndex;
         }
 
         private void Update()

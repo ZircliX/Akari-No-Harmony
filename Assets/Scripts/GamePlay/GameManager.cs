@@ -1,5 +1,5 @@
 using Audio;
-using AudioDelegates;
+using MapsGenerators;
 using Menu;
 using UnityEngine;
 
@@ -7,7 +7,9 @@ namespace GamePlay
 {
     public class GameManager : MonoBehaviour
     {
+        public int levelIndex;
         public Map level;
+        public AudioClip levelSong;
         
         public GameState state = GameState.None;
         public enum GameState
@@ -58,40 +60,27 @@ namespace GamePlay
 
         private void CheckGameChange()
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            Time.timeScale = 1f;
-        
             switch (state)
             {
                 case GameState.LevelInProgress:
                     Debug.Log("Game started / resumed !");
-                    
-                    AudioManager.Instance.MusicResume();
-                    Cursor.lockState = CursorLockMode.Confined;
-                    Cursor.visible = false;
                     break;
             
                 case GameState.LevelFinished:
                     Debug.Log("Level Complete");
-       
-                    Time.timeScale = 0;
                     MenuManager.Instance.ChangeState((int)MenuManager.MenuState.Completed);
                     break;
             
                 case GameState.PlayerDead:
                     Debug.Log("Player Died");
-
-                    AudioManager.Instance.MusicPause();
-                    Time.timeScale = 0;
+                    AudioManager.Instance.StopSound();
+                    AudioManager.Instance.PlayMusic("Lose");
                     MenuManager.Instance.ChangeState((int)MenuManager.MenuState.Died);
                     break;
 
                 case GameState.GamePause:
                     Debug.Log("Game is paused !");
-                
                     AudioManager.Instance.MusicPause();
-                    Time.timeScale = 0f;
                     break;
             }
         }

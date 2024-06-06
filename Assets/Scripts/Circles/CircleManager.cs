@@ -1,5 +1,5 @@
-using AudioDelegates;
 using GamePlay;
+using MapsGenerators;
 using UnityEngine;
 
 namespace Circles
@@ -12,18 +12,22 @@ namespace Circles
 
         private void Update()
         {
-            transform.Translate(Vector3.down * (Time.deltaTime * circleData.downSpeed));
-            
-            if (isHit)
+            if (GameManager.Instance.state == GameManager.GameState.LevelInProgress)
             {
-                Spawners.Instance.RemoveCircle(this, 0f);
-            }
-            if (transform.position.y <= -4.25f && canHit)
-            {
-                canHit = false;
-                PlayerManager.Instance.Hit(-10, -10);
-                
-                Spawners.Instance.RemoveCircle(this, 3f);
+                transform.Translate(Vector3.down * (Time.deltaTime * circleData.downSpeed));
+
+                if (isHit)
+                {
+                    Spawners.Instance.RemoveCircle(this, 0f);
+                }
+
+                if (transform.position.y <= -4.25f && canHit)
+                {
+                    canHit = false;
+                    PlayerManager.Instance.Hit(-10, -10);
+
+                    Spawners.Instance.RemoveCircle(this, 3f);
+                }
             }
         }
     }

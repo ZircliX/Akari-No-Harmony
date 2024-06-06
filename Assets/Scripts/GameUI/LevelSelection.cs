@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Audio;
 using AudioDelegates;
-using GamePlay;
+using MapsGenerators;
 using Menu;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace GameUI
 {
@@ -15,22 +15,25 @@ namespace GameUI
         public GameObject buttons;
         public Transform content;
 
-        private List<Map> maps;
-        private List<Map> orderedMaps;
-
-        public static LevelSelection Instance;
-
-        private void Awake()
-        {
-            Instance = this;
-        }
+        public static List<AudioClip> clipsList = new();
+        private static List<Map> maps;
+        public static List<Map> orderedMaps { get; private set; }
 
         private void OnEnable()
         {
             GetMaps();
         }
 
-        public void GetMaps()
+        public void Refresh()
+        {
+            GetMaps();
+            foreach (var map in orderedMaps)
+            {
+                clipsList.Add(JsonSystem.LoadAudioClip(Application.dataPath  + "/StreamingAssets/MapData/" + map.songData.songName + ".mp3"));
+            }
+        }
+
+        private void GetMaps()
         {
             for (int i = 0; i < content.childCount; i++)
             {
@@ -42,25 +45,38 @@ namespace GameUI
             maps = mapsPath.Select(JsonSystem.LoadMapToJson).ToList();
             orderedMaps = maps.OrderBy(m => m.mapDiff).ToList();
 
-            foreach (var map in orderedMaps)
+            for (var index = 0; index < orderedMaps.Count; index++)
             {
-                SetupMapInfo(map);
+                var map = orderedMaps[index];
+                SetupMapInfo(map, index);
             }
         }
 
-        private void SetupMapInfo(Map map)
+        private void SetupMapInfo(Map map, int index)
         {
             var newMapInfo = Instantiate(buttons, content);
             newMapInfo.name = map.mapName;
             
             newMapInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = map.mapName;
-            newMapInfo.GetComponent<MapSelect>().map = map;
+            
+            var mapS = newMapInfo.GetComponent<MapSelect>();
+            mapS.map = map;
+            mapS.mapIndex = index;
         }
 
-        public void LoadLevel(int index)
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void ReloadAudios()
         {
-            GameManager.Instance.SwitchState(1);
-            SceneManager.LoadScene(index);
+            string path = Application.dataPath + "/StreamingAssets/MapData/";
+            string[] mapsPath = Directory.GetFiles(path, "*.json");
+            
+            maps = mapsPath.Select(JsonSystem.LoadMapToJson).ToList();
+            orderedMaps = maps.OrderBy(m => m.mapDiff).ToList();
+            
+            foreach (var map in orderedMaps)
+            {
+                clipsList.Add(JsonSystem.LoadAudioClip(path + map.songData.songName + ".mp3"));
+            }
         }
     }
 }

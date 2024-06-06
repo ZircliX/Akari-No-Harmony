@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace AudioDelegates
+namespace MapsGenerators
 {
     public static class MapGenerator
     {
