@@ -17,9 +17,9 @@ namespace GamePlay
         private float timingDifference;
 
         private const float
-            perfectTiming = 0.08f,
-            goodTiming = 0.18f,
-            missTiming = 0.55f;
+            perfectTiming = 0.06f,
+            goodTiming = 0.16f,
+            missTiming = 0.5f;
 
         public int colorIndex;
         private string[] rang = { "Left", "Middle", "Right" };

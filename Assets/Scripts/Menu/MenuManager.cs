@@ -126,7 +126,7 @@ namespace Menu
                     GameManager.Instance.SwitchState(1);
                     return;
                 case MenuState.Died:
-                    SceneManager.LoadScene(2, LoadSceneMode.Single);
+                    //SceneManager.LoadScene(2, LoadSceneMode.Single);
                     break;
             }
             

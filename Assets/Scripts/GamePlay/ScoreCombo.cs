@@ -72,9 +72,6 @@ namespace Score
                 case 2:
                     VFXManager.Instance.PlayVFX("Lanterns");
                     break;
-                case 4:
-                    VFXManager.Instance.PlayVFX("Firework");
-                    break;
                 case 8:
                     VFXManager.Instance.PlayVFX("BurstLanterns");
                     break;

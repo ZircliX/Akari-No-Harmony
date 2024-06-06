@@ -8,7 +8,7 @@ namespace GameUI
     {
         private bool isDone;
 
-        public TextMeshProUGUI perfect, good, miss, maxCombo;
+        public TextMeshProUGUI perfect, good, miss, maxCombo, score;
 
         private void LateUpdate()
         {
@@ -24,6 +24,7 @@ namespace GameUI
             good.text = "Good : " + ScoreCombo.Instance.good;
             miss.text = "Miss : " + ScoreCombo.Instance.miss;
             maxCombo.text = "Max Combo : " + ScoreCombo.Instance.maxCombo;
+            score.text = "Score : " + ScoreCombo.Instance.score;
         }
     }
 }

@@ -45,7 +45,13 @@ namespace GamePlay
         {
             while (countdownTimer > 0)
             {
+                while (GameManager.Instance.state == GameManager.GameState.GamePause)
+                {
+                    yield return 0;
+                }
+                
                 yield return new WaitForSeconds(1f); // Wait for 1 second
+                
                 countdownTimer--;
                 countdownText.text = countdownTimer.ToString();
             }

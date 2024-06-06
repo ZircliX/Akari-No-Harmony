@@ -60,6 +60,8 @@ namespace GamePlay
 
         private void CheckGameChange()
         {
+            Time.timeScale = 1;
+            
             switch (state)
             {
                 case GameState.LevelInProgress:
@@ -79,6 +81,7 @@ namespace GamePlay
                     break;
 
                 case GameState.GamePause:
+                    Time.timeScale = 0;
                     Debug.Log("Game is paused !");
                     AudioManager.Instance.MusicPause();
                     break;
